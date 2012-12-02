@@ -19,7 +19,11 @@ test:
   timeout: 5000
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
+  adapter: postgresql
+  database: kipscore
+  username: gslgockkyrnewa
+  password: z7V7oqAx0jyLn_bReMspSlVEfd
+  host: ec2-54-243-176-239.compute-1.amazonaws.com
+  port: 5432
   pool: 5
   timeout: 5000
