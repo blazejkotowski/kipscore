@@ -1,0 +1,15 @@
+=simple_form_for @user, :html => { :class => 'form-horizontal' } do |f|
+  %fieldset
+    %legend Sign up
+    =f.input :email
+    =f.input :name
+    =f.input :password
+    =f.input :password_confirmation
+    -if signup_page
+      %div.form-actions
+        =f.submit :class => 'btn btn-primary', :value => 'Sign up'
+    -else
+      %div.control-block
+        %div.controls
+          =f.submit :class => 'btn', :value => 'Sign up'
+        

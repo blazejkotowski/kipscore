@@ -1,0 +1,41 @@
+!!!
+%html
+  %head
+    %title=full_page_title(yield(:title))
+    =stylesheet_link_tag    "application", :media => "all"
+    =javascript_include_tag "application"
+    =csrf_meta_tags
+  %body
+    %div.navbar
+      %div.navbar-inner
+        %div.container
+          %div.pull-left
+            =link_to "KipScore", root_path, :class => 'brand'
+            %ul.nav
+              %li=link_to "About us", about_path
+              %li=link_to "Contact", contact_path
+          -if signed_in?
+            %ul.nav.pull-right
+              %li=link_to current_user.name, current_user
+              %li=link_to "Sign out", signout_path
+          -else 
+            =form_tag signin_path, :method => 'post', :id => 'login-box' do
+              =text_field 'email', nil, :placeholder => 'Email', :class => 'input-medium'
+              =password_field_tag 'password', nil, :placeholder => 'Password', :class => 'input-medium'
+              =button_tag 'Sign in', :type => 'submit', :class => 'btn'
+              
+    %div.container.notifications
+      -flash.each do |type,msg|
+        %div{ :class => "alert alert-#{type}" }
+          %button.close{ :type => 'button', 'data-dismiss' => 'alert' }×
+          =msg
+    
+    %div.container
+      =yield
+      
+    -if Rails.env.development?
+      .container=debug(params)
+  %footer.container
+    =Date.today.year
+    &copy;
+    =link_to "KipScore", root_path

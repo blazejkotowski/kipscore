@@ -1,0 +1,4 @@
+-provide :title, @user.name
+%h1 User profile
+%p 
+  =link_to @user.name, "mailto:#{@user.email}"
