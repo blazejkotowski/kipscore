@@ -7,6 +7,10 @@ gem 'rails', '3.2.9'
 
 gem 'haml-rails'
 
+group :development do 
+  gem 'annotate', '>=2.5.0'
+end
+
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
@@ -37,8 +41,10 @@ end
 gem 'jquery-ui-rails'
 gem 'jquery-rails'
 
+gem 'simple_form'
+
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use Jbuilder templates for JSON
 # gem 'jbuilder'
