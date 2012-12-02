@@ -30,6 +30,10 @@
 // Example:
 // @linkColor: #ff0000;
 
+#navigation {
+  .navbar-static-top;
+}
+
 .container, .navbar .container {
   width: 980px;
 }
@@ -44,10 +48,12 @@
   }
 }
 
+#main-container {
+  padding-top: 30px;
+}
+
 footer {
   text-align: center;
-  border-top: @grayLight 1px solid;
-  padding-top: 10px;
-  margin-bottom: 10px;
-  width: 90%;
+  padding: 20px;
+  .center-block();
 }

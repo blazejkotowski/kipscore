@@ -6,7 +6,7 @@
     =javascript_include_tag "application"
     =csrf_meta_tags
   %body
-    %div.navbar
+    %div#navigation.navbar.navbar-static-top
       %div.navbar-inner
         %div.container
           %div.pull-left
@@ -23,19 +23,20 @@
               =text_field 'email', nil, :placeholder => 'Email', :class => 'input-medium'
               =password_field_tag 'password', nil, :placeholder => 'Password', :class => 'input-medium'
               =button_tag 'Sign in', :type => 'submit', :class => 'btn'
-              
-    %div.container.notifications
-      -flash.each do |type,msg|
-        %div{ :class => "alert alert-#{type}" }
-          %button.close{ :type => 'button', 'data-dismiss' => 'alert' }×
-          =msg
     
-    %div.container
-      =yield
+    %div#main-container          
+      %div.container.notifications
+        -flash.each do |type,msg|
+          %div{ :class => "alert alert-#{type}" }
+            %button.close{ :type => 'button', 'data-dismiss' => 'alert' }×
+            =msg
       
-    -if Rails.env.development?
-      .container=debug(params)
-  %footer.container
+      %div.container
+        =yield
+        
+      -if Rails.env.development?
+        .container=debug(params)
+  %footer
     =Date.today.year
     &copy;
     =link_to "KipScore", root_path
