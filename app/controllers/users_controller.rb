@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
+  before_filter :signed_in_user, :only => [:update, :edit]
   before_filter :correct_user, :only => [:update, :edit]
-  before_filter :signed_in_user, :onlt => [:update, :edit]
   
   def new
     @user = User.new
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
       sign_in @user
       redirect_to @user
     else
-      render "new"
+      render "static_pages/home"
     end
   end
 
@@ -36,7 +36,8 @@ class UsersController < ApplicationController
     def signed_in_user
       unless signed_in?
         store_location
-        redirect_to root_url, :notice => 'Please sign in'
+        flash[:notice] = 'Please sign in'
+        redirect_to root_url
       end
     end
 end

@@ -10,13 +10,15 @@ class SessionsController < ApplicationController
       flash[:success] = 'Successfully signed in'
       return_back_or @user
     else
-      redirect_to root_url, :error => 'There is no such user / password combination'
+      flash[:error] = 'There is no such user / password combination'
+      redirect_to root_url
     end
   end
 
   def destroy
     sign_out
-    redirect_to root_url, :info => 'Successfully signed out'
+    flash[:info] = 'Successfully signed out'
+    redirect_to root_url 
   end
   
 end
