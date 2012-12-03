@@ -1,9 +1,9 @@
 #home-container.row
-  .span5
+  .span6
     #home-teaser.hero-unit
       %h1 KipScore
       %p
         Created to help you organize tournaments in the way you love to.
       =link_to 'Learn more', about_path, :class => 'btn btn-primary btn-large'
-  .span5
+  .span6
     #home-signup=render :partial => 'users/signup_form', :locals => { :signup_page => false }

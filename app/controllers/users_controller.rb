@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
-  include ApplicationHelper
-
+  before_filter :correct_user, :only => [:update, :edit]
+  before_filter :signed_in_user, :onlt => [:update, :edit]
+  
   def new
     @user = User.new
   end
@@ -20,7 +21,22 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
   
-  def update
-    @user = User.find(params[:id])
+  def edit
   end
+  
+  def update
+  end
+  
+  private
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to root_path unless current_user? @user
+    end
+    
+    def signed_in_user
+      unless signed_in?
+        store_location
+        redirect_to root_url, :notice => 'Please sign in'
+      end
+    end
 end
