@@ -1,5 +1,8 @@
 Kipscore::Application.routes.draw do
 
+  resources :tournaments
+
+
   root :to => 'static_pages#home'
 
   match '/signup' => 'users#new', :as => 'signup'
