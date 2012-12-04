@@ -13,6 +13,8 @@
 
 class User < ActiveRecord::Base
   attr_accessible :authentication_token, :email, :name, :password, :password_confirmation
+  has_many :tournaments
+  
   has_secure_password
   before_save :create_authentication_token
   
