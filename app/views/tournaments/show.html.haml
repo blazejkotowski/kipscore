@@ -1,18 +1,25 @@
-%p#notice= notice
+- model_class = Tournament
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human
 
 %p
-  %b User:
+  %strong= model_class.human_attribute_name(:user_id) + ':'
+  %br
   = @tournament.user_id
 %p
-  %b Name:
+  %strong= model_class.human_attribute_name(:name) + ':'
+  %br
   = @tournament.name
 %p
-  %b Start date:
+  %strong= model_class.human_attribute_name(:start_date) + ':'
+  %br
   = @tournament.start_date
 %p
-  %b Active:
+  %strong= model_class.human_attribute_name(:active) + ':'
+  %br
   = @tournament.active
 
-= link_to 'Edit', edit_tournament_path(@tournament)
-\|
-= link_to 'Back', tournaments_path
+.form-actions
+  = link_to t('.back', :default => t("helpers.links.back")), tournaments_path, :class => 'btn'
+  = link_to t('.edit', :default => t("helpers.links.edit")), edit_tournament_path(@tournament), :class => 'btn'
+  = link_to t('.destroy', :default => t("helpers.links.destroy")), tournament_path(@tournament), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'

@@ -1,25 +1,27 @@
-%h1 Listing tournaments
-
-%table
-  %tr
-    %th User
-    %th Name
-    %th Start date
-    %th Active
-    %th
-    %th
-    %th
-
-  - @tournaments.each do |tournament|
+- model_class = Tournament
+.page-header
+  %h1=t '.title', :default => model_class.model_name.human.pluralize
+%table.table.table-striped
+  %thead
     %tr
-      %td= tournament.user_id
-      %td= tournament.name
-      %td= tournament.start_date
-      %td= tournament.active
-      %td= link_to 'Show', tournament
-      %td= link_to 'Edit', edit_tournament_path(tournament)
-      %td= link_to 'Destroy', tournament, method: :delete, data: { confirm: 'Are you sure?' }
+      %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:user_id)
+      %th= model_class.human_attribute_name(:name)
+      %th= model_class.human_attribute_name(:start_date)
+      %th= model_class.human_attribute_name(:active)
+      %th= model_class.human_attribute_name(:created_at)
+      %th=t '.actions', :default => t("helpers.actions")
+  %tbody
+    - @tournaments.each do |tournament|
+      %tr
+        %td= link_to tournament.id, tournament_path(tournament)
+        %td= tournament.user_id
+        %td= tournament.name
+        %td= tournament.start_date
+        %td= tournament.active
+        %td=l tournament.created_at
+        %td
+          = link_to t('.edit', :default => t("helpers.links.edit")), edit_tournament_path(tournament), :class => 'btn btn-mini'
+          = link_to t('.destroy', :default => t("helpers.links.destroy")), tournament_path(tournament), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-mini btn-danger'
 
-%br
-
-= link_to 'New Tournament', new_tournament_path
+= link_to t('.new', :default => t("helpers.links.new")), new_tournament_path, :class => 'btn btn-primary'
