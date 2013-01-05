@@ -1,0 +1,31 @@
+- model_class = Tournament
+
+- unless @tournaments.empty?
+  .row
+    .span5
+      .page-header
+        %h3 Your tournaments
+      %table.table.table-striped
+        %thead
+          %tr
+            %th= model_class.human_attribute_name(:id)
+            %th= model_class.human_attribute_name(:name)
+            %th= model_class.human_attribute_name(:start_date)
+            %th= model_class.human_attribute_name(:active)
+            %th=t '.actions', :default => t("helpers.actions")
+        %tbody
+          - @tournaments.each do |tournament|
+            %tr{ :data => { :tid => tournament.id } }
+              %td= link_to tournament.id, tournament_path(tournament)
+              %td= tournament.name
+              %td= tournament.start_date.strftime("%d-%m-%Y, %H:%M")
+              %td= tournament.active ? 'Yes': 'No'
+              %td= link_to 'Manage', edit_tournament_path(tournament), :class => 'btn btn-mini manage-button', :remote => 'true', :data=> { :tid => tournament.id }
+    .span7
+      .page-header
+        %h3 Manage tournament
+      #tournament-management
+- else
+  .alert.alert-warning 
+    %h3 You have no created torunaments yet.
+= link_to 'Create new tournament', new_tournament_path, :class => 'btn btn-large btn-primary'
