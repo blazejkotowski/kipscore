@@ -4,8 +4,4 @@
     %h1=t '.title', :default => t('helpers.titles.edit', :model => model_class.model_name.human, :default => "Edit #{model_class.model_name.human}")
 
 = render :partial => "form"
-
-%script
-  $('.datepicker').datepicker({format: 'yyyy-mm-dd', autoclose: true});
-  $('.timepicker').timepicker({showMeridian: false, defaultTime: 'value', showInputs: true });
   

@@ -1,8 +1,9 @@
 = simple_form_for @tournament, :html => { :class => 'form-horizontal' } do |f|
   = f.input :name
   = f.input :start_date, :required => true do
-    = text_field_tag :start_date_date, @tournament.start_date.strftime("%Y-%m-%d"), :class => 'datepicker input-small'
-    = text_field_tag :start_date_time, @tournament.start_date.strftime("%H:%M"), :class => 'timepicker input-small'
+    - @date = @tournament.start_date.nil?? DateTime.now : @tournament.start_date
+    = text_field_tag :start_date_date, @date.strftime("%Y-%m-%d"), :class => 'datepicker input-small'
+    = text_field_tag :start_date_time, @date.strftime("%H:%M"), :class => 'timepicker input-small'
   .form-actions
     - @btn_class = 'btn-primary' unless request.xhr?
     - @btn_class = 'btn' if request.xhr?
@@ -10,3 +11,7 @@
     = link_to t('.cancel', :default => t("helpers.links.cancel")), tournaments_user_path, :class => 'btn'
     - if request[:action] == 'edit'
       = link_to 'Delete', tournament_path(@tournament), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+    
+%script
+  $('.datepicker').datepicker({format: 'yyyy-mm-dd', autoclose: true});
+  $('.timepicker').timepicker({showMeridian: false, defaultTime: 'value', showInputs: true });
