@@ -1,3 +1,27 @@
 // Place all the styles related to the tournaments controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#tournament-management {
+  .control-label {
+    width: 100px;
+  }
+  .form-actions {
+    border: 0;
+    background: transparent;
+    padding-left: 120px;
+  }
+  .controls {
+    margin-left: 120px;
+  }
+}
+
+tr.selected {
+  td {
+    background-color: #BFFFD7 !important;
+  }
+}
+
+select.datetime {
+  width: 80px;
+}

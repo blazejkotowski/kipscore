@@ -12,5 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery.ba-bbq
 //= require twitter/bootstrap
-//= require_tree .
+//= require bootstrap-datepicker
+//= require bootstrap-timepicker
+//= require tournaments

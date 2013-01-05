@@ -1,7 +1,6 @@
 class UsersController < ApplicationController
   before_filter :signed_in_user, :only => [:update, :edit]
-  before_filter :correct_user, :only => [:update, :edit]
-  
+  before_filter :not_signed_in_user, :only => [:new]
   def new
     @user = User.new
   end
@@ -18,18 +17,24 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = current_user
   end
   
   def edit
+    @user = current_user
   end
   
   def update
+    @user = current_user
+  end
+  
+  def tournaments
+    @tournaments = current_user.tournaments
   end
   
   private
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to root_path unless current_user? @user
+    def not_signed_in_user
+      redirect_to user_path if signed_in?
     end
+
 end

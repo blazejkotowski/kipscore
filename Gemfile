@@ -40,6 +40,8 @@ end
 
 gem 'jquery-ui-rails'
 gem 'jquery-rails'
+gem 'bootstrap-datepicker-rails'
+gem 'bootstrap-timepicker-rails', :require => 'bootstrap-timepicker-rails', :git => 'git://github.com/tispratik/bootstrap-timepicker-rails.git'
 
 gem 'simple_form'
 

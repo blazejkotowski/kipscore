@@ -1,5 +1,6 @@
 class TournamentsController < ApplicationController
   before_filter :signed_in_user, :only => [:new, :create, :edit, :update, :destroy]
+  before_filter :correct_user, :only => [:edit, :update, :destroy]
   # GET /tournaments
   # GET /tournaments.json
   def index
@@ -23,62 +24,46 @@ class TournamentsController < ApplicationController
   end
 
   # GET /tournaments/new
-  # GET /tournaments/new.json
   def new
     @tournament = Tournament.new
-
-    respond_to do |format|
-      format.html # new.html.erb
-      format.json { render json: @tournament }
-    end
   end
 
   # GET /tournaments/1/edit
   def edit
-    @tournament = Tournament.find(params[:id])
+    if request.xhr?
+      render :layout => false
+    end
   end
 
   # POST /tournaments
-  # POST /tournaments.json
   def create
     @tournament = Tournament.new(params[:tournament])
-
-    respond_to do |format|
-      if @tournament.save
-        format.html { redirect_to @tournament, notice: 'Tournament was successfully created.' }
-        format.json { render json: @tournament, status: :created, location: @tournament }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @tournament.errors, status: :unprocessable_entity }
-      end
+    @tournament.user = current_user
+    if @tournament.save
+      redirect_to tournaments_user_path, :anchor => "tid=#{@tournament.id}", :notice => 'Tournament was successfully created.'
+    else
+      render :action => "new"
     end
   end
 
   # PUT /tournaments/1
-  # PUT /tournaments/1.json
   def update
-    @tournament = Tournament.find(params[:id])
-
-    respond_to do |format|
-      if @tournament.update_attributes(params[:tournament])
-        format.html { redirect_to @tournament, notice: 'Tournament was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @tournament.errors, status: :unprocessable_entity }
-      end
+    if @tournament.update_attributes(params[:tournament].merge :start_date => "#{params[:start_date_date]} #{params[:start_date_time]}")
+      redirect_to tournaments_user_path, :notice => 'Tournament was successfully updated.', :anchor => "tid=#{@tournament.id}"
+    else
+      redirect_to tournaments_user_path, :notice => 'Data is not correct.', :anchor => "tid=#{@tournament.id}"
     end
   end
 
   # DELETE /tournaments/1
-  # DELETE /tournaments/1.json
   def destroy
-    @tournament = Tournament.find(params[:id])
     @tournament.destroy
-
-    respond_to do |format|
-      format.html { redirect_to tournaments_url }
-      format.json { head :no_content }
-    end
+    redirect_to tournaments_user_url
   end
+  
+  private
+    def correct_user
+      @tournament = Tournament.find(params[:id])
+      redirect_to root_path unless @tournament.user == current_user
+    end
 end

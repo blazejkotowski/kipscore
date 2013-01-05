@@ -1,4 +1,4 @@
-=simple_form_for @user, :html => { :class => 'form-horizontal' } do |f|
+=simple_form_for @user, :html => { :class => 'form-horizontal' }, :url => user_path do |f|
   %fieldset
     %legend Sign up
     =f.input :email, :label => 'E-mail address'

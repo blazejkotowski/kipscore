@@ -1,6 +1,12 @@
 = simple_form_for @tournament, :html => { :class => 'form-horizontal' } do |f|
   = f.input :name
-  = f.input :start_date
+  = f.input :start_date, :required => true do
+    = text_field_tag :start_date_date, @tournament.start_date.strftime("%Y-%m-%d"), :class => 'datepicker input-small'
+    = text_field_tag :start_date_time, @tournament.start_date.strftime("%H:%M"), :class => 'timepicker input-small'
   .form-actions
-    = f.button :submit, :class => 'btn-primary'
-    = link_to t('.cancel', :default => t("helpers.links.cancel")), tournaments_path, :class => 'btn'
+    - @btn_class = 'btn-primary' unless request.xhr?
+    - @btn_class = 'btn' if request.xhr?
+    = f.button :submit, :class => @btn_class
+    = link_to t('.cancel', :default => t("helpers.links.cancel")), tournaments_user_path, :class => 'btn'
+    - if request[:action] == 'edit'
+      = link_to 'Delete', tournament_path(@tournament), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
