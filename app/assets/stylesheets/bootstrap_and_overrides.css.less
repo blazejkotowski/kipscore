@@ -30,6 +30,12 @@
 // Example:
 // @linkColor: #ff0000;
 
+@footerHeight: 40px;
+
+html, body {
+  height: 100%;
+}
+
 #navigation {
   .navbar-static-top;
 }
@@ -48,12 +54,28 @@
   }
 }
 
+#main-wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -@footerHeight;
+}
+
 #main-container {
   padding-top: 30px;
 }
 
+#push-footer {
+  height: @footerHeight;
+}
+
 footer {
+  height: @footerHeight;
   text-align: center;
-  padding: 20px;
-  .center-block();
+  position: relative;
+  .navbar-inner {
+    padding: 10px 0;
+    min-height: 0;
+    .border-radius(0);
+  }
 }
