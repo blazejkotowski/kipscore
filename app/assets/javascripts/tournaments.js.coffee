@@ -1,5 +1,4 @@
 jQuery ->
-  
   $('.manage-button').on "click", (event) ->
     event.preventDefault()
     tid = $(event.target).attr "data-tid" 
@@ -13,8 +12,8 @@ jQuery ->
     tid = hashParams["tid"]
     $tournamentManagementDiv = $("#tournament-management")
     unless tid is undefined
-      $("tr.selected").removeClass "selected"
-      $("tr[data-tid=\"#{tid}\"]").addClass "selected"
+      $("tr.info").removeClass "info"
+      $("tr[data-tid=\"#{tid}\"]").addClass "info"
       url = $(".manage-button[data-tid=\"#{tid}\"]").attr "href"
       $tournamentManagementDiv.load url, ->
         $(".datepicker").datepicker { format: "yyyy-mm-dd hh:mm:ss" }
