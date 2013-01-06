@@ -7,7 +7,7 @@
   .form-actions
     - @btn_class = 'btn-primary' unless request.xhr?
     - @btn_class = 'btn' if request.xhr?
-    = f.button :submit, 'Update', :class => @btn_class
+    = f.button :submit, request[:action] == 'edit' ? 'Update' : 'Create', :class => @btn_class
     - if request[:action] == 'new'
       = link_to t('.cancel', :default => t("helpers.links.cancel")), tournaments_user_path, :class => 'btn'
     - if request[:action] == 'edit'

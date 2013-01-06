@@ -1,6 +1,7 @@
 class TournamentsController < ApplicationController
   before_filter :signed_in_user, :only => [:new, :create, :edit, :update, :destroy]
   before_filter :correct_user, :only => [:edit, :update, :destroy]
+  before_filter :concatenate_datetime, :only => [:create, :update]
   # GET /tournaments
   # GET /tournaments.json
   def index
@@ -48,7 +49,7 @@ class TournamentsController < ApplicationController
 
   # PUT /tournaments/1
   def update
-    if @tournament.update_attributes(params[:tournament].merge :start_date => "#{params[:start_date_date]} #{params[:start_date_time]}")
+    if @tournament.update_attributes(params[:tournament])
       redirect_to tournaments_user_path, :notice => 'Tournament was successfully updated.', :anchor => "tid=#{@tournament.id}"
     else
       redirect_to tournaments_user_path, :notice => 'Data is not correct.', :anchor => "tid=#{@tournament.id}"
@@ -65,5 +66,9 @@ class TournamentsController < ApplicationController
     def correct_user
       @tournament = Tournament.find(params[:id])
       redirect_to root_path unless @tournament.user == current_user
+    end
+    
+    def concatenate_datetime
+      params[:tournament][:start_date] = "#{params[:start_date_date]} #{params[:start_date_time]}"
     end
 end
