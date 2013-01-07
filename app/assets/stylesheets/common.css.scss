@@ -1,3 +1,17 @@
+.logo-hero {
+  display: inline-block;
+  width: 400px;
+  height: 86px;
+  background: transparent asset-data-url('logo.png') center no-repeat;
+}
+
+.logo-small {
+  display: inline-block;
+  width: 116px;
+  height: 25px;
+  background: transparent asset-data-url('logo_small.png') center no-repeat;
+}
+
 .loader16px, .loader32px, .loader64px {
   display: none;
   background: transparent center no-repeat;

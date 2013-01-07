@@ -12,7 +12,8 @@
         %div.navbar-inner
           %div.container
             %div.pull-left
-              = link_to "kipscore", root_path, :class => 'brand'
+              = link_to root_path, :class => 'brand' do
+                %span.logo-small
               %ul.nav
                 %li= link_to "About us", about_path
                 %li= link_to "Contact", contact_path
