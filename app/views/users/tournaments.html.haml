@@ -21,10 +21,12 @@
               %td= tournament.start_date.strftime("%d-%m-%Y, %H:%M")
               %td= tournament.active ? 'Yes': 'No'
               %td= link_to 'Manage', edit_tournament_path(tournament), :class => 'btn btn-mini manage-button', :remote => 'true', :data=> { :tid => tournament.id }
-    .span7
+    .span7#tournament-part
       .page-header
         %h3 Manage tournament
+      #loader.loader32px
       #tournament-management
+        
 - else
   .alert.alert-warning 
     %h3 You have no created torunaments yet.

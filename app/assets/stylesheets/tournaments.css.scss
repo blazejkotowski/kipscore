@@ -2,6 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+#tournament-part {
+  position: relative;
+  #loader {
+    position: absolute;
+    left: 45%;
+    top: 150px;
+  }
+}
+
 #tournament-management {
   .control-label {
     width: 100px;

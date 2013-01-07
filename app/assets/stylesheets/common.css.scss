@@ -1,0 +1,22 @@
+.loader16px, .loader32px, .loader64px {
+  display: none;
+  background: transparent center no-repeat;
+}
+
+.loader16px {
+  background-image: asset-data-url('loader16px.gif');
+  width:16px;
+  height:16px;
+}
+
+.loader32px {
+  background-image: asset-data-url('loader32px.gif');
+  width:32px;
+  height:32px;
+}
+
+.loader64px {
+  background-image: asset-data-url('loader64px.gif');
+  width:64px;
+  height:64px;
+}
