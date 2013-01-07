@@ -21,6 +21,7 @@
               %td= tournament.start_date.strftime("%d-%m-%Y, %H:%M")
               %td= tournament.active ? 'Yes': 'No'
               %td= link_to 'Manage', edit_tournament_path(tournament), :class => 'btn btn-mini manage-button', :remote => 'true', :data=> { :tid => tournament.id }
+      = link_to 'Create new tournament', new_tournament_path, :class => 'btn btn-large btn-primary'
     .span7#tournament-part
       .page-header
         %h3 Manage tournament
@@ -29,5 +30,5 @@
         
 - else
   .alert.alert-warning 
-    %h3 You have no created torunaments yet.
-= link_to 'Create new tournament', new_tournament_path, :class => 'btn btn-large btn-primary'
+    %h3{ :style=> 'display: inline; position: relative; top: 5px;'} You have no created torunaments yet.
+    = link_to 'Create new tournament', new_tournament_path, :class => 'btn btn-large btn-primary', :style => 'margin-left: 15px;'
