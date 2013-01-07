@@ -11,5 +11,11 @@
  *= require_self
  *= require bootstrap-datepicker
  *= require bootstrap-timepicker
- *= require_tree .
+ *= require bootstrap_and_overrides
+ *= require bootstrap_variables
+ *= require common
+ *= require tournaments
+ *= require static_pages
+ *= require users
+ *= require sessions
  */
