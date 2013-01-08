@@ -1,6 +1,6 @@
 class TournamentsController < ApplicationController
-  before_filter :signed_in_user, :only => [:new, :create, :edit, :update, :destroy]
-  before_filter :correct_user, :only => [:edit, :update, :destroy]
+  before_filter :signed_in_user, :only => [:new, :create, :edit, :update, :destroy, :activate]
+  before_filter :correct_user, :only => [:edit, :update, :destroy, :activate]
   before_filter :concatenate_datetime, :only => [:create, :update]
   # GET /tournaments
   # GET /tournaments.json
@@ -41,7 +41,7 @@ class TournamentsController < ApplicationController
     @tournament = Tournament.new(params[:tournament])
     @tournament.user = current_user
     if @tournament.save
-      redirect_to tournaments_user_path, :anchor => "tid=#{@tournament.id}", :notice => 'Tournament was successfully created.'
+      redirect_to tournaments_user_path(:anchor => "tid=#{@tournament.id}"), :notice => 'Tournament was successfully created.'
     else
       render :action => "new"
     end
@@ -50,9 +50,9 @@ class TournamentsController < ApplicationController
   # PUT /tournaments/1
   def update
     if @tournament.update_attributes(params[:tournament])
-      redirect_to tournaments_user_path, :notice => 'Tournament was successfully updated.', :anchor => "tid=#{@tournament.id}"
+      redirect_to tournaments_user_path(:anchor => "tid=#{@tournament.id}"), :notice => 'Tournament was successfully updated.'
     else
-      redirect_to tournaments_user_path, :notice => 'Data is not correct.', :anchor => "tid=#{@tournament.id}"
+      redirect_to tournaments_user_path(:anchor => "tid=#{@tournament.id}"), :notice => 'Data is not correct.'
     end
   end
 
@@ -60,6 +60,12 @@ class TournamentsController < ApplicationController
   def destroy
     @tournament.destroy
     redirect_to tournaments_user_url
+  end
+  
+  def activate
+    @tournament.active = true
+    @tournament.save
+    redirect_to tournaments_user_url(:anchor => "tid=#{@tournament.id}")
   end
   
   private

@@ -5,14 +5,12 @@
     = text_field_tag :start_date_date, @date.strftime("%Y-%m-%d"), :class => 'datepicker input-small'
     = text_field_tag :start_date_time, @date.strftime("%H:%M"), :class => 'timepicker input-small'
   .form-actions
-    - @btn_class = 'btn-primary' unless request.xhr?
-    - @btn_class = 'btn' if request.xhr?
-    = f.button :submit, request[:action] == 'edit' ? 'Update' : 'Create', :class => @btn_class
+    = f.button :submit, request[:action] == 'edit' ? 'Update' : 'Create', :class => 'btn'
     - if request[:action] == 'new'
       = link_to t('.cancel', :default => t("helpers.links.cancel")), tournaments_user_path, :class => 'btn'
     - if request[:action] == 'edit'
       = link_to 'Delete', tournament_path(@tournament), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'    
-      = link_to 'Activate', '#', :class => 'btn btn-success'
+      = link_to 'Activate', activate_tournament_path(@tournament), :class => 'btn btn-success', :method => 'put'
     
 %script
   $('.datepicker').datepicker({format: 'yyyy-mm-dd', autoclose: true});

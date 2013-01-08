@@ -16,6 +16,8 @@ Kipscore::Application.routes.draw do
   match '/about' =>  'static_pages#about', :as => 'about'
   match '/contact' => 'static_pages#contact', :as => 'contact'
   
-  resources :tournaments
+  resources :tournaments do
+    put 'activate', :on => :member
+  end
 
 end
