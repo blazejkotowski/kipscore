@@ -22,7 +22,7 @@ jQuery ->
         $loaderDiv.hide();
         $(".datepicker").datepicker { format: "yyyy-mm-dd hh:mm:ss" }
     else
-      $('.manage-button').first().trigger "click" 
+      $(".manage-button").first().trigger "click" 
   
   changeTournament()
   

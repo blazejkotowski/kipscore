@@ -17,3 +17,4 @@
 //= require bootstrap-datepicker
 //= require bootstrap-timepicker
 //= require tournaments
+
