@@ -68,6 +68,10 @@ class TournamentsController < ApplicationController
     redirect_to tournaments_user_url(:anchor => "tid=#{@tournament.id}")
   end
   
+  def bracket
+    @tournament = Tournament.find(params[:id])
+  end
+  
   private
     def correct_user
       @tournament = Tournament.find(params[:id])

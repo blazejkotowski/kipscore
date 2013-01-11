@@ -3,7 +3,7 @@ window.Kipscore =
   Collections: {}
   Views: {}
   Routers: {}
-  initialize: -> alert 'Hello from Backbone!'
+  bracketInitialize: -> 
+    router = new Kipscore.Routers.Tournaments()
+    Backbone.history.start()
 
-$(document).ready ->
-  Kipscore.initialize()
