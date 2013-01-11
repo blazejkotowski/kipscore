@@ -43,6 +43,8 @@ gem 'jquery-rails'
 gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-timepicker-rails', :require => 'bootstrap-timepicker-rails', :git => 'git://github.com/tispratik/bootstrap-timepicker-rails.git'
 
+gem 'backbone-on-rails'
+
 gem 'simple_form'
 
 # To use ActiveModel has_secure_password

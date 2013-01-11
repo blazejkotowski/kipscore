@@ -16,5 +16,13 @@
 //= require twitter/bootstrap
 //= require bootstrap-datepicker
 //= require bootstrap-timepicker
+//= require jquery.gracket.min
 //= require tournaments
-
+//= require underscore
+//= require backbone
+//= require kipscore
+//= require_tree ../templates
+//= require_tree ./models
+//= require_tree ./collections
+//= require_tree ./views
+//= require_tree ./routers
