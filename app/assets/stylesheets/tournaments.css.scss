@@ -29,8 +29,10 @@ select.datetime {
   width: 80px;
 }
 
-$baseMatchMargin: 15px;
-$baseMatchPadding: 5px;
+
+// Bracket part
+$baseMatchMargin: 25px;
+$baseMatchPadding: 0;
 $baseMatchBorder: 1px;
 $baseMatchHeight: 50px;
 $baseMatchWidth: 150px;
@@ -41,28 +43,51 @@ $column3MatchMargin: $column2MatchMargin*2 + $totalMatchHeight/2;
 $column4MatchMargin: $column3MatchMargin*2 + $totalMatchHeight/2;
 $column5MatchMargin: $column4MatchMargin*2 + $totalMatchHeight/2;
 $column6MatchMargin: $column5MatchMargin*2 + $totalMatchHeight/2;
+$playerHeight: $baseMatchHeight/2;
+
+#tournament-container {
+}
+
+.tournament-bracket-wrapper {
+  h2 {
+    font-size: 2em;
+    margin-bottom: 0;
+    border-bottom: 1px solid #ccc;
+  }
+}
 
 .tournament-bracket {
-  .round-title {
-  }
-  
   margin-bottom: 25px;
   padding: 10px;
-  border: 1px solid #555;
+  
+  .round-title {
+    margin-top: 0;
+    font-size: 1.2em;
+    margin-left: 45px;
+    margin-bottom: -$baseMatchMargin+10;
+  }
+  
+  .player {
+    height: $playerHeight;
+    width: 100%;
+    position: relative;
+  }
+
   div[class^="column"] {
-    display: inline;
+    display: inline-block;
     float: left;
     width: 200px;
+    margin-right: 15px;
   }
   
   .match {
     margin: $baseMatchMargin 0;
     padding: $baseMatchPadding;
-    border: $baseMatchBorder dashed #777;
     width: $baseMatchWidth;
     height: $baseMatchHeight;
     display: inline-block;
     vertical-align: middle;
+    position: relative;
   }
   
   .column1 {

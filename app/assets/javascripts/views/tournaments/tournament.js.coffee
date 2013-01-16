@@ -1,22 +1,27 @@
 class Kipscore.Views.Tournament extends Backbone.View
   
   tagName: 'div'
-  className: 'tournament-bracket'    
+  className: 'tournament-bracket-wrapper'    
   
   template: JST['tournaments/show']
-  
+    
   append: ->
-    $(@el).appendTo("#main-container")
+    $(@el).appendTo("#tournament-container")
   
   render: ->
-    $(@el).html('')
-    $(@el).append($('<h2/>').addClass('torunament-title').text("Tournament #{@model.get('min_position')}-#{@model.get('max_position')}"))
+    # Tournament title
+    $(@el).append($('<h2/>').addClass('tournament-title').text("Tournament #{@model.get('min_position')}-#{@model.get('max_position')}"))
+    
+    # Wrapper to make scroll posbbile
+    $wrapper = $('<div/>').addClass('tournament-bracket').appendTo($(@el))
+    
+    # Rendering column by column
     bracket = @model.get('bracket')
     i = bracket.length-1
     while i >= 0
       # Create next column
       if @model.columnNumber(i+1) != @model.columnNumber(i+2)
-        $(@el).append(column)
+        $wrapper.append(column)
         column = $('<div/>').addClass("column#{@model.maxColumnNumber()-@model.columnNumber(i+1)}")
         column.append($('<h3/>').addClass('round-title').text("Round #{@model.maxColumnNumber()-@model.columnNumber(i+1)+1}"))
       
@@ -24,13 +29,13 @@ class Kipscore.Views.Tournament extends Backbone.View
       $(column).append(match_view.render().$el)
       --i
       
-    $(@el).append(column).append($('<div/>').addClass('clearfix'))
+    $wrapper.append(column).append($('<div/>').addClass('clearfix'))
     @append()
     
     # Render related tournaments recursivly
     rt = @model.get('related_tournaments')
     rt.each (t) ->
       tv = new Kipscore.Views.Tournament({ model: t })
-      $('#main-container').append(tv.render())
+      tv.render()
     
     this

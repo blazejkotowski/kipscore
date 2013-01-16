@@ -84,3 +84,17 @@ footer {
     .border-radius(0);
   }
 }
+
+.match {
+  .player {
+    padding: 5px;
+    &:nth-child(odd) {
+      background: @linkColor;
+      .border-top-radius(10px);
+    }
+    &:nth-child(even) {
+      background: #eee;
+      .border-bottom-radius(10px);
+    }
+  }
+}

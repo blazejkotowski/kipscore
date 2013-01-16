@@ -50,15 +50,11 @@ class Kipscore.Models.Tournament extends Backbone.Model
     # For each column create tournament for 2 times less players
     # from (tournament min_position + column_players/2) to column max_position places
     while cur_players >= 4
-#      console.log "Tournament #{this.get('min_position')}-#{this.get('max_position')}"
-#      console.log "Column with #{cur_players} players, #{min_position}-#{max_position}"
-#      console.log "t #{min_position + cur_players/2}-#{max_position}\n"
       new_tournament = new Kipscore.Models.Tournament
         'players_number': cur_players/2
         'max_position': max_position
         'min_position': min_position + cur_players/2
       tournaments.add new_tournament
-#      console.log "Back in column with #{cur_players} players, #{min_position}-#{max_position}"
       max_position -= cur_players/2
       cur_players /= 2
       
