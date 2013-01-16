@@ -42,8 +42,15 @@ class Kipscore.Models.Tournament extends Backbone.Model
     tournaments = new Kipscore.Collections.Tournaments()
     x = 2
     i = 0
+    
+    min_position = this.get('min_position') + x/2
+    max_position = min_position + x/2
+        
     while x*2 <= this.get('bracket_size')+1
-      new_tournament = new Kipscore.Models.Tournament { 'players_number': x }
+      new_tournament = new Kipscore.Models.Tournament 
+        'players_number': x
+        'max_position': max_position
+        'min_position': min_position
       tournaments.add new_tournament
       x *= 2
       
