@@ -28,3 +28,18 @@
 select.datetime {
   width: 80px;
 }
+
+.tournament-bracket {
+  .column {
+    display: inline;
+    float: left;
+    width: 200px;
+  }
+  
+  .match {
+    margin-bottom: 15px;
+    padding: 5px;
+    border: 1px dashed #eee;
+    width: 150px;
+  }
+}
