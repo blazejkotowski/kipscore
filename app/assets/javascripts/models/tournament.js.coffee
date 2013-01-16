@@ -37,11 +37,12 @@ class Kipscore.Models.Tournament extends Backbone.Model
     # Perform empty tournaments for next tours  
     this.createRelatedTournaments()
       
+  # Creates losers tournaments
   createRelatedTournaments: ->
     tournaments = new Kipscore.Collections.Tournaments()
-    x = 1
+    x = 2
     i = 0
-    while x*2 <= this.get('bracket_size')
+    while x*2 <= this.get('bracket_size')+1
       new_tournament = new Kipscore.Models.Tournament { 'players_number': x }
       tournaments.add new_tournament
       x *= 2
@@ -50,6 +51,9 @@ class Kipscore.Models.Tournament extends Backbone.Model
   
   columnNumber: (bracket_number) ->
     return Math.floor(Math.log(bracket_number) / Math.LN2)
+    
+  maxColumnNumber: ->
+    return Math.floor(Math.log(this.get('bracket_size')) / Math.LN2)
     
   winnerMatch: (bracket_number) ->
     return this.get('bracket').models[bracket_number/2]
