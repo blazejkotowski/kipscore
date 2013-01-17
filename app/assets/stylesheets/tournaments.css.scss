@@ -90,6 +90,10 @@ $playerHeight: $baseMatchHeight/2;
     position: relative;
   }
   
+  /*.empty {
+    display: none;
+  }*/
+  
   .column1 {
     .match {
       margin: $column1MatchMargin 0;
