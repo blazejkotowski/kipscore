@@ -34,8 +34,14 @@ class Kipscore.Models.Match extends Backbone.Model
     player2 = this.get('player2')
     return not(player1.empty() or player2.empty())
     
+  winnerMatch: ->
+    return this.collection.tournament.winnerMatch(this.index())
+    
+  loserMatch: ->
+    return this.collection.tournament.loserMatch(this.index())
+    
   index: ->
     try
-      return this.collection.indexOf(this)
+      return this.collection.indexOf(this)+1
     catch error
       return -1

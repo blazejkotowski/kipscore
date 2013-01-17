@@ -10,6 +10,20 @@ class Kipscore.Views.Match extends Backbone.View
   
   initialize: ->
     this.render()
+    
+  events:
+    'click': 'alertId'
+    
+  alertId: ->
+    wmatch = @model.winnerMatch()
+    lmatch = @model.loserMatch()
+    
+    console.log "you clicked match id #{@model.index()}"
+   
+    console.log "winner match is #{wmatch.index()} in tournament #{wmatch.collection.tournament.get('min_position')}-#{wmatch.collection.tournament.get('max_position')}"
+    
+    console.log "loser match is #{lmatch.index()} in tournament #{lmatch.collection.tournament.get('min_position')}-#{lmatch.collection.tournament.get('max_position')}"
+    
   
   render: ->
     $(@el).html('')
