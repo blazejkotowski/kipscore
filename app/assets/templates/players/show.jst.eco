@@ -1,1 +1,5 @@
-<%= @name %> - <%= @start_position %>
+<% if @empty: %>
+  Empty
+<% else: %>
+  <%= @name %> - <%= @start_position %>
+<% end %>
