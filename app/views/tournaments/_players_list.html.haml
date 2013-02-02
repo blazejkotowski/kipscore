@@ -7,7 +7,7 @@
           %th Rank
           %th Action
         %tr
-          = form_tag add_player_tournament_path(@tournament), :method => 'put', :id => 'add-player', :remote => true do
+          = form_tag tournament_players_path(@tournament), :method => 'post', :id => 'add-player', :remote => true do
             %th
               = text_field_tag "player[name]"
             %th
@@ -18,7 +18,7 @@
         
         - unless @tournament.players.empty?
           - @tournament.players.each do |player|
-            %tr
+            %tr{ :data => { :id => player.id } }
               %td= player.name
               %td= player.rank
-              %td
+              %td= link_to '-', tournament_player_path(@tournament, player), :method => 'delete', :remote => 'true', :class => 'btn btn-danger btn-medium delete-player'

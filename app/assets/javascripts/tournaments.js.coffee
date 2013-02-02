@@ -26,16 +26,26 @@ jQuery ->
   changeTournament()
   
   $("form#add-player").on "ajax:success", (event, data) ->
-    if data["created"]
-      player = data["player"]
-      $row = $("<tr/>")
-      $row.append($("<td/>").text(player["name"]))
-      $row.append($("<td/>").text(player["rank"]))
-      $row.append($("<td/>"))
+    if data.created
+      player = data.player
+      $row = $("<tr/>").attr("data-id", player.id)
+      $row.append($("<td/>").text(player.name))
+      $row.append($("<td/>").text(player.rank))
+      
+      $delete_button = $("<a/>").attr("href", data.delete_url).addClass("btn btn-danger btn-medium delete-player").text("-")
+      $delete_button.attr("data-method", "delete").attr("data-remote", "true").attr("rel", "nofollow")
+      $row.append($("<td/>").html($delete_button))
+      
       $("#players-table tbody").prepend($row)
       $('#players-table input[type=text]').each (i, t) ->
         $(t).val ''
     else
       alert "Not created"
-      
+  
+  
+  $("body").on "ajax:success", "a.delete-player",  (event, data) ->
+    if data.removed
+      $("#players-table tr[data-id=#{data.player.id}]").remove()
+    else
+      alert "Not removed"
     
