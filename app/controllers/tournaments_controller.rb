@@ -1,6 +1,6 @@
 class TournamentsController < ApplicationController
-  before_filter :signed_in_user, :only => [:new, :create, :edit, :update, :destroy, :activate]
-  before_filter :correct_user, :only => [:edit, :update, :destroy, :activate]
+  before_filter :signed_in_user, :only => [:new, :create]
+  before_filter :correct_user, :only => [:edit, :update, :destroy, :activate, :add_player, :remove_player]
   before_filter :concatenate_datetime, :only => [:create, :update]
   # GET /tournaments
   # GET /tournaments.json
@@ -72,6 +72,35 @@ class TournamentsController < ApplicationController
     @tournament = Tournament.find(params[:id])
   end
   
+  def add_player
+    params[:player][:rank] ||= -1
+    player = @tournament.players.new params[:player]
+    @result = { :created => false, :player => player }
+    if player.save
+      @tournament.players << player
+      @result[:created] = true
+      @result[:delete_button] = "" 
+    end
+    
+    respond_to do |format|
+      format.json { render :json => @result }
+    end
+  end
+  
+  def remove_player
+    @result = { :removed => false }
+    
+    player = @tournament.players.where(:id => params[:id]).first
+    unless player.nil?
+      player.delete
+      @result[:removed] = true
+    end
+      
+    respond_to do |format|
+      format.json { render :json => @result }
+    end
+  end
+  
   private
     def correct_user
       @tournament = Tournament.find(params[:id])
@@ -81,4 +110,5 @@ class TournamentsController < ApplicationController
     def concatenate_datetime
       params[:tournament][:start_date] = "#{params[:start_date_date]} #{params[:start_date_time]}"
     end
+    
 end

@@ -29,6 +29,17 @@ select.datetime {
   width: 80px;
 }
 
+#tournament-players {
+  input {
+    margin-bottom: 0;
+  }
+  
+  input.rank {
+    width: 40px;
+  }
+  
+}
+
 
 // Bracket part
 $baseMatchMargin: 25px;

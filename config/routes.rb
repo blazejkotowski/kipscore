@@ -19,6 +19,8 @@ Kipscore::Application.routes.draw do
   resources :tournaments do
     put 'activate', :on => :member
     get 'bracket', :on => :member
+    put 'add_player', :on => :member
+    put 'remove_player', :on => :member
   end
 
 end
