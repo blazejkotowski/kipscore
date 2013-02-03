@@ -19,7 +19,9 @@
               = submit_tag '+', :class => 'btn btn-success btn-medium'
     %tbody
       - unless @tournament.players.empty?
-        - @tournament.players.each do |player|
+        - players = @tournament.players.latest if edit
+        - players = @tournament.players.best unless edit
+        - players.each do |player|
           %tr{ :data => { :id => player.id } }
             %td= player.name
             %td= player.rank
