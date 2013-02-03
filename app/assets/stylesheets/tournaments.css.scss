@@ -61,7 +61,7 @@ $baseMatchMargin: 20px;
 $baseMatchPadding: 0;
 $baseMatchBorder: 1px;
 $baseMatchHeight: 40px;
-$baseMatchWidth: 150px;
+$baseMatchWidth: 170px;
 $totalMatchHeight: $baseMatchHeight + $baseMatchBorder*2 + $baseMatchPadding*2;
 $column1MatchMargin: $baseMatchMargin*2 + $totalMatchHeight/2;
 $column2MatchMargin: $column1MatchMargin*2 + $totalMatchHeight/2;
