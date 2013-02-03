@@ -1,5 +1,5 @@
 <% if @empty: %>
   Empty
 <% else: %>
-  <%= @name %> - <%= @start_position %>
+  <%= @name %> - <%= @rank %>
 <% end %>

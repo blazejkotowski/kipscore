@@ -70,6 +70,11 @@ class TournamentsController < ApplicationController
   
   def bracket
     @tournament = Tournament.find(params[:id])
+    
+    respond_to do |format|
+      format.html
+      format.json { render json: @tournament.bracket }
+    end
   end
   
   private

@@ -40,8 +40,6 @@ class Tournament < ActiveRecord::Base
       return json_bracket
     end
     
-    puts 'dupa'
-    
     list = players.best.reverse # list of players sorted by rank
     power = Math.log2(list.size).ceil # nearest power of 2
     bracket_size = 2**power
@@ -65,16 +63,16 @@ class Tournament < ActiveRecord::Base
         if start_list[number] == -1
           player = list.pop
           start_list[number] = player
-          start_hash_list.append( { :start_position => number, :player => player} )
+          start_hash_list.append( { :start_position => number, :name => player.name, :rank => player.rank, :empty => false} )
           
           # If there is free bye, give it to current player
           if byes_number > 0
             if number % 2 == 0
               start_list[number + 1] = nil
-              start_hash_list.append( { :start_position => number + 1, :player => nil} )
+              start_hash_list.append( { :start_position => number + 1, :empty => false, :name => 'bye'} )
             else
               start_list[number - 1] = nil
-              start_hash_list.append( { :start_position => number - 1, :player => nil} )
+              start_hash_list.append( { :start_position => number - 1, :empty => false, :name => 'bye'} )
             end
             byes_number -= 1
           end
@@ -85,9 +83,12 @@ class Tournament < ActiveRecord::Base
       
     end
     
-    update_attribute(:json_bracket, start_hash_list.to_json)
-    self.save!
-    json_bracket
+    start_hash_list.sort! { |a,b| a[:start_position] <=> b[:start_position] }
+    start_hash_list
+    
+    #update_attribute(:json_bracket, start_hash_list.to_json)
+    #self.save!
+    #json_bracket
     
   end
   
