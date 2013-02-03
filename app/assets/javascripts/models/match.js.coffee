@@ -12,7 +12,7 @@ class Kipscore.Models.Match extends Backbone.Model
       this.set 'player1', new Kipscore.Models.Player()
     if this.get('player2') is undefined
       this.set 'player2', new Kipscore.Models.Player()
-  
+    
   pickWinner: ->
     if this.get 'score1' > this.get 'score2'
       this.set 'winner', this.get 'player1'

@@ -9,7 +9,9 @@ class Kipscore.Views.Match extends Backbone.View
   template: JST['matches/match']
   
   initialize: ->
-    this.render()
+    _.bindAll(this, "render")
+    @model.bind "change", @render
+    @render()
     
   events:
     'click': 'alertId'
