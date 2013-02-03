@@ -1,5 +1,5 @@
 @import "twitter/bootstrap/bootstrap";
-@import "twitter/bootstrap/responsive";
+//@import "twitter/bootstrap/responsive";
 
 // Set the correct sprite paths
 @iconSpritePath: asset-path("twitter/bootstrap/glyphicons-halflings");
@@ -90,11 +90,12 @@ footer {
     padding: 5px;
     &:nth-child(odd) {
       background: @linkColor;
-      .border-top-radius(10px);
+      color: #fff;
+      .border-top-radius(7px);
     }
     &:nth-child(even) {
       background: #eee;
-      .border-bottom-radius(10px);
+      .border-bottom-radius(7px);
     }
   }
 }

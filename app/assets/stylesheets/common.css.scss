@@ -1,8 +1,9 @@
 .logo-hero {
   display: inline-block;
-  width: 400px;
-  height: 86px;
+  width: 340px;
+  height: 73px;
   background: transparent asset-data-url('logo.png') center no-repeat;
+  background-size: 340px;
 }
 
 .logo-small {
@@ -33,4 +34,11 @@
   background-image: asset-data-url('loader64px.gif');
   width:64px;
   height:64px;
+}
+
+.breadcrumb {
+  font-size: 20px;
+  a {
+    font-weight: bold;
+  }
 }

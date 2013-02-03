@@ -42,10 +42,10 @@ select.datetime {
 
 
 // Bracket part
-$baseMatchMargin: 25px;
+$baseMatchMargin: 20px;
 $baseMatchPadding: 0;
 $baseMatchBorder: 1px;
-$baseMatchHeight: 50px;
+$baseMatchHeight: 40px;
 $baseMatchWidth: 150px;
 $totalMatchHeight: $baseMatchHeight + $baseMatchBorder*2 + $baseMatchPadding*2;
 $column1MatchMargin: $baseMatchMargin*2 + $totalMatchHeight/2;
@@ -88,7 +88,7 @@ $playerHeight: $baseMatchHeight/2;
     display: inline-block;
     float: left;
     width: 200px;
-    margin-right: 15px;
+    margin-right: 5px;
   }
   
   .match {

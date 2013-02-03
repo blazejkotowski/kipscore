@@ -25,7 +25,7 @@ jQuery ->
   
   changeTournament()
   
-  $("form#add-player").on "ajax:success", (event, data) ->
+  $("body").on "ajax:success", "form#add-player", (event, data) ->
     if data.created
       player = data.player
       $row = $("<tr/>").attr("data-id", player.id)

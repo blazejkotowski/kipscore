@@ -1,17 +1,30 @@
 - model_class = Tournament
 - provide :title, "Edit tournament"
+
+
 - unless request.xhr?
-  .page-header
-    %h1=t '.title', :default => t('helpers.titles.edit', :model => model_class.model_name.human, :default => "Edit #{model_class.model_name.human}")
+  .row
+    .span12
+      %ul.breadcrumb
+        %li
+          = link_to @tournament.name, tournament_path(@tournament)
+          %span.divider &gt;
+        %li.active Edit
 
 .row
-  .span6
+  .span7
+    - unless request.xhr?
+      .page-header
+        %h3 Basic information
     = render :partial => "form"
   - unless request.xhr?
-    = render 'players_list'
+    .span5
+      .page-header
+        %h3 Players
+      = render 'players_list', :edit => true
 
 - if request.xhr?
   .row
-    .span5 
-      =render 'players_list'
+    .span7 
+      =render 'players_list', :edit => true
   
