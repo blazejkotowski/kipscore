@@ -25,10 +25,6 @@
   }
 }
 
-select.datetime {
-  width: 80px;
-}
-
 #tournament-players {
   input {
     margin-bottom: 0;
@@ -40,6 +36,25 @@ select.datetime {
   
 }
 
+// Form part
+select.datetime {
+  width: 80px;
+}
+
+textarea {
+  height: 100px;
+  width: 300px;
+}
+// End form part
+
+// Show tournament part
+p.tournament-description {
+  &::first-line {
+    font-weight: bold;
+    font-size: 1.1em;
+  }
+}
+// End show tournament part
 
 // Bracket part
 $baseMatchMargin: 20px;

@@ -4,6 +4,7 @@
     - @date = @tournament.start_date.nil?? DateTime.now : @tournament.start_date
     = text_field_tag :start_date_date, @date.strftime("%Y-%m-%d"), :class => 'datepicker input-small'
     = text_field_tag :start_date_time, @date.strftime("%H:%M"), :class => 'timepicker input-small'
+  = f.input :description
   .form-actions
     = f.button :submit, request[:action] == 'edit' ? 'Update' : 'Create', :class => 'btn'
     - if request[:action] == 'new'

@@ -7,12 +7,9 @@
   .span6
     %p
       %strong= model_class.human_attribute_name(:start_date) + ':'
-      %br
       = @tournament.start_date
     %p
-      %strong= model_class.human_attribute_name(:active) + ':'
-      %br
-      = @tournament.active
+      = simple_format(@tournament.description, :class => 'tournament-description')
 
     .form-actions
       = link_to t('.back', :default => t("helpers.links.back")), tournaments_path, :class => 'btn'
