@@ -1,7 +1,9 @@
 - model_class = Tournament
 - provide :title, @tournament.name
 .page-header
-  %h1= @tournament.name
+  %h1
+    = @tournament.name
+    = link_to "Go to bracket", bracket_tournament_path(@tournament), :class => 'btn btn-primary btn-large'
 
 .row
   .span6
@@ -10,14 +12,14 @@
       = @tournament.start_date
     %p
       = simple_format(@tournament.description, :class => 'tournament-description')
-
-    .form-actions
-      = link_to t('.back', :default => t("helpers.links.back")), tournaments_path, :class => 'btn'
-      = link_to t('.edit', :default => t("helpers.links.edit")), edit_tournament_path(@tournament), :class => 'btn'
-      = link_to t('.destroy', :default => t("helpers.links.destroy")), tournament_path(@tournament), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
   
   .span6
     - unless @tournament.players.empty?
       = render "players_list", :edit => false
     - else
       %h3 There are no players yet.
+    .form-actions
+      = link_to t('.back', :default => t("helpers.links.back")), tournaments_path, :class => 'btn'
+      - if @tournament.user == current_user
+        = link_to t('.edit', :default => t("helpers.links.edit")), edit_tournament_path(@tournament), :class => 'btn'
+        = link_to 'Delete', tournament_path(@tournament), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
