@@ -15,6 +15,11 @@
         = link_to 'Activate', activate_tournament_path(@tournament), :class => 'btn btn-success', :method => 'put'
       - else
         .btn.btn-success.disabled Already activated
+      - if request.xhr?
+        %div.margin-top
+          = link_to '#players-modal', :class => 'btn', :data => { :toggle => 'modal' }, :role => 'button' do
+            %i.icon-fullscreen
+            Manage players
     
 %script
   $('.datepicker').datepicker({format: 'yyyy-mm-dd', autoclose: true});

@@ -24,7 +24,8 @@
       = render 'players_list', :edit => true
 
 - if request.xhr?
-  .row
-    .span6.offset1
-      =render 'players_list', :edit => true
-  
+  #players-modal.modal.hide.fade{ :tabindex => -1, :role => 'dialog', 'aria-labelledby' => 'players-modal-label', 'aria-hidden' => true }
+    .modal-body
+      = render 'players_list', :edit => true
+    .modal-footer
+      %button.btn{ 'data-dismiss' => 'modal', 'aria-hidden' => true } Close

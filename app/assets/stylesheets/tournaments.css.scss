@@ -25,16 +25,24 @@
   }
 }
 
-#tournament-players {
+#players-table {
   input {
     margin-bottom: 0;
   }
   
-  input.rank {
+  .rank {
     width: 40px;
   }
   
 }
+
+#tournament-part {
+  #tournament-players {
+    max-height: 200px;
+    overflow: auto;
+  }
+}
+
 
 // Form part
 select.datetime {
