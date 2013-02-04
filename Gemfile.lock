@@ -198,6 +198,7 @@ DEPENDENCIES
   jquery-rails
   jquery-ui-rails
   less-rails
+  nokogiri
   pg
   rails (= 3.2.9)
   rspec-rails
