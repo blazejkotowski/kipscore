@@ -19,4 +19,7 @@ class Player < ActiveRecord::Base
   scope :best, order('rank')
   scope :latest, order('created_at DESC')
   
+  def self.sync
+  end
+  
 end
