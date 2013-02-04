@@ -20,6 +20,29 @@ class Player < ActiveRecord::Base
   scope :latest, order('created_at DESC')
   
   def self.sync
+    base_url = "http://pfs.ligowe.info/"
+    
+    require 'open-uri'
+    page = Nokogiri::HTML(open(base_url))
+    
+    ranking_url = nil
+    page.css("#rankings a").each do |link|
+      name = link.at_css(".nazwa")
+      next if name.nil?
+      ranking_url = URI.join(base_url, link["href"]) if name.content == "OPEN"
+    end
+    puts "Znaleziono ranking open pod adresem #{ranking_url}" unless ranking_url.nil?
+    
+    page = Nokogiri::HTML(open(ranking_url))
+    
+    page.css("table.notowanie > tr").each do |line|
+      rank = line.at_css("td.miejsce")
+      next if rank.nil?
+      rank = rank.content.to_i
+      name = line.at_css("td.nazwa > a").content
+      puts "#{rank}. #{name}"
+    end
+    
   end
   
 end
