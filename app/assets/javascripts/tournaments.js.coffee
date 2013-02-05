@@ -26,11 +26,15 @@ jQuery ->
   changeTournament()
   
   $("body").on "ajax:success", "form#add-player", (event, data) ->
+    console.log data
     if data.created
       player = data.player
       $row = $("<tr/>").attr("data-id", player.id)
       $row.append($("<td/>").text(player.name))
-      $row.append($("<td/>").text(player.rank))
+      if player.rank isnt null
+        $row.append($("<td/>").text(player.rank))
+      else
+        $row.append($("<td/>").text(''))
       
       $delete_button = $("<a/>").attr("href", data.delete_url).addClass("btn btn-danger btn-medium delete-player").text("-")
       $delete_button.attr("data-method", "delete").attr("data-remote", "true").attr("rel", "nofollow")
@@ -39,23 +43,19 @@ jQuery ->
       $("#players-table tbody").prepend($row)
       $('#players-table input[type=text]').each (i, t) ->
         $(t).val ''
-    else
-      alert "Not created"
   
   
   $("body").on "ajax:success", "a.delete-player",  (event, data) ->
+    console.log data
     if data.removed
       $("#players-table tr[data-id=#{data.player.id}]").remove()
-    else
-      alert "Not removed"
       
-      
-  $("#player_name").autocomplete
+  window.autocomplete_hash=
     source: $("#player_name").data("autocomplete-source")
     minLength: 5
     focus: (e, ui) ->
       $("#player_rank").val(ui.item.rank)
     select: (e, ui) ->
       $("#player_rank").val(ui.item.rank)
-      
+     
     

@@ -26,3 +26,15 @@
           %td= player.rank
           - if edit
             %td= link_to '-', tournament_player_path(@tournament, player), :method => 'delete', :remote => 'true', :class => 'btn btn-danger btn-medium delete-player'
+
+%script
+  $("#player_name").autocomplete ({
+  source: $("#player_name").data("autocomplete-source"),
+  minLength: 5,
+  focus: function(e, ui) {
+  $("#player_rank").val(ui.item.rank)
+  },
+  select: function(e, ui) {
+  $("#player_rank").val(ui.item.rank)
+  },
+  });
