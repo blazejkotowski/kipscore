@@ -2,13 +2,15 @@
 #
 # Table name: tournaments
 #
-#  id         :integer          not null, primary key
-#  user_id    :integer
-#  name       :string(255)
-#  start_date :datetime
-#  active     :boolean
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id           :integer          not null, primary key
+#  user_id      :integer
+#  name         :string(255)
+#  start_date   :datetime
+#  active       :boolean
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  description  :text
+#  json_bracket :text
 #
 
 require 'spec_helper'

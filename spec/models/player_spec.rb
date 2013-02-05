@@ -2,12 +2,12 @@
 #
 # Table name: players
 #
-#  id           :integer          not null, primary key
-#  name         :string(255)
-#  rank         :integer          default(-1)
-#  user_created :boolean          default(FALSE)
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
+#  id         :integer          not null, primary key
+#  name       :string(255)
+#  rank       :integer          default(-1)
+#  fetched    :boolean          default(FALSE)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 
 require 'spec_helper'
