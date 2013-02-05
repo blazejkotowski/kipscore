@@ -53,6 +53,8 @@ jQuery ->
   $("#player_name").autocomplete
     source: $("#player_name").data("autocomplete-source")
     minLength: 5
+    focus: (e, ui) ->
+      $("#player_rank").val(ui.item.rank)
     select: (e, ui) ->
       $("#player_rank").val(ui.item.rank)
       
