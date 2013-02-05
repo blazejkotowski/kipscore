@@ -23,5 +23,7 @@ Kipscore::Application.routes.draw do
     put 'add_player', :on => :member
     put 'remove_player', :on => :member
   end
+  
+  match '/players/autocomplete' => 'players#autocomplete', :as => 'autocomplete'
 
 end

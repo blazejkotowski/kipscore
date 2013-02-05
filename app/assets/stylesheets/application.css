@@ -19,4 +19,5 @@
  *= require users
  *= require sessions
  *= require gracket
+ *= require autocomplete
  */

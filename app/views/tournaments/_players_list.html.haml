@@ -11,7 +11,7 @@
       %tr
         = form_tag tournament_players_path(@tournament), :method => 'post', :id => 'add-player', :remote => true do
           %th
-            = text_field_tag "player[name]"
+            = text_field_tag "player[name]", '', :data => { :autocomplete_source => autocomplete_path }
           %th
             = text_field_tag "player[rank]", '', :class => 'rank'
           %th

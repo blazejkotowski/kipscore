@@ -48,4 +48,12 @@ jQuery ->
       $("#players-table tr[data-id=#{data.player.id}]").remove()
     else
       alert "Not removed"
+      
+      
+  $("#player_name").autocomplete
+    source: $("#player_name").data("autocomplete-source")
+    minLength: 5
+    select: (e, ui) ->
+      $("#player_rank").val(ui.item.rank)
+      
     

@@ -1,6 +1,6 @@
 class PlayersController < ApplicationController
 
-  before_filter :get_tournament
+  before_filter :get_tournament, :except => [:autocomplete]
   
   def create
     params[:player][:rank] ||= -1
@@ -34,6 +34,14 @@ class PlayersController < ApplicationController
       format.json { render :json => @result }
     end
     
+  end
+  
+  def autocomplete
+    @players = Player.fetched.where('name like ?', "%#{params[:term]}%")
+    @players.map! do |player|
+      { :label => "#{player.rank}. #{player.name}", :value => player.name, :rank => player.rank }
+    end
+    render :json => @players
   end
   
 
