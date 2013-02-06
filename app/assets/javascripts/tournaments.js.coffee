@@ -44,11 +44,20 @@ jQuery ->
       $('#players-table input[type=text]').each (i, t) ->
         $(t).val ''
   
+  $("body").on "ajax:beforeSend", "form#add-player", ->
+    $("#player_name").attr('disabled', 'true')
+    $("#player_rank").attr('disabled', 'true')
+    
+  $("body").on "ajax:complete", "form#add-player", ->
+    $("#player_name").removeAttr('disabled')
+    $("#player_rank").removeAttr('disabled')
+    
   
-  $("body").on "ajax:success", "a.delete-player",  (event, data) ->
+  $("body").on "ajax:success", "a.delete-player", (event, data) ->
     console.log data
     if data.removed
       $("#players-table tr[data-id=#{data.player.id}]").remove()
+      
       
   window.autocomplete_hash=
     source: $("#player_name").data("autocomplete-source")
