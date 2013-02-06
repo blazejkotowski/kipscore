@@ -10,7 +10,7 @@ class Kipscore.Views.Tournament extends Backbone.View
   
   render: ->
     # Tournament title
-    $(@el).append($('<h2/>').addClass('tournament-title').text("Tournament #{@model.get('min_position')}-#{@model.get('max_position')}"))
+    $(@el).append($('<h3/>').addClass('tournament-title').text("#{@model.get('min_position')}-#{@model.get('max_position')}"))
     
     # Wrapper to make scroll posbbile
     $wrapper = $('<div/>').addClass('tournament-bracket').appendTo($(@el))
@@ -23,7 +23,7 @@ class Kipscore.Views.Tournament extends Backbone.View
       if @model.columnNumber(i+1) != @model.columnNumber(i+2)
         $wrapper.append(column)
         column = $('<div/>').addClass("column#{@model.columnNumber(i+1)}")
-        column.append($('<h3/>').addClass('round-title').text("Round #{@model.columnNumber(i+1)+1}"))
+        column.append($('<div/>').addClass('round-title').text("Round #{@model.columnNumber(i+1)+1}"))
       
       match_view = new Kipscore.Views.Match({ model: bracket.at(i) })
       $(column).append(match_view.render().$el)

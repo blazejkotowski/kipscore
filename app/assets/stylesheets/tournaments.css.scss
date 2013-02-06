@@ -83,16 +83,17 @@ $playerHeight: $baseMatchHeight/2;
 }
 
 .tournament-bracket-wrapper {
-  h2 {
-    font-size: 2em;
-    margin-bottom: 0;
-    border-bottom: 1px solid #ccc;
+  .tournament-title {
+    margin-bottom: -10px;
+    margin-left: 10px;
+    font-size: 1.5em;
   }
 }
 
 .tournament-bracket {
   margin-bottom: 25px;
   padding: 10px;
+  background-color: whiteSmoke;
   
   .round-title {
     margin-top: 0;

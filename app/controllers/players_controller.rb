@@ -1,6 +1,6 @@
 class PlayersController < ApplicationController
 
-  before_filter :get_tournament, :correct_user, :except => [:autocomplete]
+  before_filter :get_tournament, :correct_user, :not_active, :except => [:autocomplete]
   
   def create
     @result = { :created => false, :player => nil, :new => false }
@@ -65,8 +65,19 @@ class PlayersController < ApplicationController
     
     def correct_user
       unless @tournament.user == current_user
-        flash[:error] = "You can't access this tournament"
-        redirect_to root_path
+        @result = { :error => 'No access' }
+        render_result
+      end
+    end
+    
+    def render_result
+      render :json => @result
+    end
+    
+    def not_active
+      if @tournament.active
+        @result = { :error => 'Tournament active' }
+        render_result
       end
     end
     

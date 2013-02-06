@@ -1,4 +1,14 @@
 .row
+  .span12
+    %ul.breadcrumb
+      %li
+        = link_to @tournament.name, @tournament
+        %span.divider &gt;
+      %li.active
+        Bracket
+      
+
+.row
   #tournament-container.span12
 
 :javascript

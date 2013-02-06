@@ -20,11 +20,11 @@ class Kipscore.Models.Match extends Backbone.Model
       this.set 'winner', this.get 'player2'
       
   addPlayer: (player) ->
-    if this.get('player1').empty()
-      this.set 'player1', player
-      return true
-    else if this.get('player2').empty()
+    if this.get('player2').empty()
       this.set 'player2', player
+      return true
+    else if this.get('player1').empty()
+      this.set 'player1', player
       return true
     else
       return false

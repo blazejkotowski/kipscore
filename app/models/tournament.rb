@@ -47,7 +47,7 @@ class Tournament < ActiveRecord::Base
     bracket_size = 2**power
     byes_number = bracket_size - list.size # number of "free"
     
-    groups = [[0, bracket_size-1]]
+    groups = [[bracket_size-1, 0]]
     for i in 1...power
       groups.append []
     end
@@ -56,8 +56,8 @@ class Tournament < ActiveRecord::Base
     start_list = [-1]*bracket_size
     start_hash_list = []
     
-    for group in groups do
-      group.shuffle!
+    groups.each_with_index do |group, index|
+      group.shuffle! unless index == 0
       # For each position in shuffled group
       for number in group do
       
@@ -86,11 +86,11 @@ class Tournament < ActiveRecord::Base
     end
     
     start_hash_list.sort! { |a,b| a[:start_position] <=> b[:start_position] }
+    
+    update_attribute :json_bracket, start_hash_list.to_json if active
+
     start_hash_list
     
-    #update_attribute(:json_bracket, start_hash_list.to_json)
-    #self.save!
-    #json_bracket
     
   end
   
