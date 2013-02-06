@@ -13,7 +13,8 @@
           Show Players
         - else
           Manage players
-    = link_to 'Go to bracket', bracket_tournament_path(@tournament), :class => 'btn btn-success'
+    - if request[:action] == 'edit'
+      = link_to 'Go to bracket', bracket_tournament_path(@tournament), :class => 'btn btn-success'
     .margin-top
       = f.button :submit, request[:action] == 'edit' ? 'Update' : 'Create', :class => 'btn'
       - if request[:action] == 'new'

@@ -48,7 +48,7 @@ class Player < ActiveRecord::Base
    
     new_players = 0 
     players.map do |player| 
-      p = Player.find_or_initialize_by_name_and_fetched player[:name], true
+      p = Player.fetched.find_or_initialize_by_name player[:name]
       new_players += 1 if p.new_record?
       p.update_attributes player
     end
