@@ -57,4 +57,16 @@ class Player < ActiveRecord::Base
     
   end
   
+  def self.autocomplete(term)
+    Rails.cache.fetch(["autocomplete", term])do
+      players = Player.fetched.where('name like ?', "%#{term}%")
+      
+      players.map! do |player|
+        { :label => "#{player.rank}. #{player.name}", :value => player.name, :rank => player.rank }
+      end
+      
+      players
+    end
+  end
+  
 end

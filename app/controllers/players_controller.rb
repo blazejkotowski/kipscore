@@ -47,12 +47,7 @@ class PlayersController < ApplicationController
   end
   
   def autocomplete
-    @players = Player.fetched.where('name like ?', "%#{params[:term]}%")
-    
-    @players.map! do |player|
-      { :label => "#{player.rank}. #{player.name}", :value => player.name, :rank => player.rank }
-    end
-    
+    @players = Player.autocomplete params[:term]
     render :json => @players
   end
   
