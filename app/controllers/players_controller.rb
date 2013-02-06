@@ -46,12 +46,6 @@ class PlayersController < ApplicationController
     end
   end
   
-  def autocomplete
-    @players = Player.autocomplete params[:term]
-    render :json => @players
-  end
-  
-
   private
     
     def get_tournament
