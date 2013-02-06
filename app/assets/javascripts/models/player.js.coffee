@@ -2,7 +2,7 @@ class Kipscore.Models.Player extends Backbone.Model
   defaults:
     'name': undefined
     'start_position': 0
-    'rank': 1
+    'rank': -1
     'empty': false
     
   initialize: ->
