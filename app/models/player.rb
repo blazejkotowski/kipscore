@@ -95,7 +95,10 @@ class Player < ActiveRecord::Base
     end
     
     def self.add_index(key, value)
-      0.upto key.size do |i|
+      5.upto key.size do |i|
+        k = key[0...i]
+        next if k.nil?
+        next if k.size < 5
         $redis.sadd "autocomplete:#{key[0...i]}", value
       end
     end 
