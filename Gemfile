@@ -45,12 +45,11 @@ gem 'bootstrap-datepicker-rails'
 gem 'bootstrap-timepicker-rails', :require => 'bootstrap-timepicker-rails', :git => 'git://github.com/tispratik/bootstrap-timepicker-rails.git'
 
 gem 'backbone-on-rails'
-
 gem 'simple_form'
-
 gem 'nokogiri'
-
 gem 'redis'
+
+gem 'rails_config'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
