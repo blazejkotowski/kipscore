@@ -3,45 +3,58 @@ class Kipscore.Models.Match extends Backbone.Model
     'player1': undefined
     'player2': undefined
     'winner': 0
-    'score1': 0
-    'score2': 0
+    'scores': [] #[[p1,p2],[p1,p2]...]
   
   initialize: ->
     # Create empty players if not provided
-    if this.get('player1') is undefined
-      this.set 'player1', new Kipscore.Models.Player()
-    if this.get('player2') is undefined
-      this.set 'player2', new Kipscore.Models.Player()
+    if @get('player1') is undefined
+      @set 'player1', new Kipscore.Models.Player()
+    if @get('player2') is undefined
+      @set 'player2', new Kipscore.Models.Player()
+      
     
   pickWinner: ->
-    if this.get 'score1' > this.get 'score2'
-      this.set 'winner', this.get 'player1'
+    res1 = res2 = 0
+    for [s1,s2] in @get('scores')
+      if s1 > s2
+        res1 += 1
+      else
+        res2 += 1
+    
+    if res1 > res2
+      @set 'winner', @get('player1')
     else
-      this.set 'winner', this.get 'player2'
+      @set 'winner', @get('player2')
+    
+    @get 'winner'
+    
+  addScores: (p1,p2) ->
+    @get('scores').push([p1,p2])
+    this
       
   addPlayer: (player) ->
-    if this.get('player2').empty()
-      this.set 'player2', player
-      return true
+    if @get('player2').empty()
+      @set 'player2', player
+      true
     else if this.get('player1').empty()
-      this.set 'player1', player
-      return true
+      @set 'player1', player
+      true
     else
-      return false
+      false
   
   ready: ->
-    player1 = this.get('player1')
-    player2 = this.get('player2')
-    return not(player1.empty() or player2.empty())
+    player1 = @get('player1')
+    player2 = @get('player2')
+    not(player1.empty() or player2.empty())
     
   winnerMatch: ->
-    return this.collection.tournament.winnerMatch(this.index())
+    return @collection.tournament.winnerMatch(this.index())
     
   loserMatch: ->
-    return this.collection.tournament.loserMatch(this.index())
+    return @collection.tournament.loserMatch(this.index())
     
   index: ->
     try
-      return this.collection.indexOf(this)+1
+      return @collection.indexOf(this)+1
     catch error
       return -1
