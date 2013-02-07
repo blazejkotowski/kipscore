@@ -53,20 +53,45 @@ class Player < ActiveRecord::Base
       p.update_attributes player
     end
     
+    create_indexes(players)
+    
     puts "Fetched #{new_players} new players and #{players.size-new_players} updated."
     
   end
   
+  def self.create_indexes(players = :all)
+    if players == :all
+      players = fetched
+    end
+    
+    $redis.flushall
+    players.each { |player| add_indexes(player) }
+    
+  end
+  
   def self.autocomplete(term)
-    Rails.cache.fetch(["autocomplete", term])do
-      players = Player.fetched.where('name like ?', "%#{term}%")
-      
-      players.map! do |player|
-        { :label => "#{player.rank}. #{player.name}", :value => player.name, :rank => player.rank }
+    Rails.cache.fetch(["autocomplete", term]) do
+      players = $redis.smembers("autocomplete:#{term.downcase}").map { |item| JSON.parse(item).symbolize_keys }
+      players.map do |player|
+        { :label => "#{player[:rank]}. #{player[:name]}", :value => player[:name], :rank => player[:rank] }
       end
-      
-      players
     end
   end
+  
+  private
+    def self.add_indexes(player)
+      words = player.name.split
+      0.upto words.size do |words_number|
+        (0..words.size-words_number-1).each do |start|
+          add_index words[start..start+words_number].join(" ").downcase, { :name => player.name, :rank => player.rank }.to_json
+        end
+      end
+    end
+    
+    def self.add_index(key, value)
+      0.upto key.size do |i|
+        $redis.sadd "autocomplete:#{key[0...i]}", value
+      end
+    end 
   
 end
