@@ -95,10 +95,10 @@ class Player < ActiveRecord::Base
     end
     
     def self.add_index(key, value)
-      5.upto key.size do |i|
+      Settings.autocomplete_index_length.upto key.size do |i|
         k = key[0...i]
         next if k.nil?
-        next if k.size < 5
+        next if k.size < Settings.autocomplete_index_length
         $redis.sadd "autocomplete:#{k.parameterize}", value
       end
     end 

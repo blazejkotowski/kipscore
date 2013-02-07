@@ -59,12 +59,3 @@ jQuery ->
       $("#players-table tr[data-id=#{data.player.id}]").remove()
       
       
-  window.autocomplete_hash=
-    source: $("#player_name").data("autocomplete-source")
-    minLength: 5
-    focus: (e, ui) ->
-      $("#player_rank").val(ui.item.rank)
-    select: (e, ui) ->
-      $("#player_rank").val(ui.item.rank)
-     
-    
