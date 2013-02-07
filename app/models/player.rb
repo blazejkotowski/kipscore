@@ -34,7 +34,12 @@ class Player < ActiveRecord::Base
     end
     puts "Found ranking at #{ranking_url}." unless ranking_url.nil?
     
-    page = Nokogiri::HTML(open(ranking_url))
+    begin 
+      page = Nokogiri::HTML(open(ranking_url))
+    rescue
+      puts "Can't conenct to the site. Try again later"
+      return
+    end
     
     players = []
     
@@ -47,10 +52,11 @@ class Player < ActiveRecord::Base
     end
    
     new_players = 0 
-    players.map do |player| 
+    players.map! do |player| 
       p = Player.fetched.find_or_initialize_by_name player[:name]
       new_players += 1 if p.new_record?
       p.update_attributes player
+      p
     end
     
     create_indexes(players)
@@ -61,7 +67,7 @@ class Player < ActiveRecord::Base
   
   def self.create_indexes(players = :all)
     if players == :all
-      players = fetched
+      players = fetched.to_json
     end
     
     $redis.flushall

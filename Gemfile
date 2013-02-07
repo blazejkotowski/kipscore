@@ -33,16 +33,15 @@ group :assets do
 
   gem 'less-rails'
   gem 'twitter-bootstrap-rails'
-
+  
+  gem 'jquery-ui-rails'
+  gem 'jquery-rails'
+  gem 'bootstrap-datepicker-rails'
+  gem 'bootstrap-timepicker-rails', :require => 'bootstrap-timepicker-rails', :git => 'git://github.com/tispratik/bootstrap-timepicker-rails.git'
   gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
 end
-
-gem 'jquery-ui-rails'
-gem 'jquery-rails'
-gem 'bootstrap-datepicker-rails'
-gem 'bootstrap-timepicker-rails', :require => 'bootstrap-timepicker-rails', :git => 'git://github.com/tispratik/bootstrap-timepicker-rails.git'
 
 gem 'backbone-on-rails'
 
