@@ -65,10 +65,14 @@ p.tournament-description {
 // End show tournament part
 
 // Bracket part
+$playerHeight: 18px;
+$playerPadding: 3px;
+$totalPlayerHeight: $playerHeight + $playerPadding*2;
+
 $baseMatchMargin: 20px;
 $baseMatchPadding: 0;
 $baseMatchBorder: 1px;
-$baseMatchHeight: 40px;
+$baseMatchHeight: $totalPlayerHeight*2;
 $baseMatchWidth: 170px;
 $totalMatchHeight: $baseMatchHeight + $baseMatchBorder*2 + $baseMatchPadding*2;
 $column1MatchMargin: $baseMatchMargin*2 + $totalMatchHeight/2;
@@ -77,10 +81,10 @@ $column3MatchMargin: $column2MatchMargin*2 + $totalMatchHeight/2;
 $column4MatchMargin: $column3MatchMargin*2 + $totalMatchHeight/2;
 $column5MatchMargin: $column4MatchMargin*2 + $totalMatchHeight/2;
 $column6MatchMargin: $column5MatchMargin*2 + $totalMatchHeight/2;
-$playerHeight: $baseMatchHeight/2;
 
 #tournament-container {
 }
+
 
 .tournament-bracket-wrapper {
   .tournament-title {
@@ -95,6 +99,31 @@ $playerHeight: $baseMatchHeight/2;
   padding: 10px;
   background-color: whiteSmoke;
   
+  .proceed-button {
+    position: absolute;
+    right: -6px;
+    top: 0;
+    bottom:0;
+    padding: 0 3px;
+    background: rgba(255,255,255,0.6);
+    a {
+      display: inline-block;
+      height: 100%;
+      padding-top: 15px;
+      position: relative;
+	    font-weight: bold;
+	    color: #666;
+	    text-decoration: none;
+    }
+    display: none;
+  }
+  
+  .match:hover {
+    .proceed-button {
+      display: block;
+    }
+  }
+  
   .round-title {
     margin-top: 0;
     font-size: 1.2em;
@@ -104,6 +133,7 @@ $playerHeight: $baseMatchHeight/2;
   
   .player {
     height: $playerHeight;
+    padding: $playerPadding;
     width: 100%;
     position: relative;
   }
