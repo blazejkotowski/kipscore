@@ -67,7 +67,7 @@ class Player < ActiveRecord::Base
   
   def self.create_indexes(players = :all)
     if players == :all
-      players = fetched.to_json
+      players = fetched
     end
     
     $redis.flushall
