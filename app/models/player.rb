@@ -76,11 +76,9 @@ class Player < ActiveRecord::Base
   end
   
   def self.autocomplete(term)
-    Rails.cache.fetch(["autocomplete", term.downcase.parameterize]) do
-      players = $redis.smembers("autocomplete:#{term.downcase.parameterize}").map { |item| JSON.parse(item).symbolize_keys }
-      players.map do |player|
-        { :label => "#{player[:rank]}. #{player[:name]}", :value => player[:name], :rank => player[:rank] }
-      end
+    players = $redis.smembers("autocomplete:#{term.downcase.parameterize}").map { |item| JSON.parse(item).symbolize_keys }
+    players.map do |player|
+      { :label => "#{player[:rank]}. #{player[:name]}", :value => player[:name], :rank => player[:rank] }
     end
   end
   
