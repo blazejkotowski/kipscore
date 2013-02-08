@@ -142,10 +142,9 @@ $column6MatchMargin: $column5MatchMargin*2 + $totalMatchHeight/2;
     vertical-align: middle;
     position: relative;
     .scores {
-      display: none;
       position: absolute;
       height: 100%;
-      right: 10px;
+      right: -5px;
       top: 0;
       .new {
         position: relative;
@@ -154,6 +153,7 @@ $column6MatchMargin: $column5MatchMargin*2 + $totalMatchHeight/2;
         font-size: 1.3em;
         color: #777;
         text-decoration: none;
+        display: none;
       }
         
       input {
@@ -162,16 +162,19 @@ $column6MatchMargin: $column5MatchMargin*2 + $totalMatchHeight/2;
         height: 20px;
         border-radius: 0;
         margin: 0;
+        display: none;
       }
       
       table {
+        display: table !important;
+        height: 100%;
         float: left;
-        display: inline;
         position: relative;
         td {
           padding: 3px 1px;
-          border-left: 1px solid #777;
+          border-left: 2px solid #9bc44b;
           text-align: center;
+          background: #ddd;
         }
         
         td:last-child {
@@ -180,6 +183,10 @@ $column6MatchMargin: $column5MatchMargin*2 + $totalMatchHeight/2;
         
         tr:nth-child(odd) {
           color: #fff;
+          td {
+            background: #9bc44b;
+            border-color: #ddd;
+          }
         }
       }
       
@@ -190,8 +197,14 @@ $column6MatchMargin: $column5MatchMargin*2 + $totalMatchHeight/2;
     .proceed-button {
       display: block;
     }
-    .scores {
+    .new {
       display: inline;
+    }
+    input {
+      display: inline;
+    }
+    .scores {
+      right: 10px;
     }
   }
   

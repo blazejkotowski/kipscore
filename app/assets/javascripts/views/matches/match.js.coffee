@@ -16,6 +16,7 @@ class Kipscore.Views.Match extends Backbone.View
   events:
     'click': 'alertId'
     'click .new': 'newScore'
+    'keyup .player_score': 'keyup'
   
   newScore: (event) ->
     event.preventDefault()
@@ -33,6 +34,11 @@ class Kipscore.Views.Match extends Backbone.View
     if filled
       @model.addScores(scores[0], scores[1])
       @render()
+      @$el.find('.player_score').first().focus()
+      
+  
+  keyup: (event) ->
+    @newScore(event) if event.keyCode==13
         
     
   alertId: ->
