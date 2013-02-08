@@ -1,8 +1,8 @@
 <% if @empty: %>
   Empty
 <% else: %>
-  <% if @rank != -1: %>
+  <!--<% if @rank != -1: %>
     <%= @rank %>. 
-  <% end %>
+  <% end %>-->
   <%= @name %>
 <% end %>

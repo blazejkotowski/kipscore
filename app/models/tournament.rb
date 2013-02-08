@@ -71,10 +71,10 @@ class Tournament < ActiveRecord::Base
           if byes_number > 0
             if number % 2 == 0
               start_list[number + 1] = nil
-              start_hash_list.append( { :start_position => number + 1, :empty => false, :name => 'bye'} )
+              start_hash_list.append( { :start_position => number + 1, :empty => false, :name => 'bye', :bye => true} )
             else
               start_list[number - 1] = nil
-              start_hash_list.append( { :start_position => number - 1, :empty => false, :name => 'bye'} )
+              start_hash_list.append( { :start_position => number - 1, :empty => false, :name => 'bye', :bye => true} )
             end
             byes_number -= 1
           end

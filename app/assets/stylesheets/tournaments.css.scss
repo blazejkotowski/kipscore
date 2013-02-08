@@ -65,7 +65,7 @@ p.tournament-description {
 // End show tournament part
 
 // Bracket part
-$playerHeight: 18px;
+$playerHeight: 22px;
 $playerPadding: 3px;
 $totalPlayerHeight: $playerHeight + $playerPadding*2;
 
@@ -73,7 +73,7 @@ $baseMatchMargin: 20px;
 $baseMatchPadding: 0;
 $baseMatchBorder: 1px;
 $baseMatchHeight: $totalPlayerHeight*2;
-$baseMatchWidth: 170px;
+$baseMatchWidth: 200px;
 $totalMatchHeight: $baseMatchHeight + $baseMatchBorder*2 + $baseMatchPadding*2;
 $column1MatchMargin: $baseMatchMargin*2 + $totalMatchHeight/2;
 $column2MatchMargin: $column1MatchMargin*2 + $totalMatchHeight/2;
@@ -99,6 +99,13 @@ $column6MatchMargin: $column5MatchMargin*2 + $totalMatchHeight/2;
   padding: 10px;
   background-color: whiteSmoke;
   
+  .round-title {
+    margin-top: 0;
+    font-size: 1.2em;
+    margin-left: 45px;
+    margin-bottom: -$baseMatchMargin+10;
+  }
+  
   .proceed-button {
     position: absolute;
     right: -6px;
@@ -109,7 +116,7 @@ $column6MatchMargin: $column5MatchMargin*2 + $totalMatchHeight/2;
     a {
       display: inline-block;
       height: 100%;
-      padding-top: 15px;
+      padding-top: $totalMatchHeight/2 - 10px;
       position: relative;
 	    font-weight: bold;
 	    color: #666;
@@ -118,31 +125,12 @@ $column6MatchMargin: $column5MatchMargin*2 + $totalMatchHeight/2;
     display: none;
   }
   
-  .match:hover {
-    .proceed-button {
-      display: block;
-    }
-  }
-  
-  .round-title {
-    margin-top: 0;
-    font-size: 1.2em;
-    margin-left: 45px;
-    margin-bottom: -$baseMatchMargin+10;
-  }
   
   .player {
     height: $playerHeight;
     padding: $playerPadding;
     width: 100%;
     position: relative;
-  }
-
-  div[class^="column"] {
-    display: inline-block;
-    float: left;
-    width: 200px;
-    margin-right: 5px;
   }
   
   .match {
@@ -153,11 +141,70 @@ $column6MatchMargin: $column5MatchMargin*2 + $totalMatchHeight/2;
     display: inline-block;
     vertical-align: middle;
     position: relative;
+    .scores {
+      display: none;
+      position: absolute;
+      height: 100%;
+      right: 10px;
+      top: 0;
+      .new {
+        position: relative;
+        height: 20px;
+        top: $totalMatchHeight/2 - 10px;
+        font-size: 1.3em;
+        color: #777;
+        text-decoration: none;
+      }
+        
+      input {
+        width: 15px;
+        padding: 0px;
+        height: 20px;
+        border-radius: 0;
+        margin: 0;
+      }
+      
+      table {
+        float: left;
+        display: inline;
+        position: relative;
+        td {
+          padding: 3px 1px;
+          border-left: 1px solid #777;
+          text-align: center;
+        }
+        
+        td:last-child {
+          border: 0;
+        }
+        
+        tr:nth-child(odd) {
+          color: #fff;
+        }
+      }
+      
+    }
+  }
+  
+  .match:hover {
+    .proceed-button {
+      display: block;
+    }
+    .scores {
+      display: inline;
+    }
   }
   
   /*.empty {
     display: none;
   }*/
+  
+  div[class^="column"] {
+    display: inline-block;
+    float: left;
+    width: $baseMatchWidth + 30;
+    margin-right: 5px;
+  }
   
   .column1 {
     .match {

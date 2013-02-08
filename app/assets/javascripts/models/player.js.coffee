@@ -4,6 +4,7 @@ class Kipscore.Models.Player extends Backbone.Model
     'start_position': 0
     'rank': -1
     'empty': false
+    'bye': false
     
   initialize: ->
     if this.get('name') is undefined
