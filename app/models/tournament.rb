@@ -41,8 +41,16 @@ class Tournament < ActiveRecord::Base
     unless json_bracket.nil?
       return json_bracket
     end
+
+    # list of players sorted by rank
+    list = players.best
+    iter = list.size
+    while iter > 0 && list.first.rank.nil? do
+      list.rotate! 1
+      iter-=1
+    end
+    list.reverse!
     
-    list = players.best.reverse # list of players sorted by rank
     power = Math.log2(list.size).ceil # nearest power of 2
     bracket_size = 2**power
     byes_number = bracket_size - list.size # number of "free"
