@@ -18,6 +18,7 @@
 //= require twitter/bootstrap
 //= require bootstrap-datepicker
 //= require bootstrap-timepicker
+//= require backbone-relational
 //= require jquery.gracket.min
 //= require tournaments
 //= require underscore
