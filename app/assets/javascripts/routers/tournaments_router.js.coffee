@@ -25,10 +25,11 @@ class Kipscore.Routers.Tournaments extends Backbone.Router
     
     # Displaying bracket
     tournament_view = new Kipscore.Views.Tournament({ model: tournament })
-    
+
     for match in tournament.get('bracket').models
       if match.pickWinner()
         match.setNextMatches()      
     
     tournament_view.render()
+  
     

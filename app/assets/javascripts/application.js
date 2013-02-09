@@ -18,11 +18,11 @@
 //= require twitter/bootstrap
 //= require bootstrap-datepicker
 //= require bootstrap-timepicker
-//= require backbone-relational
 //= require jquery.gracket.min
 //= require tournaments
 //= require underscore
 //= require backbone
+//= require backbone-relational
 //= require kipscore
 //= require_tree ../templates
 //= require_tree ./models

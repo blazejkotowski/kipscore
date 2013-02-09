@@ -26,7 +26,7 @@ class Kipscore.Views.Tournament extends Backbone.View
         column.append($('<div/>').addClass('round-title').text("Round #{@model.columnNumber(i+1)+1}"))
       
       match_view = new Kipscore.Views.Match({ model: bracket.at(i) })
-      
+
       # Display bracket if not empty
       unless bracket.at(i).empty()
         @$el.removeClass('empty')

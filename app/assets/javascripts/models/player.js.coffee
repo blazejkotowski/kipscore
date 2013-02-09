@@ -1,4 +1,4 @@
-class Kipscore.Models.Player extends Backbone.Model
+class Kipscore.Models.Player extends Backbone.RelationalModel
   defaults:
     'name': undefined
     'start_position': 0

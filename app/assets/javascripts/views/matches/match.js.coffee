@@ -74,7 +74,7 @@ class Kipscore.Views.Match extends Backbone.View
   render: ->
     @setClass()
     $(@el).html('')
-        
+    
     player1_view = new Kipscore.Views.Player({ model: @model.get('player1') })
     $(@el).append(player1_view.render().$el)
     

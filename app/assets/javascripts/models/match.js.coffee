@@ -1,17 +1,28 @@
-class Kipscore.Models.Match extends Backbone.Model
+class Kipscore.Models.Match extends Backbone.RelationalModel
   defaults:
-    'player1': undefined
-    'player2': undefined
     'winner': undefined
     'loser': undefined
     'finished': false
     'scores': undefined #[[p1,p2],[p1,p2]...]
+    
+  relations: [
+    { 
+      type: Backbone.HasOne
+      key: 'player1'
+      relatedModel: 'Kipscore.Models.Player'
+    },
+    {
+      type: Backbone.HasOne
+      key: 'player2'
+      relatedModel: 'Kipscore.Models.Player'
+    }
+  ]
   
   initialize: ->
     # Create empty players if not provided
-    if @get('player1') is undefined
+    if @get('player1') is null
       @set 'player1', new Kipscore.Models.Player()
-    if @get('player2') is undefined
+    if @get('player2') is null
       @set 'player2', new Kipscore.Models.Player()
     
     @set 'scores', new Array()

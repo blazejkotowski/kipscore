@@ -1,4 +1,4 @@
-class Kipscore.Models.Tournament extends Backbone.Model
+class Kipscore.Models.Tournament extends Backbone.RelationalModel
   defaults:
     'players_number': 0
     'bracket_size': 0
