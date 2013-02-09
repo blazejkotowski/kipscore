@@ -83,6 +83,9 @@ $column5MatchMargin: $column4MatchMargin*2 + $totalMatchHeight/2;
 $column6MatchMargin: $column5MatchMargin*2 + $totalMatchHeight/2;
 
 #tournament-container {
+  .empty {
+    display: none;
+  }
 }
 
 
@@ -188,8 +191,8 @@ $column6MatchMargin: $column5MatchMargin*2 + $totalMatchHeight/2;
             border-color: #ddd;
           }
         }
-      }
-      
+        
+      } 
     }
   }
   
@@ -208,9 +211,11 @@ $column6MatchMargin: $column5MatchMargin*2 + $totalMatchHeight/2;
     }
   }
   
-  /*.empty {
-    display: none;
-  }*/
+  .finished:hover {
+    .scores {
+      right: -5px;
+    }
+  }
   
   div[class^="column"] {
     display: inline-block;

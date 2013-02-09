@@ -15,8 +15,18 @@ class Kipscore.Models.Match extends Backbone.Model
       @set 'player2', new Kipscore.Models.Player()
     
     @set 'scores', new Array()
+    
+    # Auto-pick winner (in case of bye)
+    this.on "change:player1 change:player2", ->
+      try
+        if @pickWinner()
+          @setNextMatches()
       
   pickWinner: ->
+    # Not pickd if match not ready
+    unless @ready()
+      return false
+      
     # Match with bye case
     if @get('player1').get('bye') && not @get('player2').get('bye')
       @set 'winner', @get('player2')
@@ -82,6 +92,9 @@ class Kipscore.Models.Match extends Backbone.Model
     player1 = @get('player1')
     player2 = @get('player2')
     not(player1.empty() or player2.empty())
+    
+  empty: ->
+    return @get('player1').empty() && @get('player2').empty()
     
   winnerMatch: ->
     @collection.tournament.winnerMatch(@index())

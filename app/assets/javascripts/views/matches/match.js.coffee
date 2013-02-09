@@ -2,10 +2,13 @@ class Kipscore.Views.Match extends Backbone.View
 
   tagName: 'div'
   className: ->
-    if @model.ready()
-      'match'
-    else
-      'match empty'
+    name = 'match'
+    if @model.empty()
+      name += ' empty'
+    if @model.get('finished')
+      name += ' finished'
+    name
+    
   template: JST['matches/match']
   
   initialize: ->
@@ -48,14 +51,28 @@ class Kipscore.Views.Match extends Backbone.View
       if @model.setNextMatches()
         true
       else
+        alert "#{@model.get('player1').get('name')} vs #{@model.get('player2').get('name')}"
         alert "Match is already finished!"
         false
     else
       if event isnt undefined
-        alert ("It's draw!")
+        alert "It's draw!"
         false
+  
+  setClass: ->
+    cname = 'match'
+    if @model.empty()
+      cname += ' empty'
+    if @model.get('finished')
+      cname += ' finished'
+    @$el.attr('class', cname)
+    
+    #Tournament class
+    unless @model.empty()
+      @$el.closest('.tournament-bracket-wrapper').removeClass('empty')
       
   render: ->
+    @setClass()
     $(@el).html('')
         
     player1_view = new Kipscore.Views.Player({ model: @model.get('player1') })
@@ -64,16 +81,17 @@ class Kipscore.Views.Match extends Backbone.View
     player2_view = new Kipscore.Views.Player({ model: @model.get('player2') })
     $(@el).append(player2_view.render().$el)
     
-    scores = @scores()
+    scores = @scores((false if @model.get('finished')))
     $(@el).append(scores)
     
-    proceed_link = $("<a/>").addClass("proceed").attr("href", "#").append($("<i/>").addClass("icon-chevron-right"))
-    proceed_button = $("<div/>").addClass("proceed-button").append(proceed_link)    
-    @$el.append(proceed_button)
+    unless @model.get('finished')  
+      proceed_link = $("<a/>").addClass("proceed").attr("href", "#").append($("<i/>").addClass("icon-chevron-right"))
+      proceed_button = $("<div/>").addClass("proceed-button").append(proceed_link)    
+      @$el.append(proceed_button)
     
     this
     
-  scores: ->
+  scores: (edit=true)->
     scores_div = $('<div/>').addClass('scores')
     
     table = $('<table/>').appendTo(scores_div)
@@ -83,10 +101,12 @@ class Kipscore.Views.Match extends Backbone.View
       row = $('<tr/>').appendTo(body)
       for score in scores
         row.append($('<td/>').text(score[i]))
-      row.append($('<td/>').append($('<input/>').addClass('player_score').attr('type','text')))
+      td = $('<td/>').appendTo(row)
+      if edit
+        td.append($('<input/>').addClass('player_score').attr('type','text'))
         
-    
-    new_score = $('<a/>').attr('href','#').addClass("new").append($("<i/>").addClass("icon-plus")).appendTo(scores_div)  
+    if edit
+      new_score = $('<a/>').attr('href','#').addClass("new").append($("<i/>").addClass("icon-plus")).appendTo(scores_div)  
     
     scores_div
     
