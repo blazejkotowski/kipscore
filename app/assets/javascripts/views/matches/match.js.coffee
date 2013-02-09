@@ -13,7 +13,7 @@ class Kipscore.Views.Match extends Backbone.View
   
   initialize: ->
     _.bindAll(this, "render")
-    @model.bind "change", @render
+    @model.bind "change:player1 change:player2 change:finished", @render
     @render()
     
   events:
@@ -81,10 +81,10 @@ class Kipscore.Views.Match extends Backbone.View
     player2_view = new Kipscore.Views.Player({ model: @model.get('player2') })
     $(@el).append(player2_view.render().$el)
     
-    scores = @scores((false if @model.get('finished')))
+    scores = @scores((false if @model.get('finished') or not @model.ready()))
     $(@el).append(scores)
     
-    unless @model.get('finished')  
+    unless @model.get('finished') or not @model.ready()
       proceed_link = $("<a/>").addClass("proceed").attr("href", "#").append($("<i/>").addClass("icon-chevron-right"))
       proceed_button = $("<div/>").addClass("proceed-button").append(proceed_link)    
       @$el.append(proceed_button)
