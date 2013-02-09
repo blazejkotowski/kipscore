@@ -14,9 +14,9 @@ class Kipscore.Views.Match extends Backbone.View
     @render()
     
   events:
-    'click': 'alertId'
     'click .new': 'newScore'
     'keyup .player_score': 'keyup'
+    'click a.proceed': 'proceedMatch'
   
   newScore: (event) ->
     event.preventDefault()
@@ -40,18 +40,21 @@ class Kipscore.Views.Match extends Backbone.View
   keyup: (event) ->
     @newScore(event) if event.keyCode==13
         
+  proceedMatch: (event) ->
+    if event isnt undefined
+      event.preventDefault()
     
-  alertId: ->
-    wmatch = @model.winnerMatch()
-    lmatch = @model.loserMatch()
-    
-    console.log "you clicked match id #{@model.index()}"
-   
-    console.log "winner match is #{wmatch.index()} in tournament #{wmatch.collection.tournament.get('min_position')}-#{wmatch.collection.tournament.get('max_position')}"
-    
-    console.log "loser match is #{lmatch.index()} in tournament #{lmatch.collection.tournament.get('min_position')}-#{lmatch.collection.tournament.get('max_position')}"
-    
-  
+    if @model.pickWinner()
+      if @model.setNextMatches()
+        true
+      else
+        alert "Match is already finished!"
+        false
+    else
+      if event isnt undefined
+        alert ("It's draw!")
+        false
+      
   render: ->
     $(@el).html('')
         
@@ -62,14 +65,11 @@ class Kipscore.Views.Match extends Backbone.View
     $(@el).append(player2_view.render().$el)
     
     scores = @scores()
-    
     $(@el).append(scores)
     
     proceed_link = $("<a/>").addClass("proceed").attr("href", "#").append($("<i/>").addClass("icon-chevron-right"))
-    proceed_button = $("<div/>").addClass("proceed-button").append(proceed_link)
-    
+    proceed_button = $("<div/>").addClass("proceed-button").append(proceed_link)    
     @$el.append(proceed_button)
-    
     
     this
     
