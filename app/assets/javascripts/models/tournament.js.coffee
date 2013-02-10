@@ -9,30 +9,36 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
     'min_position': 0
     'saving': 1
   
+  relations: [
+    key: 'players'
+    type: Backbone.HasMany
+    relatedModel: 'Kipscore.Models.Player'
+  ]
+  
   initialize: ->
     power = 1
-    while power < this.get('players_number')
+    while power < @get('players_number')
       power *= 2
     
-    this.set 'players_number', power  
-    this.set 'bracket_size', 2*(power/2)-1
-    if this.get('max_position') == 0
-      this.set 'max_position', power
-      this.set 'min_position', 1
+    @set 'players_number', power  
+    @set 'bracket_size', 2*(power/2)-1
+    if @get('max_position') == 0
+      @set 'max_position', power
+      @set 'min_position', 1
     
-    bracket_size = this.get('bracket_size')
-    bracket = this.get('bracket')
+    bracket_size = @get 'bracket_size'
+    bracket = @get 'bracket'
     
     # Create empty bracket if not provided
     if bracket is undefined
       matches = new Kipscore.Collections.Matches()
-      iter = this.get 'bracket_size'
+      iter = @get 'bracket_size'
       while iter > 0
         new_match = new Kipscore.Models.Match()
         matches.add new_match
         iter--
       bracket = matches
-      this.set 'bracket', matches
+      @set 'bracket', matches
     
     # Add next (blank) matches
     while bracket.length < bracket_size

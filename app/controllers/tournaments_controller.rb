@@ -69,7 +69,7 @@ class TournamentsController < ApplicationController
   end
   
   def bracket
-    @tournament = Tournament.find(params[:id])
+    @tournament = Tournament.find(params[:tournament_id])
     
     respond_to do |format|
       format.html

@@ -3,12 +3,13 @@ class Kipscore.Routers.Tournaments extends Backbone.Router
     '': 'index'
       
   index: ->
-    @players = new Kipscore.Collections.Players() # they are fetched now
-    @players.fetch
+    @tournament = new Kipscore.Models.Tournament()
+    @tournament.fetch
       complete: _.bind(@drawBracket, this)
 
     
   drawBracket: ->
+    @players = @tournament.get('players')
     matches = new Kipscore.Collections.Matches()
     i = 0
     match = new Kipscore.Models.Match()
@@ -20,16 +21,16 @@ class Kipscore.Routers.Tournaments extends Backbone.Router
       i++
       
     # Create tournament from matches
-    tournament = new Kipscore.Models.Tournament( { 'players_number': @players.size(), 'bracket': matches } )
-    Window.tournament = tournament
+    @tournament.set {'players_number': @players.size(), 'bracket': matches }
+    @tournament.initialize()
+    Window.tournament = @tournament
     
     # Displaying bracket
-    tournament_view = new Kipscore.Views.Tournament({ model: tournament })
-
-    for match in tournament.get('bracket').models
+    tournament_view = new Kipscore.Views.Tournament({ model: @tournament })
+    for match in @tournament.get('bracket').models
       if match.pickWinner()
         match.setNextMatches()      
-    
+    console.log "chuj"
     tournament_view.render()
   
     

@@ -94,10 +94,11 @@ class Tournament < ActiveRecord::Base
     end
     
     start_hash_list.sort! { |a,b| a[:start_position] <=> b[:start_position] }
+    json_list = { :players => start_hash_list }
     
-    update_attribute :json_bracket, start_hash_list.to_json if active
+    update_attribute :json_bracket, json_list.to_json if active
 
-    start_hash_list
+    json_list
     
     
   end
