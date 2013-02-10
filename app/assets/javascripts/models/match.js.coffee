@@ -32,7 +32,7 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
       try
         if @pickWinner()
           @setNextMatches()
-      
+    
   pickWinner: ->
     # Not pickd if match not ready
     unless @ready()
@@ -81,12 +81,14 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
     lmatch.addPlayer @get('loser')
     
     @set 'finished', true
+    @trigger "to_save"
     
     return true
     
     
   addScores: (p1,p2) ->
     @get('scores').push([parseInt(p1),parseInt(p2)])
+    @trigger "to_save"
     this
       
   addPlayer: (player) ->

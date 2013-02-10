@@ -1,9 +1,13 @@
 class Kipscore.Models.Tournament extends Backbone.RelationalModel
+
+  url: window.location.pathname  
+  
   defaults:
     'players_number': 0
     'bracket_size': 0
     'max_position': 0
     'min_position': 0
+    'saving': 1
   
   initialize: ->
     power = 1
@@ -40,7 +44,22 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
     
     # Perform empty tournaments for next tours  
     this.createRelatedTournaments()
-      
+    
+    @on "to_save", ->
+      # Do not save more than 1 time per second
+      if @get('saving') == 1
+        return false    
+      @setSaving()
+      alert("saving...")
+
+    @setSaving()
+          
+  # Sets saving flag for ms miliseconds
+  setSaving: (ms=1000) ->
+    @set 'saving', 1
+    context = this
+    setInterval((-> context.set("saving", 0)), ms)
+  
   # Creates losers tournaments
   createRelatedTournaments: ->
     tournaments = new Kipscore.Collections.Tournaments()
