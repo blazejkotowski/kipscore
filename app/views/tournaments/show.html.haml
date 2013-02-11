@@ -3,7 +3,7 @@
 .page-header
   %h1
     = @tournament.name
-    = link_to "Go to bracket", bracket_tournament_path(@tournament), :class => 'btn btn-primary btn-large'
+    = link_to "Go to bracket", tournament_bracket_path(@tournament), :class => 'btn btn-primary btn-large'
 
 .row
   .span6
