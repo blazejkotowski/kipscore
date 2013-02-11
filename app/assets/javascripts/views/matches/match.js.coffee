@@ -51,8 +51,6 @@ class Kipscore.Views.Match extends Backbone.View
       if @model.setNextMatches()
         true
       else
-        alert "#{@model.get('player1').get('name')} vs #{@model.get('player2').get('name')}"
-        alert "Match is already finished!"
         false
     else
       if event isnt undefined

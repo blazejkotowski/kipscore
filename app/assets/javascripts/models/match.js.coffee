@@ -1,7 +1,5 @@
 class Kipscore.Models.Match extends Backbone.RelationalModel
   defaults:
-    'winner': undefined
-    'loser': undefined
     'finished': false
     'scores': undefined #[[p1,p2],[p1,p2]...]
     
@@ -16,6 +14,16 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
       key: 'player2'
       relatedModel: 'Kipscore.Models.Player'
     }
+    {
+      type: Backbone.HasOne
+      key: 'winner'
+      relatedModel: 'Kipscore.Models.Player'
+    }
+    {
+      type: Backbone.HasOne
+      key: 'loser'
+      relatedModel: 'Kipscore.Models.Player'
+    }
   ]
   
   initialize: ->
@@ -25,13 +33,17 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
     if @get('player2') is null
       @set 'player2', new Kipscore.Models.Player()
     
-    @set 'scores', new Array()
+    @set 'scores', new Array() if @get('scores') == undefined
     
     # Auto-pick winner (in case of bye)
-    this.on "change:player1 change:player2", ->
+    @on "change:player1 change:player2", ->
       try
         if @pickWinner()
           @setNextMatches()
+          
+    @on "to_save", ->
+      try
+        @collection.tournament.trigger "to_save"
     
   pickWinner: ->
     # Not pickd if match not ready

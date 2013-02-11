@@ -14,7 +14,6 @@ end
 group :development, :test do
   gem 'sqlite3'
   gem 'rspec-rails'
-  gem 'rack-mini-profiler'
 end
 
 group :test do

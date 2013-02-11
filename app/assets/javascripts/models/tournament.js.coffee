@@ -10,9 +10,24 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
     'saving': 1
   
   relations: [
-    key: 'players'
-    type: Backbone.HasMany
-    relatedModel: 'Kipscore.Models.Player'
+    {
+      key: 'players'
+      type: Backbone.HasMany
+      relatedModel: 'Kipscore.Models.Player'
+    },
+    {
+      key: 'bracket'
+      type: Backbone.HasMany
+      relatedModel: 'Kipscore.Models.Match'
+      reverseRelation:
+        key: 'tournament'
+        type: Backbone.HasOne
+    },
+    {
+      key: 'related_tournaments'
+      type: Backbone.HasMany
+      relatedModel: "Kipscore.Models.Tournament"
+    }
   ]
   
   initialize: ->
@@ -20,7 +35,7 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
     while power < @get('players_number')
       power *= 2
     
-    @set 'players_number', power  
+    @set 'players_number', power
     @set 'bracket_size', 2*(power/2)-1
     if @get('max_position') == 0
       @set 'max_position', power
@@ -49,22 +64,21 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
     bracket.tournament = this
     
     # Perform empty tournaments for next tours  
-    this.createRelatedTournaments()
+    @createRelatedTournaments()
     
     @on "to_save", ->
       # Do not save more than 1 time per second
-      if @get('saving') == 1
-        return false    
       @setSaving()
-      alert("saving...")
-
-    @setSaving()
+    
+    # Do not save on beginning
+    context = this
+    setTimeout((-> context.set('save', 0)), 2000)
           
   # Sets saving flag for ms miliseconds
   setSaving: (ms=1000) ->
     @set 'saving', 1
     context = this
-    setInterval((-> context.set("saving", 0)), ms)
+    setTimeout((-> context.save()), ms)
   
   # Creates losers tournaments
   createRelatedTournaments: ->
@@ -104,5 +118,17 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
     tournament = this.get('related_tournaments').at(this.columnNumber(bracket_number))
     bracket = tournament.get('bracket')
     bracket.at (Math.floor(bracket_number/2)-1)
-  
     
+    
+  isNew: ->
+    @get('bracket').length < 1
+    
+  save: ->
+    unless @isNew()
+      $.ajax
+        type: 'put'
+        url: @url
+        data:
+          json_bracket: JSON.stringify(@toJSON())
+        complete:
+          @set 'saving', 0

@@ -77,6 +77,21 @@ class TournamentsController < ApplicationController
     end
   end
   
+  def bracket_update
+    @tournament = Tournament.find(params[:tournament_id])
+    if @tournament.active
+      if @tournament.update_attribute :json_bracket, params[:json_bracket]
+        response = { :updated => true }
+      else
+        response = { :updated => false }
+      end
+    else
+      response = { :updated => false, :error => 'Tournament not active' }
+    end
+    
+    render :json => response.to_json
+  end
+  
   private
     def correct_user
       @tournament = Tournament.find(params[:id])
