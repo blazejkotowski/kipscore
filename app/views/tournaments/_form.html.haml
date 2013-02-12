@@ -1,30 +1,30 @@
 = simple_form_for @tournament, :html => { :class => 'form-horizontal' } do |f|
-  = f.input :name
+  = f.input :name, :disabled => (@tournament.active? ? true : nil)
   = f.input :start_date, :required => true do
     - @date = @tournament.start_date.nil?? DateTime.now : @tournament.start_date
-    = text_field_tag :start_date_date, @date.strftime("%Y-%m-%d"), :class => 'datepicker input-small'
-    = text_field_tag :start_date_time, @date.strftime("%H:%M"), :class => 'timepicker input-small'
-  = f.input :description
+    = text_field_tag :start_date_date, @date.strftime("%Y-%m-%d"), :class => 'datepicker input-small', :disabled => (@tournament.active? ? true : nil)
+    = text_field_tag :start_date_time, @date.strftime("%H:%M"), :class => 'timepicker input-small', :disabled => (@tournament.active? ? true : nil)
+  = f.input :description, :disabled => (@tournament.active? ? true : nil)
   .form-actions
     - if request.xhr?
-      = link_to '#players-modal', :class => 'btn btn-info', :data => { :toggle => 'modal' }, :role => 'button' do
+      = link_to '#players-modal', :class => 'btn', :data => { :toggle => 'modal' }, :role => 'button' do
         %i.icon-fullscreen
         - if @tournament.active?
           Show Players
         - else
           Manage players
     - if request[:action] == 'edit'
-      = link_to 'Go to bracket', tournament_bracket_path(@tournament), :class => 'btn btn-success'
+      = link_to 'Go to bracket', tournament_bracket_path(@tournament), :class => 'btn'
     .margin-top
       = f.button :submit, request[:action] == 'edit' ? 'Update' : 'Create', :class => 'btn'
       - if request[:action] == 'new'
         = link_to t('.cancel', :default => t("helpers.links.cancel")), tournaments_user_path, :class => 'btn'
       - if request[:action] == 'edit'
-        = link_to 'Delete', tournament_path(@tournament), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'    
-        - unless @tournament.active
-          = link_to 'Activate', activate_tournament_path(@tournament), :class => 'btn btn-success', :method => 'put', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }
+        - if @tournament.active?
+          = link_to 'Deactivate', activate_tournament_path(@tournament), :class => "btn btn-warning", :method => 'put', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure? All tournament progress will be lost!')) }
         - else
-          .btn.btn-success.disabled Already activated
+          = link_to 'Activate', activate_tournament_path(@tournament), :class => "btn btn-success", :method => 'put', :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }
+        = link_to 'Delete', tournament_path(@tournament), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'    
     
 %script
   $('.datepicker').datepicker({format: 'yyyy-mm-dd', autoclose: true});

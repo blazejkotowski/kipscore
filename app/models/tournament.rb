@@ -38,7 +38,7 @@ class Tournament < ActiveRecord::Base
       in json format. Bye are signed by nil
     """
     
-    unless json_bracket.nil?
+    if json_bracket.present? && active?
       return json_bracket
     end
 
@@ -103,6 +103,9 @@ class Tournament < ActiveRecord::Base
     
   end
   
+  def active?
+    active
+  end  
   
   private
     def generate_groups(s, e, group_number, groups)

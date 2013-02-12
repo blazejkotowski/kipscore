@@ -1,4 +1,6 @@
 class TournamentsController < ApplicationController
+  include TournamentsHelper
+
   before_filter :signed_in_user, :only => [:new, :create]
   before_filter :correct_user, :only => [:edit, :update, :destroy, :activate]
   before_filter :concatenate_datetime, :only => [:create, :update]
@@ -33,6 +35,8 @@ class TournamentsController < ApplicationController
   def edit
     if request.xhr?
       render :layout => false
+    else
+      redirect_to manage_tournament_path(@tournament)
     end
   end
 
@@ -49,6 +53,9 @@ class TournamentsController < ApplicationController
 
   # PUT /tournaments/1
   def update
+    if @tournament.active?
+      return redirect_to(tournaments_user_path(:anchor => "tid=#{@tournament.id}"), :notice => "You are unable to edit active tournament.")
+    end
     if @tournament.update_attributes(params[:tournament])
       redirect_to tournaments_user_path(:anchor => "tid=#{@tournament.id}"), :notice => 'Tournament was successfully updated.'
     else
@@ -63,8 +70,10 @@ class TournamentsController < ApplicationController
   end
   
   def activate
-    @tournament.active = true
-    @tournament.save
+    @tournament.toggle! :active
+    unless @tournament.active?
+      @tournament.update_attribute :json_bracket, nil
+    end
     redirect_to tournaments_user_url(:anchor => "tid=#{@tournament.id}")
   end
   
@@ -99,7 +108,9 @@ class TournamentsController < ApplicationController
     end
     
     def concatenate_datetime
-      params[:tournament][:start_date] = "#{params[:start_date_date]} #{params[:start_date_time]}"
+      if params[:tournament].present?
+        params[:tournament][:start_date] = "#{params[:start_date_date]} #{params[:start_date_time]}"
+      end
     end
     
 end
