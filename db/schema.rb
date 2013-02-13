@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130203153737) do
+ActiveRecord::Schema.define(:version => 20130213001941) do
 
   create_table "players", :force => true do |t|
     t.string   "name"
@@ -35,7 +35,10 @@ ActiveRecord::Schema.define(:version => 20130203153737) do
     t.datetime "updated_at",   :null => false
     t.text     "description"
     t.text     "json_bracket"
+    t.string   "slug"
   end
+
+  add_index "tournaments", ["slug"], :name => "index_tournaments_on_slug"
 
   create_table "users", :force => true do |t|
     t.string   "name"

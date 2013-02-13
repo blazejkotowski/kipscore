@@ -14,6 +14,10 @@
 #
 
 class Tournament < ActiveRecord::Base
+  extend FriendlyId
+  
+  friendly_id :name, :use => :slugged
+  
   attr_accessible :active, :name, :start_date, :description, :json_bracket
   belongs_to :user
   has_and_belongs_to_many :players
