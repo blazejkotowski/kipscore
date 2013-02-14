@@ -3,10 +3,17 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 #home-teaser {
-  text-align: center;
-  p {
+  &.hero-unit {
+    text-align: center;
+  }
+  p, ol {
     font-size: 1.1em;
     margin: 20px;
+  }
+  
+  h3 {
+    font-size: 21px;
+    line-height: 40px;
   }
 }
 
