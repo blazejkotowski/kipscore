@@ -11,5 +11,42 @@
 }
 
 #home-signup {
-
 }
+
+#footer-bar {
+  li > a {
+    background: transparent no-repeat center top;
+    &.innovation {
+      background-image: asset-data-url("icons/innovation.png");
+      &.active, &:hover {
+        background-image: asset-data-url("icons/innovation_neg.png");
+      }
+    }
+    &.about-us {
+      background-image: asset-data-url("icons/about.png");
+      &.active, &:hover {
+        background-image: asset-data-url("icons/about_neg.png");
+      }
+    }
+    &.instruction {
+      background-image: asset-data-url("icons/instruction.png");
+      &.active, &:hover {
+        background-image: asset-data-url("icons/instruction_neg.png");
+      }
+    }
+    &.contact {
+      background-image: asset-data-url("icons/contact.png");
+      &.active, &:hover {
+        background-image: asset-data-url("icons/contact_neg.png");
+      }
+    }
+    &.tournaments {
+      background-image: asset-data-url("icons/tournaments.png");
+      &.active, &:hover {
+        background-image: asset-data-url("icons/tournaments_neg.png");
+      }
+    }
+  }
+}
+
+

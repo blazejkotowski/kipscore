@@ -16,7 +16,7 @@
 @import "fontawesome";
 
 // Bootstrap variables overwriting
-@kipscoreColor:         #9bc44b;
+@kipscoreColor:         #9ec64d;
 
 @linkColor:             @kipscoreColor;
 
@@ -31,10 +31,24 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   .box-shadow(~"inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(155, 196, 75,.6)");
 }
 
-@footerHeight: 40px;
+@footerHeight: 70px;
+@footerBarHeight: 122px;
+@textColor: @grayLighter;
 
 html, body {
   height: 100%;
+}
+
+body {
+  background: transparent asset-data-url("background-linnen.png");
+}
+
+legend {
+  color: @textColor;
+}
+
+.hero-unit {
+  background: transparent;
 }
 
 .navbar .brand {
@@ -42,7 +56,11 @@ html, body {
 }
 
 #navigation {
-  .navbar-static-top;
+  .navbar-static-top();
+  .navbar-inner {
+    background: #333333;
+  }
+  border-bottom: 5px solid @kipscoreColor;
 }
 
 .container, .navbar .container {
@@ -67,7 +85,10 @@ html, body {
 }
 
 #main-container {
-  padding-top: 30px;
+  margin: 0 auto;
+  position: relative;
+  padding: 30px;
+  background: rgba(0,0,0,0.65);
 }
 
 #push-footer {
@@ -79,10 +100,79 @@ footer {
   text-align: center;
   position: relative;
   .navbar-inner {
+    background: #333 !important;
     padding: 10px 0;
     min-height: 0;
     .border-radius(0);
+    text-align:center;
   }
+  
+  .navbar .nav,
+  .navbar .nav > li {
+    float:none;
+    display:inline-block;
+    *display:inline; /* ie7 fix */
+    *zoom:1; /* hasLayout ie7 trigger */
+    vertical-align: top;
+    a {
+      padding-top: 3px;
+      padding-bottom: 5px;
+    }
+  }
+
+  a {
+    color: @linkColor !important;
+    &:hover {
+      color: @linkColorHover !important;
+      text-decoration:none;
+    }
+  }
+}
+
+#footer-bar {
+  height: @footerBarHeight;
+  background: @kipscoreColor;
+  color: @grayDark;
+  text-align: center;
+  
+  ul,
+  ul > li {
+    float: none;
+    display: inline-block;
+    *display: inline;
+    *zoom: 1;
+    vertical-align: top;
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 0 auto;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 15px 0;
+    position: relative;
+    a {
+      display: inline-block;
+      padding-top: @footerBarHeight - 60px;
+      color: inherit !important;
+    }
+    li {
+      margin: 0 65px;
+    }
+  }
+  
+}
+
+body.static {
+  footer,
+  #push-footer {
+    height: @footerHeight + @footerBarHeight;
+  }
+  #main-wrapper {
+    margin-bottom: -(@footerHeight + @footerBarHeight);
+  }
+  background: transparent asset-data-url("background-stadium.jpg") no-repeat 50%;
+  background-size: cover;
 }
 
 .match {
