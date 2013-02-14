@@ -29,3 +29,8 @@
 //= require_tree ./collections
 //= require_tree ./views
 //= require_tree ./routers
+
+function fixBackground() {
+   var bg = document.getElementById("bg-container");
+   bg.setAttribute("style", "margin-left:" + (-bg.offsetWidth/2) +"px");
+}

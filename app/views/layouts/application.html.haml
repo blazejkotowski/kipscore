@@ -7,9 +7,12 @@
     = javascript_include_tag "application"
     = yield :javascript_includes
     = csrf_meta_tags
-  %body{ :class => ('static' if params[:controller] == "static_pages") }
+  %body{ :class => yield(:body_class) }
+    #bg-container.container
+    :javascript
+      fixBackground();
     #main-wrapper
-      %div#navigation.navbar.navbar-inverse.navbar-static-top
+      %div#navigation.navbar.navbar-inverse.navbar-fixed-top
         %div.navbar-inner
           %div.container
             %div.pull-left
@@ -35,7 +38,7 @@
                 = password_field_tag 'password', nil, :placeholder => 'Password', :class => 'input-medium'
                 = button_tag 'Sign in', :type => 'submit', :class => 'btn'
       
-      %div#main-container.container      
+      %div#main-container.container
         %div.container.notifications
           - flash.each do |type,msg|
             %div{ :class => "alert alert-#{type}" }
@@ -50,9 +53,8 @@
       
       #push-footer 
          
-    %footer
-      - if params[:controller] == "static_pages"
-        = render "static_pages/bar"
+    %footer.without-bar
+      = render "static_pages/bar"
       .navbar.navbar-inverse
         .navbar-inner
           .container
