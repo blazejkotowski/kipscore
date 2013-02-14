@@ -31,13 +31,13 @@ group :assets do
   gem 'coffee-rails', '~> 3.2.2'
 
   gem 'less-rails'
-  gem 'twitter-bootstrap-rails'
   
   gem 'therubyracer', :platforms => :ruby
 
   gem 'uglifier', '>= 1.0.3'
 end
 
+gem 'twitter-bootstrap-rails'
 gem 'jquery-ui-rails'
 gem 'jquery-rails'
 gem 'bootstrap-datepicker-rails'
