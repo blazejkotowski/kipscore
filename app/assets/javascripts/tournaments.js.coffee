@@ -1,16 +1,4 @@
 jQuery ->
-  # Tournament top scroll bind to bottom scroll
-  $(document).on "scroll", ".scroll-top", (event) ->
-    alert 'scrolled top'
-    offset = $(event.target).scrollLeft()
-    $(event.target).next(".tournament-bracket-wrapper").scrollLeft(offset)
-  $(document).on "scroll", ".tournaments-bracket-wrapper", (event) ->
-    alert 'scrolled bracket'
-    offset = $(event.target).scrollLeft()
-    $(event.target).prev(".scroll-top-wrapper").scrollLeft(offset)
-    
-    
-
   $('.manage-button').on "click", (event) ->
     event.preventDefault()
     tid = $(event.target).attr "data-tid" 

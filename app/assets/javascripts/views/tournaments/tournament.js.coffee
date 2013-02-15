@@ -4,7 +4,7 @@ class Kipscore.Views.Tournament extends Backbone.View
   className: 'tournament-bracket-wrapper empty'    
   
   template: JST['tournaments/show']
-    
+  
   append: ->
     $(@el).appendTo("#tournament-container")
     
@@ -14,6 +14,14 @@ class Kipscore.Views.Tournament extends Backbone.View
     bracket = @model.get('bracket')
     width_class = "columns#{@model.columnNumber(1)+1}"
     $scroll_top.addClass(width_class)
+    
+    # Tournament top scroll bind to bottom scroll
+    $($scroll_wrapper).scroll (event) ->
+      offset = $(event.target).scrollLeft()
+      $(event.target).next(".tournament-bracket-wrapper").scrollLeft(offset)
+    @$el.scroll (event) ->
+      offset = $(event.target).scrollLeft()
+      $(event.target).prev(".scroll-top-wrapper").scrollLeft(offset)    
   
   render: ->
     # Tournament title

@@ -105,12 +105,16 @@ $totalColumnWidth: $columnWidth + $columnMarginRight;
 .tournament-bracket-wrapper {
   overflow-x: auto;
   padding-bottom: 0;
+  padding-top: 40px;
+  position: relative;
 }
 
 .tournament-title {
   margin-bottom: -10px;
   margin-left: 10px;
   font-size: 1.5em;
+  position: absolute;
+  top: -20px;
 }
 
 .scroll-top, .tournament-bracket {
@@ -126,6 +130,8 @@ $totalColumnWidth: $columnWidth + $columnMarginRight;
 .scroll-top-wrapper {
   height: 20px;
   overflow-x: auto;
+  position: relative;
+  top: 40px;
   .scroll-top {
     padding: 0 10px;
     height: 1px;
@@ -135,6 +141,7 @@ $totalColumnWidth: $columnWidth + $columnMarginRight;
 .tournament-bracket {
   background-color: rgba(255,255,255,0.2);
   padding: 10px;
+  min-width: 98%;
 
   .scroll-top {
     height: 20px;
