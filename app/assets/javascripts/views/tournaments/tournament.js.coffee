@@ -9,7 +9,9 @@ class Kipscore.Views.Tournament extends Backbone.View
     $(@el).appendTo("#tournament-container")
     
     # Top scroll
-    $scroll_wrapper = $("<div/>").addClass("scroll-top-wrapper").insertBefore(@$el)
+    $scroll_wrapper = $("<div/>").addClass("scroll-top-wrapper empty").insertBefore(@$el)
+    unless @empty is undefined
+      $scroll_wrapper.removeClass("empty")
     $scroll_top = $("<div/>").addClass("scroll-top").appendTo($scroll_wrapper)
     bracket = @model.get('bracket')
     width_class = "columns#{@model.columnNumber(1)+1}"
@@ -50,6 +52,7 @@ class Kipscore.Views.Tournament extends Backbone.View
       # Display bracket if not empty
       unless bracket.at(i).empty()
         @$el.removeClass('empty')
+        @empty = false
       $(column).append(match_view.render().$el)
       --i
       

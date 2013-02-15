@@ -69,7 +69,9 @@ class Kipscore.Views.Match extends Backbone.View
     
     #Tournament class
     unless @model.empty()
-      @$el.closest('.tournament-bracket-wrapper').removeClass('empty')
+      $wrapper = @$el.closest('.tournament-bracket-wrapper')
+      $wrapper.removeClass('empty')
+      $wrapper.prev('.scroll-top-wrapper').removeClass('empty')
       
   render: ->
     @setClass()
