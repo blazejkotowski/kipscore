@@ -1,4 +1,7 @@
 jQuery ->
+  # Tournament top scroll bind to bottom scroll
+  
+
   $('.manage-button').on "click", (event) ->
     event.preventDefault()
     tid = $(event.target).attr "data-tid" 

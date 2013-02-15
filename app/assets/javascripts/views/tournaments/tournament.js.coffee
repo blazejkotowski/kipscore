@@ -7,16 +7,28 @@ class Kipscore.Views.Tournament extends Backbone.View
     
   append: ->
     $(@el).appendTo("#tournament-container")
+    
+    # Tournament title
+    $('<h3/>').addClass('tournament-title').text("#{@model.get('min_position')}-#{@model.get('max_position')}").insertBefore(@$el)
+    
+    # Top scroll
+    $scroll_wrapper = $("<div/>").addClass("scroll-top-wrapper").insertBefore(@$el)
+    $scroll_top = $("<div/>").addClass("scroll-top").appendTo($scroll_wrapper)
+    bracket = @model.get('bracket')
+    width_class = "columns#{@model.columnNumber(1)+1}"
+    $scroll_top.addClass(width_class)
   
   render: ->
-    # Tournament title
-    $(@el).append($('<h3/>').addClass('tournament-title').text("#{@model.get('min_position')}-#{@model.get('max_position')}"))
-    
     # Wrapper to make scroll posbbile
-    $wrapper = $('<div/>').addClass('tournament-bracket').appendTo($(@el))
+    $wrapper = $('<div/>').addClass("tournament-bracket").appendTo($(@el))
     
     # Rendering column by column
     bracket = @model.get('bracket')
+    
+    # Proper widths
+    width_class = "columns#{@model.columnNumber(1)+1}"
+    $wrapper.addClass(width_class)
+    
     i = bracket.length-1
     while i >= 0
       # Create next column

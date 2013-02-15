@@ -89,6 +89,11 @@ $column3MatchMargin: $column2MatchMargin*2 + $totalMatchHeight/2 - 1;
 $column4MatchMargin: $column3MatchMargin*2 + $totalMatchHeight/2 - 1;
 $column5MatchMargin: $column4MatchMargin*2 + $totalMatchHeight/2 - 1;
 $column6MatchMargin: $column5MatchMargin*2 + $totalMatchHeight/2 - 1;
+$column7MatchMargin: $column6MatchMargin*2 + $totalMatchHeight/2 - 1;
+
+$columnWidth: $baseMatchWidth + 30;
+$columnMarginRight: 5px;
+$totalColumnWidth: $columnWidth + $columnMarginRight;
 
 #tournament-container {
   .empty {
@@ -98,18 +103,43 @@ $column6MatchMargin: $column5MatchMargin*2 + $totalMatchHeight/2 - 1;
 
 
 .tournament-bracket-wrapper {
-  .tournament-title {
-    margin-bottom: -10px;
-    margin-left: 10px;
-    font-size: 1.5em;
+  overflow-x: auto;
+  padding-bottom: 0;
+}
+
+.tournament-title {
+  margin-bottom: -10px;
+  margin-left: 10px;
+  font-size: 1.5em;
+}
+
+.scroll-top, .tournament-bracket {
+  &.columns7 { width: 7*$totalColumnWidth; }
+  &.columns6 { width: 6*$totalColumnWidth; }
+  &.columns5 { width: 5*$totalColumnWidth; }
+  &.columns4 { width: 4*$totalColumnWidth; }
+  &.columns3 { width: 3*$totalColumnWidth; }
+  &.columns2 { width: 2*$totalColumnWidth; }
+  &.columns1 { width: 1*$totalColumnWidth; }
+}
+
+.scroll-top-wrapper {
+  height: 20px;
+  overflow-x: auto;
+  .scroll-top {
+    padding: 0 10px;
+    height: 1px;
   }
 }
 
 .tournament-bracket {
-  margin-bottom: 25px;
-  padding: 10px;
   background-color: rgba(255,255,255,0.2);
-  
+  padding: 10px;
+
+  .scroll-top {
+    height: 20px;
+  }  
+
   .round-title {
     margin-top: 0;
     font-size: 1.2em;
@@ -232,8 +262,8 @@ $column6MatchMargin: $column5MatchMargin*2 + $totalMatchHeight/2 - 1;
   div[class^="column"] {
     display: inline-block;
     float: left;
-    width: $baseMatchWidth + 30;
-    margin-right: 5px;
+    width: $columnWidth;
+    margin-right: $columnMarginRight;
   }
   
   .column1 {
@@ -269,6 +299,12 @@ $column6MatchMargin: $column5MatchMargin*2 + $totalMatchHeight/2 - 1;
   .column6 {
     .match {
       margin: $column6MatchMargin 0;
+    }
+  }
+  
+  .column7 {
+    .match {
+      margin: $column7MatchMargin 0;
     }
   }
 }
