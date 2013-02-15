@@ -5,7 +5,7 @@
     = @tournament.name
     = link_to "Go to bracket", tournament_bracket_path(@tournament), :class => 'btn btn-primary btn-large'
 
-.row
+.row-fluid
   .span6
     %p
       %strong= model_class.human_attribute_name(:start_date) + ':'
