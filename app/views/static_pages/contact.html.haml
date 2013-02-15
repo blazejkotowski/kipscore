@@ -1,3 +1,47 @@
 - provide :title, "Contact"
-%h1 StaticPages#contact
-%p Find me in app/views/static_pages/contact.html.haml
+.row
+  .span6
+    .page-header
+      %h2 Contact form
+    = form_tag contact_path, :id => 'contact-form' do
+      - unless signed_in?
+        = label_tag :name do
+          Full name
+          %i.icon-user
+        = text_field_tag :name
+        = label_tag :email do
+          Email address
+          %i.icon-envelope
+        = email_field_tag :email
+      = label_tag :subject do
+        Subject
+        %i.icon-plus-sign
+      = select_tag :subject, options_for_select(["Feedback", "Technical problem", "Pricing"])
+      = label_tag :message do
+        Message
+        %i.icon-pencil
+      = text_area_tag :message
+      .form-actions
+        = submit_tag "Send email", :class => 'btn btn-primary btn-medium'
+      
+      
+  .span6
+    .page-header
+      %h2 Contact information
+    %address
+      .well.well-small
+        = link_to "contact@kipscore.com", "mailto:contact@kipscore.com"
+        %br
+        %p
+          Kipscore Sp. Z.O.O.
+          %br
+          Bukowska 127a 
+          %br
+          60-567 Poznań 
+          %br
+          Poland
+      .well.well-small
+        %h3 Find us on
+        %p
+          
+      

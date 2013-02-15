@@ -1,0 +1,10 @@
+%div{ :style => 'font-family: "Arial"; font-size: 12px; color: #333;'}
+  - if @user.class == User
+    %div{ :style => 'color: #777; '}
+      %h2{ :style => 'font-size: 1.2em; margin-bottom: 0;'} User information
+      %p{ :style=> "margin: 2px 0;"}
+        = @user.name
+        %br
+        Signed up at
+        = @user.created_at
+  %p{ :style=> "margin: 10px 0;"}= @message

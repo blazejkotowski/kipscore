@@ -14,7 +14,8 @@ Kipscore::Application.routes.draw do
   resources :sessions, :only => [:create, :new, :destroy]
 
   match '/about' =>  'static_pages#about', :as => 'about'
-  match '/contact' => 'static_pages#contact', :as => 'contact'
+  match '/contact' => 'static_pages#contact', :as => 'contact', :via => :get
+  match '/contact' => 'static_pages#send_email', :as => 'send_email', :via => :post
   match '/instruction' => 'static_pages#instruction', :as => 'instruction'
   match '/innovation' => 'static_pages#innovation', :as => 'innovation'
   
