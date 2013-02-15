@@ -15,7 +15,6 @@
 //= require jquery_ujs
 //= require jquery.jsPlumb.min
 //= require jquery.ba-bbq
-//= require jquery.doubleScroll
 //= require twitter/bootstrap
 //= require bootstrap-datepicker
 //= require bootstrap-timepicker
