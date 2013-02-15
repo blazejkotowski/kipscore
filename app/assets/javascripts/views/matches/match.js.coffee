@@ -20,6 +20,8 @@ class Kipscore.Views.Match extends Backbone.View
     'click .new': 'newScore'
     'keyup .player_score': 'keyup'
     'click a.proceed': 'proceedMatch'
+    'focus input': -> @$el.addClass "active"
+    'blur input': -> @$el.removeClass "active"
   
   newScore: (event) ->
     event.preventDefault()

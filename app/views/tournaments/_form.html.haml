@@ -7,7 +7,7 @@
   = f.input :description, :disabled => (@tournament.active? ? true : nil)
   .form-actions
     - if request.xhr?
-      = link_to '#players-modal', :class => 'btn', :data => { :toggle => 'modal' }, :role => 'button' do
+      = link_to '#players-modal', :class => 'btn btn-modal', :data => { :toggle => 'modal' }, :role => 'button' do
         %i.icon-fullscreen
         - if @tournament.active?
           Show Players

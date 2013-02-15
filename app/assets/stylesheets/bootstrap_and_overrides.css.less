@@ -31,7 +31,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   .box-shadow(~"inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(155, 196, 75,.6)");
 }
 
-@footerHeight: 70px;
+@footerHeight: 75px;
 @footerBarHeight: 122px;
 @textColor: @grayLighter;
 
@@ -105,9 +105,11 @@ legend {
 }
 
 footer {
-  height: @footerHeight;
+  height: @footerHeight - 5px;
   text-align: center;
   position: relative;
+  border-top: 5px solid @kipscoreColor;
+  margin-top: -5px;
   
   .navbar-inner {
     background: #333 !important;
@@ -180,7 +182,7 @@ footer {
 }
 
 body.static {
-  background: transparent asset-data-url("background-stadium.jpg") no-repeat 50%;
+  background: transparent url("background-chairs.jpg") no-repeat 90%;
   background-size: cover;
 }
 

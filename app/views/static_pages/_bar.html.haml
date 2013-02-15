@@ -1,7 +1,7 @@
 #footer-bar
   %ul
-    %li= link_to "About us", about_path, :class => 'about-us'
-    %li= link_to "Innovation", innovation_path, :class => 'innovation'
-    %li= link_to "Instruction", instruction_path, :class => 'instruction'
-    %li= link_to "Contact", contact_path, :class => 'contact'
-    %li= link_to "Tournaments", tournaments_path, :class => 'tournaments'
+    %li= link_to "About us", about_path, :class => "about-us#{' active' if params[:action] == 'about'}"
+    %li= link_to "Innovation", innovation_path, :class => "innovation#{' active' if params[:action] == 'innovation'}"
+    %li= link_to "Instruction", instruction_path, :class => "instruction#{' active' if params[:action] == 'instruction'}"
+    %li= link_to "Contact", contact_path, :class => "contact#{' active' if params[:action] == 'contact'}"
+    %li= link_to "Tournaments", tournaments_path, :class => "tournaments#{' active' if params[:action] == 'index'}"

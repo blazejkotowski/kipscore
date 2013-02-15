@@ -8,6 +8,6 @@
         Created to help you organize 
         %br 
         tournaments in the way you love.
-      =link_to 'Learn more', about_path, :class => 'btn btn-success btn-large'
+      = link_to 'Learn more', about_path, :class => 'btn btn-success btn-large about-us'
   .span6
-    #home-signup=render :partial => 'users/signup_form', :locals => { :signup_page => false }
+    #home-signup= render 'users/signup_form',  :signup_page => false

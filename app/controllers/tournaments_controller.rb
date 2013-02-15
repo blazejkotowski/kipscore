@@ -8,7 +8,8 @@ class TournamentsController < ApplicationController
   # GET /tournaments.json
   def index
     @tournaments = Tournament.all
-
+    @footer_bar = true
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tournaments }

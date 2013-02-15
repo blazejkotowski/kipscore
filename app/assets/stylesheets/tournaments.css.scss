@@ -36,6 +36,10 @@
   
 }
 
+.btn-modal {
+  margin-right: 4px;
+}
+
 #players-modal {
   color: #333 !important;
 }
@@ -188,6 +192,10 @@ $column6MatchMargin: $column5MatchMargin*2 + $totalMatchHeight/2;
           border: 0;
         }
         
+        tr:nth-child(even) {
+          color: #333;
+        }
+        
         tr:nth-child(odd) {
           color: #fff;
           td {
@@ -199,7 +207,7 @@ $column6MatchMargin: $column5MatchMargin*2 + $totalMatchHeight/2;
       } 
     }
   }
-  
+  .match.active,
   .match:hover {
     .proceed-button {
       display: block;

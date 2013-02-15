@@ -89,8 +89,8 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
     wmatch = @winnerMatch()
     lmatch = @loserMatch()
     
-    wmatch.addPlayer @get('winner')
-    lmatch.addPlayer @get('loser')
+    wmatch.addPlayer @get('winner'), @index()%2 ? 1 : 2
+    lmatch.addPlayer @get('loser'), @index()%2 ? 1 : 2
     
     @set 'finished', true
     @trigger "to_save"
@@ -103,11 +103,11 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
     @trigger "to_save"
     this
       
-  addPlayer: (player) ->
-    if @get('player2').empty()
+  addPlayer: (player, position = 0) ->
+    if (position == 0 || position == 2) and @get('player2').empty()
       @set 'player2', player
       true
-    else if @get('player1').empty()
+    else if (position == 0 || position == 1) and @get('player1').empty()
       @set 'player1', player
       true
     else

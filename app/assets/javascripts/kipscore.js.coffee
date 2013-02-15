@@ -18,7 +18,7 @@ showBar = ->
     $bar.delay(200).slideDown(200)
     
     contentHeight = $("#main-container").offset().top + $("#main-container").outerHeight()
-    if contentHeight + 144 > $(window).height()
+    if contentHeight + 122 > $(window).height()
       bar_class_set = true
       $('footer').removeClass("without-bar",1).addClass('with-bar', 200)
   
@@ -40,17 +40,26 @@ toggleBar = ->
     hideBar()
 
 jQuery ->
-  setTimeout(toggleBar, 500)
-  $(window).on "scroll resize", ->
-    toggleBar()
   
   $(window).on "resize", ->
     fixBackground()
+  
+  
+  if $("#footer-bar").length> 0
+    setTimeout(toggleBar, 500)
+    $(window).on "scroll resize", ->
+      toggleBar()
+    $(document).on "resize", -> 
     
+  
   if $("#home-teaser").length > 0
     $("a.about-us, a.innovation, a.instruction").on "click", (event) ->
       event.preventDefault()
+      $("#footer-bar a.active").removeClass("active")
+      $(event.target).addClass("active")
       $("#home-teaser").slideUp 1000, "easeOutExpo", -> 
-        $("#home-teaser").load $(event.target).attr("href"), null, -> 
+        $("#home-teaser").load $(event.target).attr("href"), null, ->
           $("#home-teaser").removeClass("hero-unit").slideDown(1000, "easeOutExpo")
-      
+  
+  $("#home-teaser a.about-us").on "click", ->
+    $("a.about-us").each (index, obj) ->  $(obj).addClass("active")      

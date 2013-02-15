@@ -7,7 +7,7 @@
     = javascript_include_tag "application"
     = yield :javascript_includes
     = csrf_meta_tags
-  %body{ :class => yield(:body_class) }
+  %body{ :class => ('static' if params[:controller] == 'static_pages') }
     #bg-container.container
     :javascript
       fixBackground();
@@ -54,7 +54,8 @@
       #push-footer 
          
     %footer.without-bar
-      = render "static_pages/bar"
+      - if @footer_bar.present?
+        = render "static_pages/bar"
       .navbar.navbar-inverse
         .navbar-inner
           .container
