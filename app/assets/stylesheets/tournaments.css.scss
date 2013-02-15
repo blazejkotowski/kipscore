@@ -26,7 +26,6 @@
 }
 
 #players-table {
-  color: #333 !important;
   input {
     margin-bottom: 0;
   }
@@ -35,6 +34,10 @@
     width: 40px;
   }
   
+}
+
+#players-modal {
+  color: #333 !important;
 }
 
 #tournament-part {
