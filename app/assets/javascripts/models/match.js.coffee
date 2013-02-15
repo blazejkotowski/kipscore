@@ -53,7 +53,7 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
     # Match with bye case
     if @get('player1').get('bye') && not @get('player2').get('bye')
       @set 'winner', @get('player2')
-      @set 'loser', @get('player2')
+      @set 'loser', @get('player1')
       return true
     if @get('player2').get('bye') && not @get('player1').get('bye')
       @set 'winner', @get('player1')

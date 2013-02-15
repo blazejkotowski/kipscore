@@ -83,12 +83,12 @@ $baseMatchBorder: 1px;
 $baseMatchHeight: $totalPlayerHeight*2;
 $baseMatchWidth: 200px;
 $totalMatchHeight: $baseMatchHeight + $baseMatchBorder*2 + $baseMatchPadding*2;
-$column1MatchMargin: $baseMatchMargin*2 + $totalMatchHeight/2;
-$column2MatchMargin: $column1MatchMargin*2 + $totalMatchHeight/2;
-$column3MatchMargin: $column2MatchMargin*2 + $totalMatchHeight/2;
-$column4MatchMargin: $column3MatchMargin*2 + $totalMatchHeight/2;
-$column5MatchMargin: $column4MatchMargin*2 + $totalMatchHeight/2;
-$column6MatchMargin: $column5MatchMargin*2 + $totalMatchHeight/2;
+$column1MatchMargin: $baseMatchMargin*2 + $totalMatchHeight/2 - 1;
+$column2MatchMargin: $column1MatchMargin*2 + $totalMatchHeight/2 - 1;
+$column3MatchMargin: $column2MatchMargin*2 + $totalMatchHeight/2 - 1;
+$column4MatchMargin: $column3MatchMargin*2 + $totalMatchHeight/2 - 1;
+$column5MatchMargin: $column4MatchMargin*2 + $totalMatchHeight/2 - 1;
+$column6MatchMargin: $column5MatchMargin*2 + $totalMatchHeight/2 - 1;
 
 #tournament-container {
   .empty {
