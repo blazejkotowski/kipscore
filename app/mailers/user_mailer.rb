@@ -1,5 +1,5 @@
 class UserMailer < ActionMailer::Base
-  default from: "contact@kipscore.com"
+  default from: Settings.default_contact_email
 
   def contact_form(subject, message, user=nil)
     from_email = user
@@ -12,6 +12,6 @@ class UserMailer < ActionMailer::Base
     @message = message
     @user = user
 
-    mail :from => from_email, :to => "kotowski.blazej@gmail.com", :subject => subject
+    mail :from => from_email, :to => Settings.default_contact_email , :subject => subject
   end
 end

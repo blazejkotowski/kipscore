@@ -43,6 +43,7 @@
       }
     }
     &.contact {
+      background-size: auto 35px;
       background-image: asset-data-url("icons/contact.png");
       &.active, &:hover {
         background-image: asset-data-url("icons/contact_neg.png");
