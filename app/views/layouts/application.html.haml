@@ -8,9 +8,10 @@
     = yield :javascript_includes
     = csrf_meta_tags
 
-  - body_class = nil
-  - body_class = "bracket " if params[:action] == "bracket"
-  - body_class = "static" if params[:controller] == 'static_pages'
+  - body_class = ''
+  - body_class += "bracket " if params[:action] == "bracket"
+  - body_class += "static " if params[:controller] == 'static_pages'
+  - body_class += "with-bar" if @footer_bar.present?
   %body{ :class => body_class }
     #bg-container.container
     :javascript
@@ -23,6 +24,7 @@
               = link_to root_path, :class => 'brand' do
                 %span.logo-small
               %ul.nav
+                %li= link_to "Tournaments", tournaments_path
                 %li= link_to "About us", about_path
                 %li= link_to "Contact", contact_path
             - if signed_in?
@@ -57,17 +59,18 @@
       
       #push-footer 
          
-    %footer.without-bar
+    %footer
       - if @footer_bar.present?
         = render "static_pages/bar"
       .navbar.navbar-inverse
         .navbar-inner
           .container
             %ul.nav
+              %li= link_to "Tournaments", tournaments_path
               %li= link_to "About us", about_path
               %li= link_to "Contact", contact_path
-              %li= link_to "FAQ", "#"
-              %li= link_to "Privacy", "#"
+              %li= link_to "Instruction", instruction_path
+              %li= link_to "Innovation", innovation_path
           .container
             Tournament and league management software
             = "2012-#{Date.today.year}"

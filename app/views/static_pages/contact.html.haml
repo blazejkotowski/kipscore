@@ -33,6 +33,7 @@
         = link_to "contact@kipscore.com", "mailto:contact@kipscore.com"
         %br
         %p
+          %h3 Correspondence
           Kipscore Sp. Z.O.O.
           %br
           Bukowska 127a 
@@ -40,8 +41,9 @@
           60-567 Poznań 
           %br
           Poland
-      .well.well-small
-        %h3 Find us on
         %p
+          %h3 Find us on
+          = link_to '', Settings.facebook_page_url, :class => 'facebook-icon', :target => :blank
+          = link_to '', Settings.twitter_page_url, :class => 'twitter-icon', :target => :blank
           
       

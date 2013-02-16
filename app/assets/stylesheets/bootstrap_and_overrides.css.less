@@ -164,16 +164,10 @@ footer {
 }
 
 #footer-bar {
-  display: none;
   height: @footerBarHeight;
   background: @kipscoreColor;
   color: @grayDark;
   text-align: center;
-  
-  position: absolute;
-  right: 0;
-  left: 0;
-  bottom: @footerHeight;
   
   ul,
   ul > li {
@@ -182,7 +176,7 @@ footer {
     *display: inline;
     *zoom: 1;
     vertical-align: top;
-    font-size: 1.2em;
+    font-size: 1.1em;
     font-weight: bold;
     margin: 0 auto;
   }
@@ -222,13 +216,19 @@ body.static {
   }
 }
 
-footer.with-bar {
-  position: relative;
-  top: @footerBarHeight;
-}
-
-footer.without-bar {
-  top:0;
+body.with-bar {
+  footer {
+    height: @footerBarHeight + @footerHeight - 5px;
+  }
+  
+  #main-wrapper {
+    margin-bottom: -(@footerBarHeight + @footerHeight) !important;
+  }
+  
+  #push-footer {
+    height: @footerBarHeight + @footerHeight;
+  }
+  
 }
 
 .form-actions {
