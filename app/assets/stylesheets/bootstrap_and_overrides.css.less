@@ -31,9 +31,7 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
   .box-shadow(~"inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(155, 196, 75,.6)");
 }
 
-textarea, input, .uneditable-input, select, button, .btn, .well {
-  .border-radius(0) !important;
-}
+
 
 @footerHeight: 75px;
 @footerBarHeight: 122px;
@@ -237,6 +235,7 @@ footer.without-bar {
 .form-actions {
   background: rgba(0,0,0,0.2);
   border: 0;
+  .border-radius(5px);
 }
 
 tr.info > td {
