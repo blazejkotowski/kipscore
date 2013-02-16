@@ -18,7 +18,7 @@ showBar = ->
     $bar.delay(200).slideDown(200)
     
     contentHeight = $("#main-container").offset().top + $("#main-container").outerHeight()
-    if contentHeight + 122 > $(window).height()
+    if contentHeight + 82 > $(window).height()
       bar_class_set = true
       $('footer').removeClass("without-bar",1).addClass('with-bar', 200)
   

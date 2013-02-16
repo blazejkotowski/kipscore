@@ -33,8 +33,8 @@ textarea:focus, input[type="text"]:focus, input[type="password"]:focus, input[ty
 
 
 
-@footerHeight: 75px;
-@footerBarHeight: 122px;
+@footerHeight: 61px;
+@footerBarHeight: 81px;
 @textColor: @grayLighter;
 
 html, body {
@@ -136,7 +136,7 @@ footer {
   
   .navbar-inner {
     background: #333 !important;
-    padding: 10px 0;
+    padding: 5px 0;
     min-height: 0;
     .border-radius(0);
     text-align:center;
@@ -150,8 +150,8 @@ footer {
     *zoom:1; /* hasLayout ie7 trigger */
     vertical-align: top;
     a {
-      padding-top: 3px;
-      padding-bottom: 5px;
+      padding-top: 2px;
+      padding-bottom: 2px;
     }
   }
 
@@ -190,11 +190,11 @@ footer {
   
   ul {
     list-style: none;
-    padding: 15px 0;
+    padding: 10px 0 5px;
     position: relative;
     a {
       display: inline-block;
-      padding-top: @footerBarHeight - 60px;
+      padding-top: @footerBarHeight - 35px;
       color: inherit !important;
     }
     li {

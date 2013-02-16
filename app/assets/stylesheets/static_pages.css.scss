@@ -23,6 +23,7 @@
 #footer-bar {
   li > a {
     background: transparent no-repeat center top;
+    background-size: auto 45px;
     &.innovation {
       background-image: asset-data-url("icons/innovation.png");
       &.active, &:hover {
