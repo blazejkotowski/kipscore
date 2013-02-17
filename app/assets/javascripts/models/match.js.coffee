@@ -119,7 +119,11 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
     not(player1.empty() or player2.empty())
     
   empty: ->
-    return @get('player1').empty() && @get('player2').empty()
+    return (@get('player1').empty() && @get('player2').empty()) or 
+      (@get('player1').get('bye') && @get('player2').empty()) or 
+      (@get('player2').get('bye') && @get('player1').empty()) or 
+      (@get('player1').get('bye') && @get('player2').get('bye'))
+    
     
   winnerMatch: ->
     @collection.tournament.winnerMatch(@index())
