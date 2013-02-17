@@ -82,16 +82,16 @@
 
 .facebook-icon {
   background-size: auto 40px;
-  background-image: url('icons/facebook.png');
+  background-image: asst-data-url('icons/facebook.png');
   &:hover {
-    background-image: url('icons/facebook_neg.png');
+    background-image: asset-data-url('icons/facebook_neg.png');
   }
 }
 
 .twitter-icon {
   background-size: auto 25px;
-  background-image: url('icons/twitter.png');
+  background-image: asset-data-url('icons/twitter.png');
   &:hover {
-    background-image: url('icons/twitter_neg.png');
+    background-image: asset-data-url('icons/twitter_neg.png');
   }
 }
