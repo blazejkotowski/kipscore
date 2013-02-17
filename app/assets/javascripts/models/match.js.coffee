@@ -47,7 +47,7 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
     
   pickWinner: ->
     # Not pickd if match not ready
-    unless @ready()
+    unless @ready() && @collection.tournament.get('admin')
       return false
       
     # Match with bye case

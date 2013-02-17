@@ -9,6 +9,7 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
     'min_position': 0
     'saving': 1
     'main_tournament': false
+    'admin': false
   
   relations: [
     {
@@ -125,7 +126,7 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
     @get('bracket').length < 1
     
   save: ->
-    if !@isNew() and @get('main_tournament')
+    if !@isNew() and @get('main_tournament') and @get('admin')
       $.ajax
         type: 'put'
         url: @url

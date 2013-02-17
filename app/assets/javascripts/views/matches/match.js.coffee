@@ -82,11 +82,13 @@ class Kipscore.Views.Match extends Backbone.View
     
     player2_view = new Kipscore.Views.Player({ model: @model.get('player2') })
     $(@el).append(player2_view.render().$el)
+
+    admin = @model.collection.tournament.get('admin')
     
-    scores = @scores((false if @model.get('finished') or not @model.ready()))
+    scores = @scores((false if @model.get('finished') or not @model.ready() or not admin))
     $(@el).append(scores)
     
-    unless @model.get('finished') or not @model.ready()
+    unless @model.get('finished') or not @model.ready() or not admin
       proceed_link = $("<a/>").addClass("proceed").attr("href", "#").append($("<i/>").addClass("icon-chevron-right"))
       proceed_button = $("<div/>").addClass("proceed-button").append(proceed_link)    
       @$el.append(proceed_button)

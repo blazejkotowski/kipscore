@@ -80,15 +80,21 @@ class TournamentsController < ApplicationController
   
   def bracket
     @tournament = Tournament.find(params[:tournament_id])
-    
+    @admin = true if @tournament.user == current_user && @tournament.active?
     respond_to do |format|
       format.html
-      format.json { render json: @tournament.bracket }
+      format.json { render json: @tournament.bracket(@admin || false) }
     end
   end
   
   def bracket_update
     @tournament = Tournament.find(params[:tournament_id])
+    
+    # Update only if user is owner and tournament is activated
+    unless @tournament.user == current_user && @tournament.active?
+      return render :json => { :updated => false, :error => "You can't update this tournament"}
+    end
+      
     if @tournament.active
       if @tournament.update_attribute :json_bracket, params[:json_bracket]
         response = { :updated => true }

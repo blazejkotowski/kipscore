@@ -29,7 +29,7 @@ class Tournament < ActiveRecord::Base
   default_scope includes(:players, :user)
   
   
-  def bracket
+  def bracket(admin=false)
     """
     If json_bracket is not defined
       Generates list of players, including byes sorted by
@@ -43,7 +43,7 @@ class Tournament < ActiveRecord::Base
     """
     
     if json_bracket.present? && active?
-      return json_bracket
+      return (JSON.parse(json_bracket).merge({:admin=>admin})).to_json
     end
 
     # list of players sorted by rank
@@ -102,7 +102,7 @@ class Tournament < ActiveRecord::Base
     
     update_attribute :json_bracket, json_list.to_json if active
 
-    json_list
+    json_list.merge({:admin => admin})
     
     
   end
