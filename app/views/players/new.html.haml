@@ -1,0 +1,17 @@
+- provide :title, "#{I18n.t("custom_translations.join", :default => "join").capitalize} #{@tournament.name}"
+
+.page-header
+  %h3= "#{I18n.t("custom_translations.join", :default => "join").capitalize} #{@tournament.name}"
+  
+.row-fluid
+  .span6.offset3
+    .hero-unit
+      = form_tag tournament_players_path(@tournament), :method => :post do
+        = label_tag "player[name]", I18n.t("custom_translations.name and surname", :default => "name and surname").capitalize
+        = text_field_tag "player[name]"
+        = label_tag "player[rank]", I18n.t("custom_translations.rank", :default => "rank").capitalize
+        = text_field_tag "player[rank]", '', :class => "input-mini"
+        = label_tag :email, "E-mail"
+        = email_field_tag :email, '', :class => "span12"
+        .form-actions
+          = submit_tag I18n.t("custom_translations.join", :default => "join").capitalize, :class => 'btn btn-success'

@@ -21,7 +21,7 @@ class Tournament < ActiveRecord::Base
   attr_accessible :active, :name, :start_date, :description, :json_bracket
   belongs_to :user
   #has_and_belongs_to_many :players
-  has_many :player_associations
+  has_many :player_associations, :dependent => :delete_all
   has_many :players, :through => :player_associations do
     def active
       where('player_associations.state = ?', "active")
@@ -32,14 +32,14 @@ class Tournament < ActiveRecord::Base
     def confirmed
       where('player_associations.state = ?', "confirmed")
     end
+    def likely
+      where('player_associations.state <> ?', "inactive")
+    end
   end
   
   validates_presence_of :name
   validates_presence_of :start_date
   validates_presence_of :description
-  
-  default_scope includes(:players, :user)
-  
   
   def bracket(admin=false)
     """

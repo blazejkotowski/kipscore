@@ -87,7 +87,7 @@ class TournamentsController < ApplicationController
       @manage = true if admin
     else
       notice = I18n.t("custom_translations.tournament is not active yet", :default => "tournament is not active yet").capitalize + "!"
-      flash_major_notice notice
+      flash_major_notice_now notice
     end
     
     respond_to do |format|

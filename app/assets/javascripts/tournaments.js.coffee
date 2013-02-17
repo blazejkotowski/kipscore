@@ -55,9 +55,16 @@ jQuery ->
     if data.removed
       $("#players-table tr[data-id=#{data.player.id}]").remove()
       
+  $("body").on "ajax:success", "a.confirm-player", (event, data) ->
+    if data.confirmed
+      $line = $("#players-table tr[data-id=#{data.player.id}]")
+      $line.removeClass("unconfirmed")
+      $line.find("a.confirm-player").remove()
+      
   $("body").on "ajax:beforeSend", "form#add-player", (e, xhr, set) ->
     disableInputs()
 
   $("body").on "ajax:success", "form#add-player", ->  
     enableInputs()  
+    
       

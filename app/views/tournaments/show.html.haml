@@ -24,7 +24,7 @@
       = simple_format(@tournament.description, :class => 'tournament-description')
   
   .span6
-    - unless @tournament.players.empty?
+    - unless @tournament.players.confirmed.empty?
       = render "players_list", :edit => false
     - else
       %h3= I18n.t("custom_translations.there are no player yet", :default => "there are no players yet").capitalize + "."

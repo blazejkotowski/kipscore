@@ -1,0 +1,13 @@
+%p= "Hello #{@player_association.player.name}!"
+
+%p
+  Thank you for you participation desire. Now you have to click confirmation link below, to prove, that you really want to participate. After your confirmation, you will have to wait till tournament organizer accept your participation.
+  %br
+  = link_to :controller => 'player_assignments', :action => 'activate', :email_code => @player.association.email_code
+
+%p
+  See you on the tournament!
+  %br
+  Kipscore Team
+
+

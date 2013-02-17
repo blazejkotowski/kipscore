@@ -14,12 +14,17 @@
         %th
           = submit_tag '+', :class => 'btn btn-success btn-medium'
   %tbody
-    - unless @tournament.players.empty?
-      - players = @tournament.players.latest if edit
-      - players = @tournament.players.best unless edit
-      - players.each do |player|
-        %tr{ :data => { :id => player.id } }
+    - player_associations = @tournament.player_associations.likely if edit
+    - player_associations = @tournament.player_associations.confirmed unless edit
+    - unless player_associations.empty?
+      - player_associations.each do |player_assoc|
+        - player = player_assoc.player
+        %tr{ :class => ("unconfirmed" unless player_assoc.confirmed?), :data => { :id => player.id } }
           %td= player.name
           %td= player.rank
           - if edit
-            %td= link_to '-', tournament_player_path(@tournament, player), :method => 'delete', :remote => 'true', :class => 'btn btn-danger btn-medium delete-player'
+            %td
+              = link_to '-', tournament_player_path(@tournament, player), :method => 'delete', :remote => 'true', :class => 'btn btn-danger btn-medium delete-player'
+              - unless player_assoc.confirmed?
+                = link_to player_association_confirmation_path(player, @tournament.id), :method => :put, :remote => :true, :class => 'btn btn-medium btn-warning confirm-player' do
+                  %i.icon-ok

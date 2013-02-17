@@ -3,14 +3,17 @@ require 'securerandom'
 class PlayerAssociation < ActiveRecord::Base
   attr_accessible :email, :player_id, :position, :tournament_id, :player, :tournament, :state, :email_code
 
-  belongs_to :player
-  belongs_to :tournament
+  belongs_to :player, :dependent => :destroy
+  belongs_to :tournament, :dependent => :destroy
   
   before_create :set_email_code
+  
+  default_scope includes(:tournament, :player)
   
   scope :active, -> { with_state(:active) }
   scope :inactive, -> { with_state(:inactive) }
   scope :confirmed, -> { with_state(:confirmed) }
+  scope :likely, -> { with_state([:active, :confirmed]).order("state DESC") }
   
   state_machine :initial => :inactive do
     
