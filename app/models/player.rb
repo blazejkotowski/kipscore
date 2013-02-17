@@ -12,7 +12,9 @@
 
 class Player < ActiveRecord::Base
   attr_accessible :name, :rank, :fetched
-  has_and_belongs_to_many :tournaments
+  #has_and_belongs_to_many :tournaments
+  has_many :player_assignments
+  has_many :tournaments, :through => :player_associations
   
   validates_presence_of :name
   

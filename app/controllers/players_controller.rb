@@ -13,7 +13,8 @@ class PlayersController < ApplicationController
       @result[:new] = true
     end
     
-    @tournament.players << player
+    #@tournament.players << player
+    player_association = PlayerAssociation.create(:player => player, :tournament => @tournament, :state => :active)
     @result[:created] = true
     @result[:player] = player
     @result[:delete_url] = tournament_player_path(@tournament, player)

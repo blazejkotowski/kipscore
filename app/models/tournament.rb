@@ -20,7 +20,19 @@ class Tournament < ActiveRecord::Base
   
   attr_accessible :active, :name, :start_date, :description, :json_bracket
   belongs_to :user
-  has_and_belongs_to_many :players
+  #has_and_belongs_to_many :players
+  has_many :player_associations
+  has_many :players, :through => :player_associations do
+    def active
+      where('player_associations.state = ?', "active")
+    end
+    def inactive
+      where('player_associations.state = ?', "inactive")
+    end
+    def confirmed
+      where('player_associations.state = ?', "confirmed")
+    end
+  end
   
   validates_presence_of :name
   validates_presence_of :start_date
