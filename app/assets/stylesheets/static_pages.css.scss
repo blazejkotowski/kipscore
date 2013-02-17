@@ -82,7 +82,7 @@
 
 .facebook-icon {
   background-size: auto 40px;
-  background-image: asst-data-url('icons/facebook.png');
+  background-image: asset-data-url('icons/facebook.png');
   &:hover {
     background-image: asset-data-url('icons/facebook_neg.png');
   }
