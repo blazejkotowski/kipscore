@@ -1,21 +1,23 @@
+- provide :title, I18n.t("custom_translations.tournaments", :default => "turnieje").capitalize
+
 - model_class = Tournament
 .page-header
-  %h1=t '.title', :default => model_class.model_name.human.pluralize
+  %h1= I18n.t("custom_translations.tournaments", :default => "tournaments").capitalize
 %table.table.table-striped
   %thead
     %tr
-      %th= model_class.human_attribute_name(:name)
-      %th= model_class.human_attribute_name(:start_date)
-      %th= model_class.human_attribute_name(:active)
-      %th Actions
+      %th= I18n.t("custom_translations.name", :default => "name").capitalize
+      %th= I18n.t("custom_translations.start date", :default => "start date").capitalize
+      %th= I18n.t("custom_translations.active", :default => "active").capitalize
+      %th= I18n.t("custom_translations.actions", :default => "actions").capitalize
   %tbody
     - @tournaments.each do |tournament|
       %tr
         %td= link_to tournament.name, tournament_path(tournament)
         %td= tournament.start_date
-        %td= tournament.active ? 'Yes': 'No'
+        %td= tournament.active ? I18n.t("custom_translations.yes", :default => 'yes').capitalize : I18n.t("custom_translations.no", :default => 'no').capitalize
         %td
-          = link_to "More", tournament_path(tournament), :class => 'btn btn-mini'
-          = link_to "Preview bracket", tournament_bracket_path(tournament), :class => 'btn btn-mini btn-success'
+          = link_to I18n.t("custom_translations.more", :default => "more").capitalize , tournament_path(tournament), :class => 'btn btn-mini'
+          = link_to I18n.t("custom_translations.bracket", :default => "bracket").capitalize, tournament_bracket_path(tournament), :class => 'btn btn-mini btn-success'
 
-= link_to "Create new", new_tournament_path, :class => 'btn btn-primary btn-large'
+= link_to I18n.t("custom_translations.create new tournament", :default => "create new tournament").capitalize, new_tournament_path, :class => 'btn btn-primary btn-large'

@@ -26,5 +26,6 @@
         
 - else
   .alert.alert-warning 
-    %h3{ :style=> 'display: inline; position: relative; top: 5px;'} You have no created torunaments yet.
-    = link_to 'Create new tournament', new_tournament_path, :class => 'btn btn-large btn-primary', :style => 'margin-left: 15px;'
+    %h3{ :style=> 'display: inline; position: relative; top: 5px;'} 
+      = I18n.t("custom_translations.you have no created tournaments yet", :default => "you have no created torunaments yet").capitalize + "."
+    = link_to I18n.t("custom_translations.create new tournament", :default => 'create new tournament').capitalize, new_tournament_path, :class => 'btn btn-large btn-primary', :style => 'margin-left: 15px;'
