@@ -7,4 +7,13 @@ module ApplicationHelper
       "#{title} | #{main_part}"
     end
   end
+  
+  def haml_tag_if(condition, *args, &block)
+    if condition
+      haml_tag *args, &block
+     else
+       yield
+     end
+  end
+
 end

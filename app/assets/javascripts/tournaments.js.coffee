@@ -23,10 +23,17 @@ jQuery ->
     else
       $(".manage-button").first().trigger "click" 
   
+  enableInputs= ->
+    $("#player_name").removeAttr('disabled')
+    $("#player_rank").removeAttr('disabled')
+  
+  disableInputs= ->
+    $("#player_name").attr('disabled', 'true')
+    $("#player_rank").attr('disabled', 'true')
+  
   changeTournament()
   
   $("body").on "ajax:success", "form#add-player", (event, data) ->
-    console.log data
     if data.created
       player = data.player
       $row = $("<tr/>").attr("data-id", player.id)
@@ -44,18 +51,13 @@ jQuery ->
       $('#players-table input[type=text]').each (i, t) ->
         $(t).val ''
   
-  $("body").on "ajax:beforeSend", "form#add-player", ->
-    $("#player_name").attr('disabled', 'true')
-    $("#player_rank").attr('disabled', 'true')
-    
-  $("body").on "ajax:complete", "form#add-player", ->
-    $("#player_name").removeAttr('disabled')
-    $("#player_rank").removeAttr('disabled')
-    
-  
   $("body").on "ajax:success", "a.delete-player", (event, data) ->
-    console.log data
     if data.removed
       $("#players-table tr[data-id=#{data.player.id}]").remove()
       
+  $("body").on "ajax:beforeSend", "form#add-player", (e, xhr, set) ->
+    disableInputs()
+
+  $("body").on "ajax:success", "form#add-player", ->  
+    enableInputs()  
       
