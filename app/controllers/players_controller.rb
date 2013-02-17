@@ -69,7 +69,11 @@ class PlayersController < ApplicationController
     def correct_user
       unless @tournament.user == current_user
         @result = { :error => 'No access' }
-        render_result
+        if request.xhr?
+          render_result
+        else
+          redirect_to @tournament
+        end
       end
     end
     
@@ -80,7 +84,11 @@ class PlayersController < ApplicationController
     def not_active
       if @tournament.active
         @result = { :error => 'Tournament active' }
-        render_result
+        if request.xhr?
+          render_result
+        else
+          redirect_to @tournament
+        end
       end
     end
     
