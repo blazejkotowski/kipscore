@@ -3,7 +3,7 @@ class PlayerAssociationsController < ApplicationController
   def activate
     player_association = PlayerAssociation.find_by_email_code(params[:email_code])
     if player_association.present? && player_association.try_to_activate(params[:email_code])
-      flash_major_notice "You have been successfully added to tournament. Now it's time for tournament organizer confirmation. You will be informed by email when it will happen."
+      flash_major_notice I18n.t("custom_translations.confirmed participation", :default => "You have been successfully added to tournament. Now it's time for tournament organizer confirmation. You will be informed by email when it will happen.")
       return redirect_to player_association.tournament
     end
     

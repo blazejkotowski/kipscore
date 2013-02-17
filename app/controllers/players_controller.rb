@@ -24,7 +24,7 @@ class PlayersController < ApplicationController
     elsif !request.xhr?
       player_association = PlayerAssociation.create(:email => params[:email], :player => player, :tournament => @tournament)
       UserMailer.confirm_participation(player_association).deliver
-      flash_major_notice "You have joined tournament, but it's not all! Now check your mail to confirm your participation. Without email confirmation your participation desire will be ignored!"
+      flash_major_notice I18n.t("custom_translations.joined tournament", :default => "You have joined tournament, but it's not all! Now check your mail to confirm your participation. Without email confirmation your participation desire will be ignored!")
       redirect_to tournament_path(@tournament)
     end
     
