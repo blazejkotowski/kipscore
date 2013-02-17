@@ -5,6 +5,9 @@ class StaticPagesController < ApplicationController
   layout lambda { |controller| request.xhr? ? false : "application" }
   
   def home
+    if signed_in?
+      redirect_to tournaments_user_path
+    end
     @user = User.new
     @footer_bar = true
   end
