@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   
-  before_filter :set_locale
+  before_filter :set_locale, :set_mailer_host
+  before_filter :set_mailer_host
   
   # Always come back after login
   before_filter do
@@ -21,6 +22,10 @@ class ApplicationController < ActionController::Base
       parsed_locale = request.host.split('.').last
       I18n.locale = parsed_locale if I18n.available_locales.include? parsed_locale.to_sym
       params[:locale] = I18n.locale
+    end
+    
+    def set_mailer_host
+      ActionMailer::Base.default_url_options[:host] = request.host_with_port
     end
   
 end
