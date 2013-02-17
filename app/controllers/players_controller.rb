@@ -1,7 +1,7 @@
 class PlayersController < ApplicationController
 
   before_filter :get_tournament, :not_active, :except => [:autocomplete]
-  before_filter :correct_user, :except => [:autocomplete, :create]
+  before_filter :correct_user, :except => [:autocomplete, :create, :new, :activate]
   
   def create
     @result = { :created => false, :player => nil, :new => false }
