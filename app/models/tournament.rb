@@ -59,7 +59,7 @@ class Tournament < ActiveRecord::Base
     end
 
     # list of players sorted by rank
-    list = players.best
+    list = players.confirmed.best
     iter = list.size
     while iter > 0 && list.first.rank.nil? do
       list.rotate! 1
