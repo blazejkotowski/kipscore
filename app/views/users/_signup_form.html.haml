@@ -1,15 +1,15 @@
-=simple_form_for @user, :html => { :class => 'form-horizontal' }, :url => user_path do |f|
+= simple_form_for @user, :html => { :class => 'form-horizontal' }, :url => user_path do |f|
   %fieldset
-    %legend Sign up
-    =f.input :email, :label => 'E-mail address'
-    =f.input :name, :label => 'Name and surname'
-    =f.input :password
-    =f.input :password_confirmation, :label => 'Repeat password'
-    -if signup_page
+    %legend= I18n.t("custom_translations.sign up", :default => "sign up").capitalize
+    = f.input :email, :label => 'E-mail'
+    = f.input :name, :label => I18n.t('custom_translations.name and surname', :default => 'name and surname').capitalize
+    = f.input :password, :label => I18n.t('custom_translations.password', :default =>'password').capitalize
+    = f.input :password_confirmation, :label => I18n.t('custom_translations.repeat password', :default =>'repeat password').capitalize
+    - if signup_page
       %div.form-actions
-        =f.submit :class => 'btn btn-primary', :value => 'Sign up'
-    -else
+        = f.submit :class => 'btn btn-primary', :value => I18n.t('custom_translations.sign up', :default =>'sign up').capitalize
+    - else
       %div.control-block
         %div.controls
-          =f.submit :class => 'btn', :value => 'Sign up'
+          = f.submit :class => 'btn', :value => I18n.t('custom_translations.sign up', :default =>'sign up').capitalize
         

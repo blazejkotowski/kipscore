@@ -1,5 +1,5 @@
-- provide :title, "Innovation"
-%h2 Innovation
+- provide :title, I18n.t("custom_translations.innovation", :default => "innovation").capitalize
+%h2= I18n.t("custom_translations.innovation", :default => "innovation").capitalize
 %p
   Kipscore, to aplikacja umożliwiająca śledzenie, przebiegu turniejów w trakcie ich trwania.
 %p

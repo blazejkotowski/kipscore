@@ -1,5 +1,5 @@
 - model_class = Tournament
-- provide :title, "Edit tournament"
+- provide :title, I18n.t("custom_translations.edit tournament", :default => "edit tournament").capitalize
 
 
 - unless request.xhr?
@@ -9,18 +9,18 @@
         %li
           = link_to @tournament.name, tournament_path(@tournament)
           %span.divider &gt;
-        %li.active Edit
+        %li.active= I18n.t("custom_translations.edit", :default => "edit").capitalize
 
 .row
   .span7
     - unless request.xhr?
       .page-header
-        %h3 Basic information
+        %h3= I18n.t("custom_translations.basic information", :default => "basic information").capitalize
     = render :partial => "form"
   - unless request.xhr?
     .span5
       .page-header
-        %h3 Players
+        %h3= I18n.t("custom_translations.players", :default => "players").capitalize
       = render 'players_list', :edit => true
 
 - if request.xhr?
@@ -28,4 +28,5 @@
     .modal-body
       = render 'players_list', :edit => true
     .modal-footer
-      %button.btn{ 'data-dismiss' => 'modal', 'aria-hidden' => true } Close
+      %button.btn{ 'data-dismiss' => 'modal', 'aria-hidden' => true } 
+        = I18n.t("custom_translations.close", :default => "close").capitalize

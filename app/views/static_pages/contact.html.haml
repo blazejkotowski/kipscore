@@ -1,39 +1,40 @@
-- provide :title, "Contact"
+- provide :title, I18n.t("custom_translations.contact", :default => "contact").capitalize
+
 .row
   .span6
     .page-header
-      %h2 Contact form
+      %h2= I18n.t("custom_translations.contact form", :default => "contact form").capitalize
     = form_tag contact_path, :id => 'contact-form' do
       - unless signed_in?
         = label_tag :name do
-          Full name
+          = I18n.t("custom_translations.name and surname", :default => "name and surname").capitalize
           %i.icon-user
         = text_field_tag :name
         = label_tag :email do
-          Email address
+          E-mail address
           %i.icon-envelope
         = email_field_tag :email
       = label_tag :subject do
-        Subject
+        = I18n.t("custom_translations.subject", :default => "subject").capitalize
         %i.icon-plus-sign
-      = select_tag :subject, options_for_select(["Feedback", "Technical problem", "Pricing"])
+      = select_tag :subject, options_for_select([I18n.t("custom_translations.feedback", :default => "feedback").capitalize, I18n.t("custom_translations.technical problem", :default => "technical problem").capitalize, I18n.t("custom_translations.pricing", :default => "pricing").capitalize])
       = label_tag :message do
-        Message
+        = I18n.t("custom_translations.message", :default => "message").capitalize
         %i.icon-pencil
       = text_area_tag :message
       .form-actions
-        = submit_tag "Send email", :class => 'btn btn-primary btn-medium'
+        = submit_tag I18n.t("custom_translations.send email", :default => "send email").capitalize, :class => 'btn btn-primary btn-medium'
       
       
   .span6
     .page-header
-      %h2 Contact information
+      %h2= I18n.t("custom_translations.contact information", :default => "contact information").capitalize
     %address
       .well.well-small
         = link_to "contact@kipscore.com", "mailto:contact@kipscore.com"
         %br
         %p
-          %h3 Correspondence
+          %h3= I18n.t("custom_translations.correspondence", :default => "correspondence").capitalize
           Kipscore Sp. Z.O.O.
           %br
           Bukowska 127a 
@@ -42,7 +43,7 @@
           %br
           Poland
         %p
-          %h3 Find us on
+          %h3= I18n.t("custom_translations.find us on", :default => "find us on").capitalize
           = link_to '', Settings.facebook_page_url, :class => 'facebook-icon', :target => :blank
           = link_to '', Settings.twitter_page_url, :class => 'twitter-icon', :target => :blank
           

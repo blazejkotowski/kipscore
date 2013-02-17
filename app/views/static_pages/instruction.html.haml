@@ -1,5 +1,5 @@
-- provide :title, "Instruction"
-%h2 Instruction
+- provide :title, I18n.t("custom_translations.instruction", :default => "instruction").capitalize
+%h2= I18n.t("custom_translations.instruction", :default => "Instruction").capitalize
 %p
   %ol
     %li Zarejestruj się, to nic nie kosztuje

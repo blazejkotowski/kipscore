@@ -46,7 +46,7 @@ class TournamentsController < ApplicationController
     @tournament = Tournament.new(params[:tournament])
     @tournament.user = current_user
     if @tournament.save
-      redirect_to tournaments_user_path(:anchor => "tid=#{@tournament.id}"), :notice => 'Tournament was successfully created.'
+      redirect_to tournaments_user_path(:anchor => "tid=#{@tournament.id}"), :notice => I18n.t("custom_translations.tournament was successfully created", :default => 'tournament was successfully created').capitalize
     else
       render :action => "new"
     end
@@ -55,12 +55,12 @@ class TournamentsController < ApplicationController
   # PUT /tournaments/1
   def update
     if @tournament.active?
-      return redirect_to(tournaments_user_path(:anchor => "tid=#{@tournament.id}"), :notice => "You are unable to edit active tournament.")
+      return redirect_to(tournaments_user_path(:anchor => "tid=#{@tournament.id}"), :notice => I18n.t("custom_translations.you are unable to edit active tournament", :default => "you are unable to edit active tournament.").capitalize)
     end
     if @tournament.update_attributes(params[:tournament])
-      redirect_to tournaments_user_path(:anchor => "tid=#{@tournament.id}"), :notice => 'Tournament was successfully updated.'
+      redirect_to tournaments_user_path(:anchor => "tid=#{@tournament.id}"), :notice => I18n.t("custom_translations.tournament was successfully updated", :default => 'tournament was successfully updated').capitalize
     else
-      redirect_to tournaments_user_path(:anchor => "tid=#{@tournament.id}"), :notice => 'Data is not correct.'
+      redirect_to tournaments_user_path(:anchor => "tid=#{@tournament.id}"), :notice => I18n.t("custom_translations.data is not correct", :default => 'data is not correct').capitalize
     end
   end
 
@@ -86,7 +86,8 @@ class TournamentsController < ApplicationController
     if @tournament.active?
       @manage = true if admin
     else
-      flash_major_notice "Tournament is not active yet!#{' You have to activate it in your tournaments panel if you want to manage it.' if admin}"
+      notice = I18n.t("custom_translations.tournament is not active yet", :default => "tournament is not active yet").capitalize + "!"
+      flash_major_notice notice
     end
     
     respond_to do |format|

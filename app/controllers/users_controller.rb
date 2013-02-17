@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      flash[:success] = "Succesfully signed up!"
+      flash[:success] = I18n.t("custom_translations.successfully signed up", :default => "succesfully signed up").capitalize + "!"
       sign_in @user
       redirect_to @user
     else

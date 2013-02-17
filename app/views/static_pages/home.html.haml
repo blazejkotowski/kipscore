@@ -5,9 +5,7 @@
     #home-teaser.hero-unit
       %span.logo-hero
       %p
-        Created to help you organize 
-        %br 
-        tournaments in the way you love.
-      = link_to 'Learn more', about_path, :class => 'btn btn-success btn-large about-us'
+        = I18n.t("custom_translations.created to help you organize tournaments in the way you love", :default => "created to help you organize tournaments in the way you love").capitalize + "."
+      = link_to I18n.t('custom_translations.learn more', :default => 'learn more').capitalize, about_path, :class => 'btn btn-success btn-large about-us'
   .span6
     #home-signup= render 'users/signup_form',  :signup_page => false

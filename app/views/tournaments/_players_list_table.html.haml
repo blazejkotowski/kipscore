@@ -1,10 +1,10 @@
 %table#players-table.table.table-condensed
   %thead
     %tr
-      %th Player
-      %th Rank
+      %th= I18n.t("custom_translations.player", :default => "player").capitalize
+      %th= I18n.t("custom_translations.rank", :default => "rank").capitalize
       - if edit
-        %th Action
+        %th= I18n.t("custom_translations.action", :default => "action").capitalize
     - if edit
       %tr
         %th

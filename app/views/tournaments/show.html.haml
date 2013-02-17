@@ -5,7 +5,7 @@
   .span12
     %ul.breadcrumb
       %li
-        = link_to "Tournaments", tournaments_path
+        = link_to I18n.t("custom_translations.tournaments", :default => "tournaments").capitalize, tournaments_path
         %span.divider &gt;
       %li.active
         = link_to @tournament.name, @tournament
@@ -13,12 +13,12 @@
 .page-header
   %h1
     = @tournament.name
-    = link_to "Go to bracket", tournament_bracket_path(@tournament), :class => 'btn btn-primary btn-large'
+    = link_to I18n.t("custom_translations.go to bracket", :default => "go to bracket").capitalize, tournament_bracket_path(@tournament), :class => 'btn btn-primary btn-large'
 
 .row-fluid
   .span6
     %p
-      %strong= model_class.human_attribute_name(:start_date) + ':'
+      %strong= I18n.t("custom_translations.start date", :default => "start date").capitalize  + ':'
       = @tournament.start_date
     %p
       = simple_format(@tournament.description, :class => 'tournament-description')
@@ -27,7 +27,7 @@
     - unless @tournament.players.empty?
       = render "players_list", :edit => false
     - else
-      %h3 There are no players yet.
+      %h3= I18n.t("custom_translations.there are no player yet", :default => "there are no players yet").capitalize + "."
     - if @tournament.user == current_user
       .form-actions
-        = link_to t('.edit', :default => t("helpers.links.edit")), manage_tournament_path(@tournament), :class => 'btn'
+        = link_to I18n.t("custom_translations.edit", :default => "edit").capitalize, manage_tournament_path(@tournament), :class => 'btn'

@@ -1,4 +1,4 @@
 -provide :title, @user.name
-%h1 User profile
+%h1= I18n.t("custom_translations.user profile", :default => "user profile").capitalize
 %p 
   =link_to @user.name, "mailto:#{@user.email}"

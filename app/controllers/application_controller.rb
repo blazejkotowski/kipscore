@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
   
+  before_filter :set_locale
+  
   # Always come back after login
   before_filter do
     store_location unless self.class == SessionsController
@@ -13,5 +15,12 @@ class ApplicationController < ActionController::Base
   
   include SessionsHelper
   include LayoutHelper
+  
+  private
+    def set_locale
+      parsed_locale = request.host.split('.').last
+      I18n.locale = parsed_locale if I18n.available_locales.include? parsed_locale.to_sym
+      params[:locale] = I18n.locale
+    end
   
 end
