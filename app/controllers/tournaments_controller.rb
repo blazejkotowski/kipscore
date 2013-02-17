@@ -1,6 +1,6 @@
 class TournamentsController < ApplicationController
   include TournamentsHelper
-
+  
   before_filter :signed_in_user, :only => [:new, :create]
   before_filter :correct_user, :only => [:edit, :update, :destroy, :activate]
   before_filter :concatenate_datetime, :only => [:create, :update]
@@ -80,10 +80,18 @@ class TournamentsController < ApplicationController
   
   def bracket
     @tournament = Tournament.find(params[:tournament_id])
-    @admin = true if @tournament.user == current_user && @tournament.active?
+    
+    admin = true if @tournament.user == current_user
+    
+    if @tournament.active?
+      @manage = true if admin
+    else
+      flash_major_notice "Tournament is not active yet!#{' You have to activate it in your tournaments panel if you want to manage it.' if admin}"
+    end
+    
     respond_to do |format|
       format.html
-      format.json { render json: @tournament.bracket(@admin || false) }
+      format.json { render json: @tournament.bracket(@manage || false) }
     end
   end
   

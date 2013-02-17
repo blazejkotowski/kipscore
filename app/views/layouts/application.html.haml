@@ -55,7 +55,7 @@
           = yield
               
         - if Rails.env.development?
-          .container= debug(params)
+          .container= debug(params.merge(session))
       
       #push-footer 
          

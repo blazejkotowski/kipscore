@@ -2,6 +2,9 @@
   .span12
     %ul.breadcrumb
       %li
+        = link_to "Tournaments", tournaments_path
+        %span.divider &gt;
+      %li
         = link_to @tournament.name, @tournament
         %span.divider &gt;
       %li.active
