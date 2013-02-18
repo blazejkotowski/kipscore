@@ -144,6 +144,9 @@ $totalColumnWidth: $columnWidth + $columnMarginRight;
     padding: 0 10px;
     height: 1px;
   }
+  &.empty {
+    display: none;
+  }
 }
 
 .tournament-bracket {
