@@ -12,8 +12,8 @@ class PlayerAssociation < ActiveRecord::Base
   
   scope :active, -> { with_state(:active) }
   scope :inactive, -> { with_state(:inactive) }
-  scope :confirmed, -> { with_state(:confirmed) }
-  scope :likely, -> { with_state([:active, :confirmed]).order("state DESC") }
+  scope :confirmed, -> { with_state(:confirmed).order("players.rank") }
+  scope :likely, -> { with_state([:active, :confirmed]).order("state DESC, created_at DESC") }
   
   state_machine :initial => :inactive do
     

@@ -1,7 +1,7 @@
 %p= "Hello #{@player_association.player.name}!"
 
 %p
-  Thank you for you participation desire. Now you have to click confirmation link below, to prove, that you really want to participate. After your confirmation, you will have to wait till tournament organizer accept your participation.
+  Thank you for your participation desire. Now you have to click confirmation link below, to prove, that you really want to participate. After your confirmation, you will have to wait till tournament organizer accept your participation.
   %br
   = link_to player_association_activation_url(@player_association.email_code), player_association_activation_url(@player_association.email_code)
 
