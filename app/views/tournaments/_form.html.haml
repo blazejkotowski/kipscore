@@ -13,7 +13,7 @@
       .form-checkboxes
         = f.simple_fields_for :tournament_form_attributes, @tournament.tournament_form do |tf|
           = tf.input :rank, :wrapper_class => "pull-left", :label => I18n.t("custom_translations.rank", :default => "rank").capitalize
-          = tf.input :name, :wrapper_class => "pull-left", :label => I18n.t("custom_translations.name", :default => "name").capitalize
+          = tf.input :name, :wrapper_class => "pull-left", :label => I18n.t("custom_translations.name and surname", :default => "name and surname").capitalize
           = tf.input :licence, :wrapper_class => "pull-left", :label => I18n.t("custom_translations.licence", :default => "licence").capitalize
           = tf.input :phone, :wrapper_class => "pull-left", :label => I18n.t("custom_translations.phone", :default => "phone").capitalize
           = tf.input :comment, :wrapper_class => "pull-left", :label => I18n.t("custom_translations.comment", :default => "comment").capitalize

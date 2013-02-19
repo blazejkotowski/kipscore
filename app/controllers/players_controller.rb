@@ -30,7 +30,6 @@ class PlayersController < ApplicationController
         redirect_to tournament_path(@tournament)
       else
         flash.now[:notice] = I18n.t('custom_translations.email not valid').capitalize
-        flash.now[:warning] = params[:player_association]
         render "new"
       end
     end
