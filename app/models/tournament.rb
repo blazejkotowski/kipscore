@@ -129,11 +129,11 @@ class Tournament < ActiveRecord::Base
   end
   
   def active?
-    active
+    self.active
   end 
   
   def joinable?
-    !active && open
+    !self.active && self.open
   end
   
   private
