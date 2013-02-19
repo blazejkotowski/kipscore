@@ -15,10 +15,18 @@ class UserMailer < ActionMailer::Base
     mail :from => from_email, :to => Settings.default_contact_email , :subject => subject
   end
   
-  def confirm_participation(player_association)
+  def confirm_participation(player_association, locale)
+    @locale = locale
     @player_association = player_association
     to_email = "#{player_association.player.name} <#{player_association.email}>"
-    mail :from => Settings.default_noreply_email, :to => to_email, :subject => "#{player_association.tournament.name}  - participation confirmation"
+    mail :from => Settings.default_noreply_email, :to => to_email, :subject => "#{player_association.tournament.name}  - confirm your participation"
+  end
+  
+  def organizer_confirmation(player_association, locale)
+    @locale = locale
+    @player_association = player_association
+    to_email = "#{player_association.player.name} <#{player_association.email}>"
+    mail :from => Settings.default_noreply_email, :to => to_email, :subject => "Added to #{player_association.tournament.name} start list"
   end
   
 end

@@ -77,3 +77,12 @@ pl:
     "comment": "komentarz"
     "fields": "pola"
     "is open": "jest otwarty"
+    
+    "hello": "witaj"
+    
+    "kipscore team": "zespół Kipscore"
+    
+  mails:
+    participation_desire: "Dziękujemy za chęć udziału w %{tournament_name}. Chcąc potwierdzić swoje zgłoszenie, kliknij w link poniżej, aby udowodnić, że to naprawdę Ty je wysłałeś. Po potwierdzeniu, musisz poczekać, aż organizator doda Cię do listy startowej. Zostaniesz poinformowany e-mailem, gdy tylko to nastąpi."
+    tournament_congratulations: "Gratulacje! Organizator <strong>%{tournament_name}</strong>, właśnie dodał Cię do listy startowej.<br>Życzymy jak najlepszego wyniku!"
+    see_you: "Do zobaczenia na turnieju!"

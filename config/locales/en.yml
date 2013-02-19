@@ -1,3 +1,9 @@
 en:
   custom_translations:
     "email not valid": "Email address you have entered is not valid."
+    "hello": "hello"
+    
+  mail:
+    tournament_congratulations: "Congratulations! Organizer of <strong>%{tournament_name}</strong> has just added you to start list.<br>Have a good luck!"
+    see_you: "See you on Tournament!"
+    participation_desire: "Thank you for your participation desire. Now you have to click confirmation link below, to prove, that you really want to participate. After your confirmation, you will have to wait till tournament organizer accept your participation."

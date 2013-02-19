@@ -1,13 +1,13 @@
-%p= "Hello #{@player_association.player.name}!"
+%p= "#{I18n.t('custom_translations.hello', :default=>'hello', :locale => @locale).capitalize} #{@player_association.player.name}"
 
 %p
-  Thank you for your participation desire. Now you have to click confirmation link below, to prove, that you really want to participate. After your confirmation, you will have to wait till tournament organizer accept your participation.
+  = I18n.t('mails.participation_desire', :tournament_name => @player_association.tournament.name, :locale => @locale)
   %br
   = link_to player_association_activation_url(@player_association.email_code), player_association_activation_url(@player_association.email_code)
 
 %p
-  See you on the tournament!
+  = I18n.t("mail.see_you", :locale => @locale)
   %br
-  Kipscore Team
+  = I18n.t("custom_translations.kipscore team").capitalize
 
 

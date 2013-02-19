@@ -14,6 +14,7 @@ class PlayerAssociationsController < ApplicationController
     player_association = PlayerAssociation.find_by_player_id_and_tournament_id(params[:player_id], params[:tournament_id])
     if player_association.present?  
       player_association.confirm
+      UserMailer.organizer_confirmation(player_association, I18n.locale).deliver
       return render(:json => { :confirmed => true, :player => player_association.player })
     end
     

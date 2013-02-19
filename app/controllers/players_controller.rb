@@ -25,7 +25,7 @@ class PlayersController < ApplicationController
       player_association = PlayerAssociation.new(params[:player_association].merge({:player => player, :tournament => @tournament}))
       player_association.email = "" if player_association.email.nil?
       if player_association.save
-        UserMailer.confirm_participation(player_association).deliver
+        UserMailer.confirm_participation(player_association, I18n.locale).deliver
         flash_major_notice I18n.t("custom_translations.joined tournament", :default => "You have joined tournament, but it's not all! Now check your mail to confirm your participation. Without email confirmation your participation desire will be ignored!")
         redirect_to tournament_path(@tournament)
       else
