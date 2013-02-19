@@ -34,6 +34,7 @@ class TournamentsController < ApplicationController
 
   # GET /tournaments/1/edit
   def edit
+    @rankings = Ranking.all.map { |ranking| [ranking.name, ranking.id] }
     if request.xhr?
       render :layout => false
     else

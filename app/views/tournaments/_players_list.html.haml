@@ -18,3 +18,8 @@
       $("#player_rank").val(ui.item.rank)
     },
   });
+  
+  $("#ranking_id").on("change", function(event) {
+    var val = $("#ranking_id").val();
+    $("#player_name").autocomplete("option", "source", "/players/autocomplete?ranking_id="+val);
+  });
