@@ -2,6 +2,9 @@
 
 #home-container.row
   #content.span6
+    - if Settings.beta_version && params[:controller] == 'static_pages'
+      #beta-info
+        = I18n.t('notifications.beta_version', :default => '').html_safe
     %h2= I18n.t("custom_translations.organizer", :default => "organizer").capitalize
     = I18n.t("static_pages.organizer_content").html_safe
   .span6

@@ -96,5 +96,5 @@ pl:
     observer_content: "<p>Znajdujesz się w sekcji dla obserwatorów.</p><p>Kipscore umożliwia śledzenie przebiegu interesujących nas turniejów, bez konieczności rejestracji.</p><p>Możesz sprawdzić planowane rozgrywki, obejrzeć ich harmonogram, a kiedy zostaną aktywowane, będziesz widział cały przebieg turnieju.</p><p>Możesz kibicować swoim znajomym i śledzić ich postęp nie wychodząc z domu!</p>"
     "choose who you are": "wybierz kim jesteś"
     
-  notices:
-    beta_version: "<h2>Drogi Użytkowniku!</h2><p>Jeżeli czytasz ten tekst, oznacza to, że korzystasz z wersji testowej Kipscore.</p><p>Jest nam niezmiernie miło, że Twoja obecność na tej stronie, przyczyni się do wyeliminowania ewentualnych błędów, oraz ulepszenia obecnej wersji.</p><p>Prosimy o cierpliwość w trakcie ładowania poszczególnych podstron, oraz wyrozumiałość, jeżeli coś pójdzie nie tak.</p><p>Będziemy wdzięczni, jeżeli po użyciu aplikacji, podzielisz się swoją opinią na jej temat, na naszym fanpage'u, lub wysyłając wiadomość e-mail.</p><p>Miłego użytkowania!<br>Zespół Kipscore</p>"
+  notifications:
+    beta_version: "<h2>Drogi Użytkowniku!</h2><p>Jeżeli czytasz ten tekst, oznacza to, że korzystasz z wersji testowej Kipscore.</p><p>Jest nam niezmiernie miło, że Twoja obecność na tej stronie, przyczyni się do wyeliminowania ewentualnych błędów, oraz ulepszenia obecnej wersji.</p><p>Prosimy o cierpliwość w trakcie ładowania poszczególnych podstron, oraz wyrozumiałość, jeżeli coś pójdzie nie tak.</p>"

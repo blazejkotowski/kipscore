@@ -17,6 +17,13 @@
   }
 }
 
+#beta-info {
+  line-height: 20px;
+  p {
+    margin: 0 auto;
+  }
+}
+
 #home-signup {
 }
 
@@ -71,23 +78,23 @@
     min-width: 60px;
     
     &.observer {
-      background-image: asset-data-url("icons/.png");
+      background-image: asset-data-url("icons/observer_g.png");
       &.active, &:hover {
-        background-image: asset-data-url("icons/.png");
+        background-image: asset-data-url("icons/observer_g_neg.png");
       }
     }
     
     &.player {
-      background-image: asset-data-url("icons/.png");
+      background-image: asset-data-url("icons/player_g.png");
       &.active, &:hover {
-        background-image: asset-data-url("icons/.png");
+        background-image: asset-data-url("icons/player_g_neg.png");
       }
     }
     
     &.organizer {
-      background-image: asset-data-url("icons/.png");
+      background-image: asset-data-url("icons/organizer_g.png");
       &.active, &:hover {
-        background-image: asset-data-url("icons/.png");
+        background-image: asset-data-url("icons/organizer_g_neg.png");
       }
     }
     
