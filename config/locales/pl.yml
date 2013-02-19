@@ -86,3 +86,8 @@ pl:
     participation_desire: "Dziękujemy za chęć udziału w %{tournament_name}. Chcąc potwierdzić swoje zgłoszenie, kliknij w link poniżej, aby udowodnić, że to naprawdę Ty je wysłałeś. Po potwierdzeniu, musisz poczekać, aż organizator doda Cię do listy startowej. Zostaniesz poinformowany e-mailem, gdy tylko to nastąpi."
     tournament_congratulations: "Gratulacje! Organizator <strong>%{tournament_name}</strong>, właśnie dodał Cię do listy startowej.<br>Życzymy jak najlepszego wyniku!"
     see_you: "Do zobaczenia na turnieju!"
+    
+  static_pages: 
+    players: "<p>Znajdujesz się w sekcji dla zawodników.</p><p>Dzięki kipscore, dołączenie do turnieju staje się proste, jak nigdy dotąd. Wybierz z listy turniejów ten, w którym chcesz wziąć udział. Za pomocą przycisku \"dołącz\" przejdziesz do rejestracji turniejowej. Otrzymasz e-mail z linkiem, w który musisz \"kliknąć\", aby potwierdzić swoje zgłoszenie. Dodanie do listy nastąpi po weryfikacji organizatora. Całość nie powinna zając więcej niż kilka minut.</p>"
+    organizer: "<p>Znajdujesz się w sekcji dla organizatorów.</p> <p>Znajdziesz tu wszystkie informacje, niezbędne do stworzenia turnieju. Program umożliwia organizacje turnieju w intuicyjny, prosty sposób, w zaledwie kilku krokach!</p><p>Przekonaj się jakie to proste!</p>"
+    observer: "<p>Znajdujesz się w sekcji dla obserwatorów.</p><p>Kipscore umożliwia śledzenie przebiegu interesujących nas turniejów, bez konieczności rejestracji. Możesz sprawdzić planowane rozgrywki, obejrzeć ich harmonogram, a kiedy zostaną aktywowane, będziesz widział cały przebieg turnieju.</p><p>Możesz kibicować swoim znajomym i śledzić ich postęp nie wychodząc z domu.</p>"
