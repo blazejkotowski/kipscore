@@ -18,10 +18,12 @@
     - player_associations = @tournament.player_associations.likely if edit
     - player_associations = @tournament.player_associations.confirmed unless edit
     - unless player_associations.empty?
-      - player_associations.each do |player_assoc|
+      - player_associations.each_with_index do |player_assoc, index|
         - player = player_assoc.player
         %tr{ :class => ("unconfirmed" unless player_assoc.confirmed?), :data => { :id => player.id } }
-          %td= player.name
+          %td
+            = "#{index+1}." unless edit
+            = player.name
           %td= player.rank
           - if edit
             %td
