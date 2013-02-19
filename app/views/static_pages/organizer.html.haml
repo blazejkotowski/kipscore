@@ -7,5 +7,13 @@
         = I18n.t('notifications.beta_version', :default => '').html_safe
     %h2= I18n.t("custom_translations.organizer", :default => "organizer").capitalize
     = I18n.t("static_pages.organizer_content").html_safe
+    %p
+      %ol
+        %li Zarejestruj się, to nic nie kosztuje
+        %li Klikając w przycisk "utwórz turniej", przejdź do panelu organizacyjnego,
+        %li Nadaj nazwę swojemu turniejowi oraz ustal jego datę,
+        %li Dodaj opis turnieju. Nasz edytor tekstowy nada mu przejrzystą, czytelną formę,
+        %li Stwórz listę startową dodając zawodników. Aplikacja będzie podpowiadać Ci nazwiska na podstawie list rankingowych,
+        %li Klikając w przycisk "start" rozpoczniesz  turniej. Program przeprowadzi losowanie graczy oraz utworzy drabinkę turniejową.
   .span6
     #home-signup= render 'users/signup_form',  :signup_page => false
