@@ -4,7 +4,20 @@
     - @date = @tournament.start_date.nil?? DateTime.now : @tournament.start_date
     = text_field_tag :start_date_date, @date.strftime("%Y-%m-%d"), :class => 'datepicker input-small', :disabled => (@tournament.active? ? true : nil)
     = text_field_tag :start_date_time, @date.strftime("%H:%M"), :class => 'timepicker input-small', :disabled => (@tournament.active? ? true : nil)
-  = f.input :description, :disabled => (@tournament.active? ? true : nil), :label => I18n.t("custom_translations.description", :default => "description").capitalize 
+  = f.input :description, :disabled => (@tournament.active? ? true : nil), :label => I18n.t("custom_translations.description", :default => "description").capitalize
+  = f.input :open
+  - if @tournament.tournament_form.present?
+    .control-group.tournament-form
+      %label.control-label
+        Form
+      .form-checkboxes
+        = f.simple_fields_for :tournament_form_attributes, @tournament.tournament_form do |tf|
+          = tf.input :rank, :wrapper_class => "pull-left"
+          = tf.input :name, :wrapper_class => "pull-left"
+          = tf.input :licence, :wrapper_class => "pull-left"
+          = tf.input :phone, :wrapper_class => "pull-left"
+          = tf.input :comment, :wrapper_class => "pull-left"
+        .clearfix
   .form-actions
     - if request.xhr?
       = link_to '#players-modal', :class => 'btn btn-modal', :data => { :toggle => 'modal' }, :role => 'button' do

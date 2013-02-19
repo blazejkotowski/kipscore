@@ -12,6 +12,10 @@
 }
 
 #tournament-management {
+  label.checkbox {
+    position: relative;
+    top: 5px;
+  }
   .control-label {
     width: 100px;
   }
@@ -22,6 +26,22 @@
   }
   .controls {
     margin-left: 120px;
+  }
+  .form-checkboxes {
+    margin-left: 120px;
+    .controls {
+      margin-left: 10px;
+      float: left;
+      margin-right: 20px;
+    }
+    .control-label {
+      width: auto;
+    }
+  }
+  .tournament-form {
+    &.hidden {
+      display: none;
+    }
   }
 }
 

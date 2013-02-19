@@ -119,7 +119,7 @@ class TournamentsController < ApplicationController
   
   private
     def correct_user
-      @tournament = Tournament.find(params[:id])
+      @tournament = Tournament.with_form.find(params[:id])
       redirect_to root_path unless @tournament.user == current_user
     end
     

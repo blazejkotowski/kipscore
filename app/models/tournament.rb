@@ -18,9 +18,14 @@ class Tournament < ActiveRecord::Base
   
   friendly_id :name, :use => :slugged
   
-  attr_accessible :active, :name, :start_date, :description, :json_bracket
+  attr_accessible :active, :name, :start_date, :description, :json_bracket, :open
+  
   belongs_to :user
-  #has_and_belongs_to_many :players
+
+  has_one :tournament_form, :dependent => :destroy
+  accepts_nested_attributes_for :tournament_form
+  attr_accessible :tournament_form_attributes
+  
   has_many :player_associations, :dependent => :delete_all
   has_many :players, :through => :player_associations do
     def active
@@ -40,6 +45,10 @@ class Tournament < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :start_date
   validates_presence_of :description
+  
+  before_create :create_tournament_form
+  
+  scope :with_form, includes(:tournament_form)
   
   def bracket(admin=false)
     """
@@ -121,7 +130,11 @@ class Tournament < ActiveRecord::Base
   
   def active?
     active
-  end  
+  end 
+  
+  def joinable?
+    !active && open
+  end
   
   private
     def generate_groups(s, e, group_number, groups)
@@ -147,5 +160,10 @@ class Tournament < ActiveRecord::Base
         generate_groups(m+1, e, group_number+1, groups)
       end
     end  
+    
+    def create_tournament_form
+      build_tournament_form
+      true
+    end
   
 end
