@@ -18,6 +18,8 @@ class Player < ActiveRecord::Base
   
   validates_presence_of :name
   
+  before_create :check_ranking
+  
   scope :best, order('rank')
   scope :latest, order('created_at DESC')
   scope :fetched, where(:fetched => true)
@@ -101,6 +103,10 @@ class Player < ActiveRecord::Base
         next if k.size < Settings.autocomplete_index_length
         $redis.sadd "autocomplete:#{k.parameterize}", value
       end
-    end 
+    end
+    
+    def check_ranking
+      self.rank = nil if self.rank.to_i < 1
+    end
   
 end
