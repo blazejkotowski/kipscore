@@ -3,6 +3,7 @@ class UsersController < ApplicationController
   before_filter :not_signed_in_user, :only => [:new]
   def new
     @user = User.new
+    @footer_bar=true
   end
 
   def create
@@ -12,7 +13,7 @@ class UsersController < ApplicationController
       sign_in @user
       redirect_to @user
     else
-      render "static_pages/home"
+      render "new"
     end
   end
 

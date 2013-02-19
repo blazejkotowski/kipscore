@@ -84,6 +84,26 @@ pl:
     organizer: "organizator"
     player: "zawodnik"
     observer: "obserwator"
+  
+  valid_email:
+    validations:
+      email:
+        invalid: "niepoprawny"
+  
+  activerecord:
+    errors:
+      models:
+        user:
+          attributes:
+            email:
+              taken: "już istnieje w bazie danych"
+            name:
+              blank: "nie może być puste"
+            password:
+              blank: "nie może być puste"
+              confirmation: "hasło nie zgadza się z potwierdzeniem"
+            password_confirmation:
+              blank: "nie może być puste"
     
   mails:
     participation_desire: "Dziękujemy za chęć udziału w %{tournament_name}. Chcąc potwierdzić swoje zgłoszenie, kliknij w link poniżej, aby udowodnić, że to naprawdę Ty je wysłałeś. Po potwierdzeniu, musisz poczekać, aż organizator doda Cię do listy startowej. Zostaniesz poinformowany e-mailem, gdy tylko to nastąpi."
