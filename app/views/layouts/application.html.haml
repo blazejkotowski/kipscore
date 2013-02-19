@@ -10,7 +10,7 @@
 
   - body_class = ''
   - body_class += "bracket " if params[:action] == "bracket"
-  - body_class += "static " if ['static_pages', 'sessions', 'users'].include? params[:controller]
+  - body_class += "static " if ['static_pages', 'sessions'].include? params[:controller]
   - body_class += "with-bar" if @footer_bar.present?
   %body{ :class => body_class }
     #bg-container.container
