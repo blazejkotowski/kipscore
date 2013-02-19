@@ -1,6 +1,6 @@
 %p= "#{I18n.t('custom_translations.hello', :default=>'hello', :locale => @locale).capitalize} #{@player_association.player.name}"
 
-%p= I18n.t('mails.tournament_congratulations', :tournament_name => @player_association.tournament.name, :locale => @locale)
+%p= I18n.t('mails.tournament_congratulations', :tournament_name => @player_association.tournament.name, :locale => @locale).html_safe
 
 %p
   = I18n.t('custom_translations.kipscore team', :locale => @locale).capitalize

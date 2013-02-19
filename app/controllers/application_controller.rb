@@ -8,9 +8,9 @@ class ApplicationController < ActionController::Base
     store_location unless self.class == SessionsController
   end
   
-  if Rails.env.production?
-    http_basic_authenticate_with :name => 'tournaments', :password => 'tournaments'
-  end
+#  if Rails.env.production?
+#    http_basic_authenticate_with :name => 'tournaments', :password => 'tournaments'
+#  end
   
   protect_from_forgery
   
