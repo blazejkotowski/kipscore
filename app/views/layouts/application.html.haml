@@ -13,6 +13,8 @@
   - body_class += "static " if ['static_pages', 'sessions'].include? params[:controller]
   - body_class += "with-bar" if @footer_bar.present?
   %body{ :class => body_class }
+    - if Rails.env.production?
+      = render "shared/google_analytics"
     #bg-container.container
     :javascript
       fixBackground();
@@ -76,5 +78,3 @@
             = "2012-#{Date.today.year}"
             All rights reserved &copy;
             = link_to "kipscore", root_path
-    - if Rails.env.production?
-      = render "shared/google_analytics"
