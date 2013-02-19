@@ -1,0 +1,21 @@
+= form_tag tournament_players_path(@tournament), :method => :post do
+  - if form.name
+    = label_tag "player[name]", I18n.t("custom_translations.name and surname", :default => "name and surname").capitalize
+    = text_field_tag "player[name]"
+  - if form.rank
+    = label_tag "player[rank]", I18n.t("custom_translations.rank", :default => "rank").capitalize
+    = text_field_tag "player[rank]", '', :class => "input-mini"
+  - if form.phone
+    = label_tag "player_association[phone]", I18n.t("custom_translations.phone", :default => "phone").capitalize
+    = text_field_tag "player_association[phone]", '', :class => "input-medium"
+  - if form.licence
+    = label_tag "player_association[licence]", I18n.t("custom_translations.licence", :default => "licence").capitalize
+    = text_field_tag "player_association[licence]"
+  - if form.comment
+    = label_tag "player_association[comment]", I18n.t("custom_translations.comment", :default => "comment").capitalize
+    = text_area_tag "player_association[comment]"
+    
+  = label_tag 'player_association[email]', "E-mail"
+  = email_field_tag 'player_association[email]', '', :class => "span12"
+  .form-actions
+    = submit_tag I18n.t("custom_translations.join", :default => "join").capitalize, :class => 'btn btn-success'

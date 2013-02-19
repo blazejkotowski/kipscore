@@ -3,3 +3,4 @@
 
 en:
   hello: "Hello world"
+  "email not valid": "Email address you have entered is not valid."

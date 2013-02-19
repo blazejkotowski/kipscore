@@ -52,6 +52,7 @@ gem 'redis'
 gem 'rails_config'
 gem 'friendly_id'
 gem 'state_machine'
+gem 'valid_email'
 
 # To use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'

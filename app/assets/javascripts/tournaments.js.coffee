@@ -7,6 +7,22 @@ jQuery ->
   $(window).on "hashchange", (event) ->
     changeTournament()
     
+  $("body").on "change", "#tournament_open", -> 
+    if $(event.target).is(":checked")
+      $(".tournament-form").show(100)
+    else
+      $(".tournament-form").hide(100)
+  
+  $("body").on "click", ".popover-btn", ->
+    event.preventDefault()
+    if $(event.target).data("shown") == false
+      $(event.target).popover("show")
+      $(event.target).data("shown", true)
+    else
+      $(event.target).popover("hide")
+      $(event.target).data("shown", false)
+      
+    
   changeTournament= ->
     hashParams = jQuery.deparam.fragment()
     tid = hashParams["tid"]
@@ -66,5 +82,6 @@ jQuery ->
 
   $("body").on "ajax:success", "form#add-player", ->  
     enableInputs()  
+  
     
       

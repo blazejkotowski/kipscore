@@ -7,7 +7,7 @@
   = f.input :description, :disabled => (@tournament.active? ? true : nil), :label => I18n.t("custom_translations.description", :default => "description").capitalize
   = f.input :open, :label => I18n.t("custom_translations.is open", :default => "is open").capitalize + "?"
   - if @tournament.tournament_form.present?
-    .control-group.tournament-form
+    .control-group.tournament-form{ :class => ( 'none' unless @tournament.open )}
       %label.control-label
         = I18n.t("custom_translations.fields", :default => "fields").capitalize
       .form-checkboxes

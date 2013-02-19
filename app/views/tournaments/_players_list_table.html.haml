@@ -24,7 +24,12 @@
           %td= player.rank
           - if edit
             %td
+              - popover_info = popover_player_info(player_assoc)
+              - if popover_info.present?
+                = link_to "#", :class => "popover-btn btn btn-medium", :data => { :toggle => "popover", :placement => "left", :shown => false, :original_title => "Info", :html => true, :content => "#{popover_info}"} do
+                  %i.icon-info-sign
               = link_to '-', tournament_player_path(@tournament, player), :method => 'delete', :remote => 'true', :class => 'btn btn-danger btn-medium delete-player'
               - unless player_assoc.confirmed?
                 = link_to player_association_confirmation_path(player, @tournament.id), :method => :put, :remote => :true, :class => 'btn btn-medium btn-warning confirm-player' do
                   %i.icon-ok
+                  

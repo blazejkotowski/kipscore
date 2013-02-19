@@ -1,12 +1,15 @@
 require 'securerandom'
 
 class PlayerAssociation < ActiveRecord::Base
-  attr_accessible :email, :player_id, :position, :tournament_id, :player, :tournament, :state, :email_code
+  attr_accessible :email, :player_id, :position, :tournament_id, :player
+  attr_accessible :tournament, :state, :email_code, :phone, :comment, :licence
 
   belongs_to :player, :dependent => :destroy
   belongs_to :tournament, :dependent => :destroy
   
   before_create :set_email_code
+  
+  validates :email, :email => true, :allow_nil => true
   
   default_scope includes(:tournament, :player)
   

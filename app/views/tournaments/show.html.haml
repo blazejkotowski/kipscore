@@ -14,7 +14,7 @@
   %h1
     = @tournament.name
     = link_to I18n.t("custom_translations.go to bracket", :default => "go to bracket").capitalize, tournament_bracket_path(@tournament), :class => 'btn btn-primary btn-large'
-    - unless @tournament.active?
+    - if @tournament.joinable?
       = link_to I18n.t("custom_translations.join", :default => "join").capitalize, tournament_join_path(@tournament), :class => 'btn btn-warning btn-large'
 
 .row-fluid

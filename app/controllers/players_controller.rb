@@ -1,7 +1,7 @@
 class PlayersController < ApplicationController
 
-  before_filter :get_tournament, :not_active, :except => [:autocomplete]
-  before_filter :correct_user, :except => [:autocomplete, :create, :new, :activate]
+  before_filter :get_tournament, :only => [:create, :destroy, :activate]
+  before_filter :correct_user, :only => [:destroy, :create]
   
   def create
     @result = { :created => false, :player => nil, :new => false }
@@ -19,13 +19,20 @@ class PlayersController < ApplicationController
       @result[:created] = true
       @result[:player] = player
       @result[:delete_url] = tournament_player_path(@tournament, player)
-      render :json => @result
-      
+      render :json => @result  
+    
     elsif !request.xhr?
-      player_association = PlayerAssociation.create(:email => params[:email], :player => player, :tournament => @tournament)
-      UserMailer.confirm_participation(player_association).deliver
-      flash_major_notice I18n.t("custom_translations.joined tournament", :default => "You have joined tournament, but it's not all! Now check your mail to confirm your participation. Without email confirmation your participation desire will be ignored!")
-      redirect_to tournament_path(@tournament)
+      player_association = PlayerAssociation.new(params[:player_association].merge({:player => player, :tournament => @tournament}))
+      player_association.email = "" if player_association.email.nil?
+      if player_association.save
+        UserMailer.confirm_participation(player_association).deliver
+        flash_major_notice I18n.t("custom_translations.joined tournament", :default => "You have joined tournament, but it's not all! Now check your mail to confirm your participation. Without email confirmation your participation desire will be ignored!")
+        redirect_to tournament_path(@tournament)
+      else
+        flash.now[:notice] = I18n.t('custom_translations.email not valid').capitalize
+        flash.now[:warning] = params[:player_association]
+        render "new"
+      end
     end
     
   end
@@ -54,6 +61,8 @@ class PlayersController < ApplicationController
   end
   
   def new
+    @tournament = Tournament.with_form.find(params[:tournament_id])
+    redirect_to @tournament unless @tournament.joinable?
   end
   
   def activate
