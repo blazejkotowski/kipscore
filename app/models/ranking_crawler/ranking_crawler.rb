@@ -9,7 +9,18 @@ class RankingCrawler::RankingCrawler
       ranking = "#{name.split(':').first}::#{ranking.name.split.join}".constantize.new
       ranking.sync
     end
+    create_indexes(:all)
   end
+    
+  def self.create_indexes(players = :all)
+    if players == :all
+      players = Player.fetched
+    end
+    
+    $redis.flushall
+    players.each { |player| add_indexes(player) }
+  end
+  
   
   def page
     @page ||= Nokogiri::HTML(open(self.base_url))
@@ -17,15 +28,6 @@ class RankingCrawler::RankingCrawler
   
   def name
     @name ||= self.class.name.split(':').last.underscore.split('_').map(&:capitalize).join(' ')
-  end
-  
-  def create_indexes(players = :all)
-    if players == :all
-      players = Player.fetched
-    end
-    
-    $redis.flushall
-    players.each { |player| add_indexes(player) }
   end
   
   def players_list
@@ -40,11 +42,10 @@ class RankingCrawler::RankingCrawler
   def sync
     players = self.players_list
     players.each(&:save)
-    create_indexes(players)
   end
   
   private
-    def add_indexes(player)
+    def self.add_indexes(player)
       words = player.name.split
       0.upto words.size do |words_number|
         (0..words.size-words_number-1).each do |start|
@@ -53,7 +54,7 @@ class RankingCrawler::RankingCrawler
       end
     end
     
-    def add_index(ranking_id, key, value)
+    def self.add_index(ranking_id, key, value)
       Settings.autocomplete_index_length.upto key.size do |i|
         k = key[0...i]
         next if k.nil?
