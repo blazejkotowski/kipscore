@@ -20,6 +20,7 @@ class ApplicationController < ActionController::Base
   private
     def set_locale
       parsed_locale = request.host.split('.').last
+      parsed_locale = "pl"
       I18n.locale = parsed_locale if I18n.available_locales.include? parsed_locale.to_sym
       params[:locale] = I18n.locale
     end

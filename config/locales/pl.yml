@@ -81,6 +81,9 @@ pl:
     "hello": "witaj"
     
     "kipscore team": "zespół Kipscore"
+    organizer: "organizator"
+    player: "zawodnik"
+    observer: "obserwator"
     
   mails:
     participation_desire: "Dziękujemy za chęć udziału w %{tournament_name}. Chcąc potwierdzić swoje zgłoszenie, kliknij w link poniżej, aby udowodnić, że to naprawdę Ty je wysłałeś. Po potwierdzeniu, musisz poczekać, aż organizator doda Cię do listy startowej. Zostaniesz poinformowany e-mailem, gdy tylko to nastąpi."
@@ -88,6 +91,10 @@ pl:
     see_you: "Do zobaczenia na turnieju!"
     
   static_pages: 
-    players: "<p>Znajdujesz się w sekcji dla zawodników.</p><p>Dzięki kipscore, dołączenie do turnieju staje się proste, jak nigdy dotąd. Wybierz z listy turniejów ten, w którym chcesz wziąć udział. Za pomocą przycisku \"dołącz\" przejdziesz do rejestracji turniejowej. Otrzymasz e-mail z linkiem, w który musisz \"kliknąć\", aby potwierdzić swoje zgłoszenie. Dodanie do listy nastąpi po weryfikacji organizatora. Całość nie powinna zając więcej niż kilka minut.</p>"
-    organizer: "<p>Znajdujesz się w sekcji dla organizatorów.</p> <p>Znajdziesz tu wszystkie informacje, niezbędne do stworzenia turnieju. Program umożliwia organizacje turnieju w intuicyjny, prosty sposób, w zaledwie kilku krokach!</p><p>Przekonaj się jakie to proste!</p>"
-    observer: "<p>Znajdujesz się w sekcji dla obserwatorów.</p><p>Kipscore umożliwia śledzenie przebiegu interesujących nas turniejów, bez konieczności rejestracji. Możesz sprawdzić planowane rozgrywki, obejrzeć ich harmonogram, a kiedy zostaną aktywowane, będziesz widział cały przebieg turnieju.</p><p>Możesz kibicować swoim znajomym i śledzić ich postęp nie wychodząc z domu.</p>"
+    player_content: "<p>Znajdujesz się w sekcji dla zawodników.</p><p>Dzięki kipscore, dołączenie do turnieju staje się proste, jak nigdy dotąd. Wybierz z listy turniejów ten, w którym chcesz wziąć udział. Za pomocą przycisku \"dołącz\" przejdziesz do rejestracji turniejowej. Otrzymasz e-mail z linkiem, w który musisz \"kliknąć\", aby potwierdzić swoje zgłoszenie. Dodanie do listy nastąpi po weryfikacji organizatora. Całość nie powinna zając więcej niż kilka minut.</p>"
+    organizer_content: "<p>Znajdujesz się w sekcji dla organizatorów.</p><p>Znajdziesz tu wszystkie informacje, niezbędne do stworzenia turnieju.</p><p>Aplikacja umożliwia organizacje turnieju w intuicyjny, prosty sposób, w zaledwie kilku krokach!</p><p>Przekonaj się jakie to proste!</p>"
+    observer_content: "<p>Znajdujesz się w sekcji dla obserwatorów.</p><p>Kipscore umożliwia śledzenie przebiegu interesujących nas turniejów, bez konieczności rejestracji.</p><p>Możesz sprawdzić planowane rozgrywki, obejrzeć ich harmonogram, a kiedy zostaną aktywowane, będziesz widział cały przebieg turnieju.</p><p>Możesz kibicować swoim znajomym i śledzić ich postęp nie wychodząc z domu!</p>"
+    "choose who you are": "wybierz kim jesteś"
+    
+  notices:
+    beta_version: "<h2>Drogi Użytkowniku!</h2><p>Jeżeli czytasz ten tekst, oznacza to, że korzystasz z wersji testowej Kipscore.</p><p>Jest nam niezmiernie miło, że Twoja obecność na tej stronie, przyczyni się do wyeliminowania ewentualnych błędów, oraz ulepszenia obecnej wersji.</p><p>Prosimy o cierpliwość w trakcie ładowania poszczególnych podstron, oraz wyrozumiałość, jeżeli coś pójdzie nie tak.</p><p>Będziemy wdzięczni, jeżeli po użyciu aplikacji, podzielisz się swoją opinią na jej temat, na naszym fanpage'u, lub wysyłając wiadomość e-mail.</p><p>Miłego użytkowania!<br>Zespół Kipscore</p>"

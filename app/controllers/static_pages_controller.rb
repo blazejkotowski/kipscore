@@ -1,6 +1,7 @@
 class StaticPagesController < ApplicationController
   
-  before_filter :footer_bar
+  before_filter :footer_bar, :except => [:home]
+  before_filter :signup_form, :only => [:organizer, :observer, :player]
 
   layout lambda { |controller| request.xhr? ? false : "application" }
   
@@ -9,7 +10,6 @@ class StaticPagesController < ApplicationController
       redirect_to tournaments_user_path
     end
     @user = User.new
-    @footer_bar = true
   end
 
   def about
@@ -31,7 +31,19 @@ class StaticPagesController < ApplicationController
   def innovation
   end
   
+  def organizer
+  end
+  
+  def player
+  end
+  
+  def observer
+  end
+  
   private
+    def signup_form
+      @user = User.new
+    end
     def footer_bar
       @footer_bar = true
     end

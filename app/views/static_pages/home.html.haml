@@ -8,4 +8,8 @@
         = I18n.t("custom_translations.created to help you organize tournaments in the way you love", :default => "created to help you organize tournaments in the way you love").capitalize + "."
       = link_to I18n.t('custom_translations.learn more', :default => 'learn more').capitalize, about_path, :class => 'btn btn-success btn-large about-us'
   .span6
-    #home-signup= render 'users/signup_form',  :signup_page => false
+    #user-sections.span6
+      %h1= I18n.t("static_pages.choose who you are", :default => "choose who you are").capitalize
+      = link_to I18n.t('custom_translations.organizer', :default => 'organizer').capitalize, organizer_path, :class => "organizer"
+      = link_to I18n.t('custom_translations.player', :default => 'player').capitalize, player_path, :class => "player"
+      = link_to I18n.t('custom_translations.observer', :default => 'observer').capitalize, observer_path, :class => "observer"

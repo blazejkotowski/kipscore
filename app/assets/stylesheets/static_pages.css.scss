@@ -20,6 +20,50 @@
 #home-signup {
 }
 
+#user-sections {
+  margin-top: 130px;
+  h1 {
+    text-align: center;
+    padding-right: 70px;
+    position: relative;
+    bottom: 30px;
+  }
+  a {
+    margin: auto;
+    background: transparent no-repeat center top;
+    background-size: auto 75px;
+    min-width: 140px;
+    padding-top: 80px;
+    margin: 0 10px;
+    text-align: center;
+    font-size: 1.3em;
+    color: white;
+    font-weight: bold;
+    display: inline-block;
+    &:hover {
+      text-decoration: none;
+    }
+    &.observer {
+      background-image: asset-data-url('icons/observer.png');
+      &:hover {
+        background-image: asset-data-url('icons/observer_neg.png');
+      }
+    }
+    &.organizer {
+      background-image: asset-data-url('icons/organizer.png');
+      &:hover {
+        background-image: asset-data-url('icons/organizer_neg.png');
+      }
+    }
+    &.player {
+      background-image: asset-data-url('icons/player.png');
+      &:hover {
+        background-image: asset-data-url('icons/player_neg.png');
+      }
+    }
+  }
+}
+
 #footer-bar {
   li > a {
     background: transparent no-repeat center top;

@@ -1,0 +1,8 @@
+- provide :title, I18n.t("custom_translations.player", :default => "player").capitalize
+
+#home-container.row
+  #content.span6
+    %h2= I18n.t("custom_translations.player", :default => "player").capitalize
+    = I18n.t("static_pages.player_content").html_safe
+  .span6
+    #home-signup= render 'users/signup_form',  :signup_page => false
