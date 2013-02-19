@@ -50,6 +50,10 @@
             %div{ :class => "alert alert-#{type}" }
               %button.close{ :type => 'button', 'data-dismiss' => 'alert' }×
               = msg
+        
+        - if Settings.beta_version && params[:controller] == 'static_pages'
+          .container
+            = I18n.t('notifications.beta_version', :default => '')
             
         %div.container
           = yield

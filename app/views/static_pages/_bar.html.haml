@@ -1,7 +1,7 @@
 #footer-bar
   %ul
-    %li= link_to I18n.t("custom_translations.about us", :default => "about us"), about_path, :class => "about-us#{' active' if params[:action] == 'about'}"
-    %li= link_to I18n.t("custom_translations.innovation", :default => "innovation"), innovation_path, :class => "innovation#{' active' if params[:action] == 'innovation'}"
-    %li= link_to I18n.t("custom_translations.instruction", :default => "instruction"), instruction_path, :class => "instruction#{' active' if params[:action] == 'instruction'}"
+    %li= link_to I18n.t("custom_translations.organizer", :default => "organizer"), organizer_path, :class => "organizer#{' active' if params[:action] == 'organizer'}"
+    %li= link_to I18n.t("custom_translations.organizer", :default => "player"), player_path, :class => "player#{' active' if params[:action] == 'player'}"
+    %li= link_to I18n.t("custom_translations.observer", :default => "observer"), observer_path, :class => "observer#{' active' if params[:action] == 'observer'}"
     %li= link_to I18n.t("custom_translations.contact", :default => "contact"), contact_path, :class => "contact#{' active' if params[:action] == 'contact'}"
     %li= link_to I18n.t("custom_translations.tournaments", :default => "tournaments"), tournaments_path, :class => "tournaments#{' active' if params[:action] == 'index'}"

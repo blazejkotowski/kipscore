@@ -21,7 +21,7 @@
 }
 
 #user-sections {
-  margin-top: 130px;
+  margin-top: 90px;
   h1 {
     text-align: center;
     padding-right: 70px;
@@ -69,6 +69,28 @@
     background: transparent no-repeat center top;
     background-size: auto 45px;
     min-width: 60px;
+    
+    &.observer {
+      background-image: asset-data-url("icons/.png");
+      &.active, &:hover {
+        background-image: asset-data-url("icons/.png");
+      }
+    }
+    
+    &.player {
+      background-image: asset-data-url("icons/.png");
+      &.active, &:hover {
+        background-image: asset-data-url("icons/.png");
+      }
+    }
+    
+    &.organizer {
+      background-image: asset-data-url("icons/.png");
+      &.active, &:hover {
+        background-image: asset-data-url("icons/.png");
+      }
+    }
+    
     &.innovation {
       background-image: asset-data-url("icons/innovation.png");
       &.active, &:hover {
