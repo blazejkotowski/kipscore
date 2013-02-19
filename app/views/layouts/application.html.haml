@@ -22,7 +22,7 @@
           %div.container
             %div.pull-left
               = link_to root_path, :class => 'brand' do
-                %span.logo-small
+                %span.logo-small{ :class => ('beta' if Settings.beta_version) }
               %ul.nav
                 %li= link_to I18n.t("custom_translations.tournaments", :default => "tournaments"), tournaments_path
                 %li= link_to I18n.t("custom_translations.about us", :default => "about us"), about_path

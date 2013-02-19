@@ -3,7 +3,7 @@
 #home-container.row
   .span6
     #home-teaser.hero-unit
-      %span.logo-hero
+      %span.logo-hero{ :class => ('beta' if Settings.beta_version) }
       %p
         = I18n.t("custom_translations.created to help you organize tournaments in the way you love", :default => "created to help you organize tournaments in the way you love").capitalize + "."
       = link_to I18n.t('custom_translations.learn more', :default => 'learn more').capitalize, about_path, :class => 'btn btn-success btn-large about-us'

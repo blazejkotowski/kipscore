@@ -8,6 +8,9 @@
   height: 73px;
   background: transparent asset-data-url('logo.png') center no-repeat;
   background-size: 340px;
+  &.beta {
+    background-image: asset-data-url('logo_beta.png')
+  }
 }
 
 .logo-small {
@@ -15,6 +18,10 @@
   width: 116px;
   height: 25px;
   background: transparent asset-data-url('logo_small.png') center no-repeat;
+  &.beta {
+    background-size: 116px 25px;
+    background-image: asset-data-url('logo_beta_small.png')
+  }
 }
 
 .loader16px, .loader32px, .loader64px {
