@@ -7,6 +7,10 @@ class UsersController < ApplicationController
   end
 
   def create
+    if Settings.beta_version
+      flash[:info] = I18n.t("custom_translations.signup blocked", :default => "We are sorry, but signing up is blocked in beta version").capitalize
+      return redirect_to root_path
+    end
     @user = User.new(params[:user])
     if @user.save
       flash[:success] = I18n.t("custom_translations.successfully signed up", :default => "succesfully signed up").capitalize + "!"

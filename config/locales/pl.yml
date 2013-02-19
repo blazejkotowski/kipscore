@@ -84,6 +84,8 @@ pl:
     organizer: "organizator"
     player: "zawodnik"
     observer: "obserwator"
+    
+    "signup blocked": "Niestety, w wersji beta możliwość rejestracji została zablokowana"
   
   valid_email:
     validations:
