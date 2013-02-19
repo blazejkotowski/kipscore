@@ -19,7 +19,7 @@ class UserMailer < ActionMailer::Base
     @locale = locale
     @player_association = player_association
     to_email = "#{player_association.player.name} <#{player_association.email}>"
-    mail :from => Settings.default_noreply_email, :to => to_email, :subject => "#{player_association.tournament.name}  - confirm your participation"
+    mail :from => Settings.default_noreply_email, :to => to_email, :subject => "#{player_association.tournament.name}  - #{I18n.t('mails.confirm your participation', :default => 'confirm your participation').capitalize}"
   end
   
   def organizer_confirmation(player_association, locale)
