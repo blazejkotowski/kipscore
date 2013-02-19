@@ -1,7 +1,7 @@
 class PlayersController < ApplicationController
 
   before_filter :get_tournament, :only => [:create, :destroy, :activate]
-  before_filter :correct_user, :only => [:destroy, :create]
+  before_filter :correct_user, :only => [:destroy]
   
   def create
     @result = { :created => false, :player => nil, :new => false }
