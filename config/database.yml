@@ -37,4 +37,3 @@ staging:
   password: v8oRvkqsRWThSQvOihfwJzsFWX
   host: ec2-54-243-181-115.compute-1.amazonaws.com
   port: 5432
-
