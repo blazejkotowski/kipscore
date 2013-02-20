@@ -21,13 +21,13 @@ group :test do
   gem 'capybara'
 end
 
-group :production do
+group :production, :staging do
   gem 'pg'
 end
 
 # Gems used only for assets and not required
 # in production environments by default.
-group :assets, :production do
+group :assets, :production, :staging do
   gem 'sass-rails',   '~> 3.2.5'
   gem 'coffee-rails', '~> 3.2.2'
 
