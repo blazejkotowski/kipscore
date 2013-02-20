@@ -30,10 +30,11 @@ production:
   
 staging:
   adapter: postgresql
-  database: dfc6eci4k29jpo
-  username: ibtwcrkjhnzcor
-  password: qSSgQ6alVRMWhmXMVERHPgBVFx
+  encoding: unicode
+  pool: 5
+  database: dalnc4csiacti0
+  username: ifmhbhmtraibon
+  password: v8oRvkqsRWThSQvOihfwJzsFWX
   host: ec2-54-243-181-115.compute-1.amazonaws.com
   port: 5432
-  pool: 5
-  timeout: 5000
+
