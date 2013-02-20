@@ -15,5 +15,9 @@ module ApplicationHelper
        yield
      end
   end
+  
+  def current_uri
+    "#{request.protocol}#{request.host_with_port}#{request.path}"
+  end
 
 end

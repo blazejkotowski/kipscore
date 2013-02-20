@@ -1,5 +1,5 @@
 !!!
-%html
+%html{ "xmlns:fb" => "http://ogp.me/ns/fb#" }
   %head
     %title= full_page_title(yield(:title))
     = favicon_link_tag 'favicon.ico'
@@ -7,6 +7,7 @@
     = javascript_include_tag "application"
     = yield :javascript_includes
     = csrf_meta_tags
+    %meta{ :property=>"fb:app_id", :content => Settings.facebook_app_id }
 
   - body_class = ''
   - body_class += "bracket " if params[:action] == "bracket"
@@ -15,6 +16,8 @@
   %body{ :class => body_class }
     - if Rails.env.production?
       = render "shared/google_analytics"
+    - if Rails.env.staging? || Rails.env.production?
+      = render "shared/facebook_connect"
     #bg-container.container
     :javascript
       fixBackground();
