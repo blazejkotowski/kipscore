@@ -1,3 +1,2 @@
 facebook_app_id: 403130129723454
 rankings: ["Pfs Damski Open"]
-redis_url: ENV["REDISTOGO_URL"]
