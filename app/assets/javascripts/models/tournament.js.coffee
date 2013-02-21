@@ -98,6 +98,7 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
         'players_number': cur_players/2
         'max_position': max_position
         'min_position': min_position + cur_players/2
+        'admin': @get('admin')
       tournaments.add new_tournament
       max_position -= cur_players/2
       cur_players /= 2
