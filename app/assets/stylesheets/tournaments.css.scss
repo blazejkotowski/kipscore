@@ -131,9 +131,9 @@ $totalColumnWidth: $columnWidth + $columnMarginRight;
   overflow-x: auto;
   padding-bottom: 0;
   position: relative;
-//  &.empty {
-//    display: none;
-//  }
+  &.empty {
+    display: none;
+  }
 }
 
 .tournament-title {
@@ -164,9 +164,9 @@ $totalColumnWidth: $columnWidth + $columnMarginRight;
     padding: 0 10px;
     height: 1px;
   }
-//  &.empty {
-//    display: none;
-//  }
+  &.empty {
+    display: none;
+  }
 }
 
 .tournament-bracket {
