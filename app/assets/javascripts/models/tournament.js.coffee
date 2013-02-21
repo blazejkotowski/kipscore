@@ -7,9 +7,10 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
     'bracket_size': 0
     'max_position': 0
     'min_position': 0
-    'saving': 1
+    'saving': false
     'main_tournament': false
     'admin': false
+    'new': false
   
   relations: [
     {
@@ -29,10 +30,30 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
       key: 'related_tournaments'
       type: Backbone.HasMany
       relatedModel: "Kipscore.Models.Tournament"
+      reverseRelation:
+        key: 'parent_tournament'
+        type: Backbone.HasOne
     }
   ]
   
   initialize: ->
+    if @isNew()
+      @initNew()
+      context = this
+      setTimeout((-> context.mainTournament().setSaving()), 2000)
+      
+    # Set bracket tournament variable to actual tournament
+    @get('bracket').tournament = this
+    
+    @on "to_save", ->
+      # Do not save more than 1 time per second
+      @setSaving()
+    
+    # Do not save on beginning
+    context = this
+    setTimeout((-> context.mainTournament().set('saving', 0)), 2000)
+  
+  initNew: ->
     power = 1
     while power < @get('players_number')
       power *= 2
@@ -41,7 +62,7 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
     @set 'bracket_size', 2*(power/2)-1
     if @get('max_position') == 0
       @set 'max_position', power
-      @set 'min_position', 1
+      @set 'min_position', 1 
     
     bracket_size = @get 'bracket_size'
     bracket = @get 'bracket'
@@ -56,31 +77,24 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
         iter--
       bracket = matches
       @set 'bracket', matches
-    
+      
     # Add next (blank) matches
     while bracket.length < bracket_size
       match = new Kipscore.Models.Match()
       bracket.add match, { at: 0 }
       
-    # Set bracket tournament variable to actual tournament
-    bracket.tournament = this
-    
     # Perform empty tournaments for next tours  
-    @createRelatedTournaments()
+    @createRelatedTournaments()    
     
-    @on "to_save", ->
-      # Do not save more than 1 time per second
-      @setSaving()
-    
-    # Do not save on beginning
-    context = this
-    setTimeout((-> context.set('save', 0)), 2000)
+    @set 'new', false
           
   # Sets saving flag for ms miliseconds
   setSaving: (ms=1000) ->
-    @set 'saving', 1
-    context = this
-    setTimeout((-> context.save()), ms)
+    #console.log "trying to save"
+    unless @saving()
+      @blockSaving()
+      context = this
+      setTimeout((-> Window.tournament.save()), ms)
   
   # Creates losers tournaments
   createRelatedTournaments: ->
@@ -98,7 +112,7 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
         'players_number': cur_players/2
         'max_position': max_position
         'min_position': min_position + cur_players/2
-        'admin': @get('admin')
+        'new': @get('new')
       tournaments.add new_tournament
       max_position -= cur_players/2
       cur_players /= 2
@@ -122,16 +136,36 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
     bracket = tournament.get('bracket')
     bracket.at (Math.floor(bracket_number/2)-1)
     
+  mainTournament: ->
+    main_tournament = this
+    while main_tournament.get('parent_tournament') isnt null
+      main_tournament = main_tournament.get('parent_tournament')
+    main_tournament
+    
+  saving: ->
+    @mainTournament().get('saving')
+  
+  blockSaving: ->
+    @mainTournament().set('saving', true)
+    
+  releaseSaving: ->
+    @mainTournament().set('saving', false)
     
   isNew: ->
-    @get('bracket').length < 1
+    @get('new')
     
   save: ->
-    if !@isNew() and @get('main_tournament') and @get('admin')
+    if @get('main_tournament') and @get('admin')
+      #console.log "saving"
       $.ajax
         type: 'put'
         url: @url
         data:
           json_bracket: JSON.stringify(@toJSON())
         complete:
-          @set 'saving', 0
+          @releaseSaving()
+#    else
+#      console.log "Not saving"
+      
+      
+Kipscore.Models.Tournament.setup()

@@ -64,7 +64,7 @@ class Tournament < ActiveRecord::Base
     """
     
     if json_bracket.present? && active?
-      return (JSON.parse(json_bracket).merge({:admin=>admin})).to_json
+      return (JSON.parse(json_bracket).merge({:admin=>admin, :new => false })).to_json
     end
 
     # list of players sorted by rank
@@ -123,7 +123,7 @@ class Tournament < ActiveRecord::Base
     
     update_attribute :json_bracket, json_list.to_json if active
 
-    json_list.merge({:admin => admin})
+    json_list.merge({:admin => admin, :new => true})
     
     
   end

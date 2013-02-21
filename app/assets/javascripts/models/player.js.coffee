@@ -12,3 +12,5 @@ class Kipscore.Models.Player extends Backbone.RelationalModel
   
   empty: ->
     return this.get('empty')
+
+Kipscore.Models.Player.setup()

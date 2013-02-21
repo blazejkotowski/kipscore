@@ -47,7 +47,7 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
     
   pickWinner: ->
     # Not pickd if match not ready
-    unless @ready() && @collection.tournament.get('admin')
+    unless @ready() && @collection.tournament.mainTournament().get('admin')
       return false
       
     # Match with bye case
@@ -85,6 +85,9 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
   setNextMatches: ->
     if @get 'finished'
       return false
+    
+    if @get('winner').get('bye') && @get('loser').get('bye')
+      console.log "Two byes setting"
       
     wmatch = @winnerMatch()
     lmatch = @loserMatch()
@@ -119,10 +122,7 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
     not(player1.empty() or player2.empty())
     
   empty: ->
-    return (@get('player1').empty() && @get('player2').empty()) or 
-      (@get('player1').get('bye') && @get('player2').empty()) or 
-      (@get('player2').get('bye') && @get('player1').empty()) or 
-      (@get('player1').get('bye') && @get('player2').get('bye'))
+    return (@get('player1').empty() && @get('player2').empty())
     
     
   winnerMatch: ->
@@ -136,3 +136,5 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
       return @collection.indexOf(this)+1
     catch error
       return -1
+      
+Kipscore.Models.Match.setup()
