@@ -34,3 +34,9 @@
     - if @tournament.user == current_user
       .form-actions
         = link_to I18n.t("custom_translations.edit", :default => "edit").capitalize, manage_tournament_path(@tournament), :class => 'btn'
+.row-fluid
+  .span12.facebook-comments
+    = render "shared/facebook_comments"
+    
+- content_for :meta_tags do
+  = render "tournaments/tournament_meta"

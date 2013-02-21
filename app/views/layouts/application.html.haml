@@ -8,6 +8,7 @@
     = yield :javascript_includes
     = csrf_meta_tags
     %meta{ :property=>"fb:app_id", :content => Settings.facebook_app_id }
+    = yield :meta_tags
 
   - body_class = ''
   - body_class += "bracket " if params[:action] == "bracket"
