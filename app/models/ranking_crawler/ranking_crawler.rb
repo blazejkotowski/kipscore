@@ -5,6 +5,13 @@ class RankingCrawler::RankingCrawler
   
   def self.sync_all
     $redis.flushall
+    
+    # fetch rankings from settings
+    rankings = Settings.rankings
+
+    # fetch rankings from database
+    # rankings = Ranking.all
+    
     Ranking.all.each do |ranking|
       ranking = "#{name.split(':').first}::#{ranking.name.split.join}".constantize.new
       ranking.sync
