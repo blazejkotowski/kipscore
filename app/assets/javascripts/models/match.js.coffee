@@ -86,8 +86,8 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
     if @get 'finished'
       return false
     
-    if @get('winner').get('bye') && @get('loser').get('bye')
-      console.log "Two byes setting"
+#    if @get('winner').get('bye') && @get('loser').get('bye')
+#      console.log "Two byes setting"
       
     wmatch = @winnerMatch()
     lmatch = @loserMatch()
