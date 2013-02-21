@@ -20,13 +20,13 @@ test:
 
 production:
   adapter: postgresql
-  database: kipscore
-  username: gslgockkyrnewa
-  password: z7V7oqAx0jyLn_bReMspSlVEfd
-  host: ec2-54-243-176-239.compute-1.amazonaws.com
-  port: 5432
+  encoding: unicode
   pool: 5
-  timeout: 5000
+  database: dalnc4csiacti0
+  username: ifmhbhmtraibon
+  password: v8oRvkqsRWThSQvOihfwJzsFWX
+  host: ec2-54-243-181-115.compute-1.amazonaws.com
+  port: 5432
   
 staging:
   adapter: postgresql
