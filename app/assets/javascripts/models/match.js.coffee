@@ -92,9 +92,18 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
     wmatch = @winnerMatch()
     lmatch = @loserMatch()
     
-    wmatch.addPlayer @get('winner'), @index()%2 ? 1 : 2
-    lmatch.addPlayer @get('loser'), @index()%2 ? 1 : 2
-    
+    unless wmatch is false
+      wmatch.addPlayer @get('winner'), @index()%2 ? 1 : 2
+    else
+      position = @collection.tournament.get('min_position')
+      console.log position
+      @collection.tournament.mainTournament().get('results').add(position, @get('winner'))
+    unless lmatch is false
+      lmatch.addPlayer @get('loser'), @index()%2 ? 1 : 2
+    else
+      position = @collection.tournament.get('min_position')+1
+      @collection.tournament.mainTournament().get('results').add(position, @get('loser'))
+      
     @set 'finished', true
     @trigger "to_save"
     

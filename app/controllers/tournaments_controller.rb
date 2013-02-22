@@ -3,6 +3,7 @@ class TournamentsController < ApplicationController
   
   before_filter :signed_in_user, :only => [:new, :create]
   before_filter :correct_user, :only => [:edit, :update, :destroy, :activate]
+  before_filter :get_tournament, :only => [:results, :results_update]
   before_filter :concatenate_datetime, :only => [:create, :update]
   # GET /tournaments
   # GET /tournaments.json
@@ -74,7 +75,7 @@ class TournamentsController < ApplicationController
   def activate
     @tournament.toggle! :active
     unless @tournament.active?
-      @tournament.update_attribute :json_bracket, nil
+      @tournament.update_attributes :json_bracket => nil, :json_results => nil
     end
     redirect_to tournaments_user_url(:anchor => "tid=#{@tournament.id}")
   end
@@ -118,6 +119,21 @@ class TournamentsController < ApplicationController
     render :json => response.to_json
   end
   
+  def results
+    render :json => @tournament.results.to_json
+  end
+  
+  def results_update
+    @tournament = Tournament.find(params[:tournament_id])
+    # Update only if user is owner and tournament is activated
+    unless @tournament.user == current_user && @tournament.active?
+      return render :json => { :updated => false, :error => "You can't update this tournament"}
+    end
+    
+    @tournament.update_attribute :json_results, params[:json_results]
+    render :json => { :updated => true }
+  end
+  
   private
     def correct_user
       @tournament = Tournament.with_form.find(params[:id])
@@ -128,6 +144,10 @@ class TournamentsController < ApplicationController
       if params[:tournament].present?
         params[:tournament][:start_date] = "#{params[:start_date_date]} #{params[:start_date_time]}"
       end
+    end
+    
+    def get_tournament
+      @tournament = Tournament.find(params[:tournament_id])
     end
     
 end

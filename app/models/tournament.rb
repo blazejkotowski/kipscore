@@ -18,7 +18,7 @@ class Tournament < ActiveRecord::Base
   
   friendly_id :name, :use => :slugged
   
-  attr_accessible :active, :name, :start_date, :description, :json_bracket, :open
+  attr_accessible :active, :name, :start_date, :description, :json_bracket, :open, :json_results
   
   belongs_to :user
 
@@ -134,6 +134,14 @@ class Tournament < ActiveRecord::Base
   
   def joinable?
     !self.active && self.open
+  end
+  
+  def results
+    if json_results.present?
+      JSON.parse json_results
+    else
+      { :places_number => players.confirmed.size }
+    end
   end
   
   private

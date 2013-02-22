@@ -26,6 +26,8 @@ Kipscore::Application.routes.draw do
     put 'activate', :on => :member
     match 'bracket' => 'tournaments#bracket', :via => :get
     match 'bracket' => 'tournaments#bracket_update', :via => :put
+    match 'results' => 'tournaments#results', :via => :get
+    match 'results' => 'tournaments#results_update', :via => :put
     match 'join' => 'players#new', :via => :get
     resources :players, :only => [:create, :destroy]
   end

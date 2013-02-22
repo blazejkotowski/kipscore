@@ -13,6 +13,16 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
     'new': false
   
   relations: [
+    { 
+      key: 'results'
+      type: Backbone.HasOne
+      includeInJSON: false
+      relatedModel: 'Kipscore.Models.Results'
+      reverseRelation:
+        key: 'tournament'
+        includeInJSON: false
+        type: Backbone.HasOne
+    },
     {
       key: 'players'
       type: Backbone.HasMany
@@ -37,6 +47,10 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
   ]
   
   initialize: ->
+    if @get('main_tournament') and @get('results') is null
+      results = new Kipscore.Models.Results({ 'url': @resultsUrl(), 'admin': @get('admin') })
+      @set 'results', results
+    
     if @isNew()
       @initNew()
       context = this
@@ -128,10 +142,14 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
     return Math.floor(Math.log(this.get('bracket_size')) / Math.LN2)
     
   winnerMatch: (bracket_number) ->
+    if bracket_number == 1
+      return false
     bracket = this.get('bracket')
     bracket.at (Math.floor(bracket_number/2)-1)
   
   loserMatch: (bracket_number) ->
+    if bracket_number == 1
+      return false
     tournament = this.get('related_tournaments').at(this.columnNumber(bracket_number))
     bracket = tournament.get('bracket')
     bracket.at (Math.floor(bracket_number/2)-1)
@@ -163,9 +181,12 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
         data:
           json_bracket: JSON.stringify(@toJSON())
         complete:
-          @releaseSaving()
+          _.bind(@releaseSaving, this)
 #    else
 #      console.log "Not saving"
       
+  resultsUrl: ->
+    parts = window.location.pathname.split('/')
+    parts.slice(0,parts.length-1).join('/')+'/results'
       
 Kipscore.Models.Tournament.setup()
