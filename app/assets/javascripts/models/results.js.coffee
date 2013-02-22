@@ -23,9 +23,12 @@ class Kipscore.Models.Results extends Backbone.RelationalModel
     
     context = this  
     setTimeout((-> context.set('saving', false)), 1000)
-      
+  
   admin: -> 
-    @get('tournament').get('admin')
+    if @get('tournament') isnt null
+      @get('tournament').get('admin')
+    else
+      false
   
   setSaving: (ms=1000) ->
     unless @saving()
