@@ -96,6 +96,13 @@ p.tournament-description {
 // End show tournament part
 
 // Bracket part
+table.results {
+  margin-top: 20px;
+  width: 60%;
+  margin: 20px auto 0;
+}
+
+
 $playerHeight: 22px;
 $playerPadding: 3px;
 $totalPlayerHeight: $playerHeight + $playerPadding*2;

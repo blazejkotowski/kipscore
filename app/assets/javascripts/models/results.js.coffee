@@ -28,7 +28,6 @@ class Kipscore.Models.Results extends Backbone.RelationalModel
     @get('tournament').get('admin')
   
   setSaving: (ms=1000) ->
-    console.log "saving results"
     unless @saving()
       @blockSaving()
       context = this
@@ -45,6 +44,7 @@ class Kipscore.Models.Results extends Backbone.RelationalModel
     
   save: ->
     if @admin()
+      console.log "saving results"
       $.ajax
         type: 'put'
         url: @url
@@ -54,10 +54,11 @@ class Kipscore.Models.Results extends Backbone.RelationalModel
           _.bind(@releaseSaving,this)
   
   fillResults: ->
-    console.log @get('players')
     if @get('players').length > 0
       return false
-
+    
+    console.log "filling results"
+    
     players = @get('players')      
     n = @get('places_number')
         

@@ -50,6 +50,8 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
     if @get('main_tournament') and @get('results') is null
       results = new Kipscore.Models.Results({ 'url': @resultsUrl(), 'admin': @get('admin') })
       @set 'results', results
+      results_view = new Kipscore.Views.Results({ model: results })
+      $('#tournament-container').after(results_view.render()).after('<div class="clearfix"></div>')
     
     if @isNew()
       @initNew()
