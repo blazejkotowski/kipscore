@@ -153,7 +153,18 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
     tournament = this.get('related_tournaments').at(this.columnNumber(bracket_number))
     bracket = tournament.get('bracket')
     bracket.at (Math.floor(bracket_number/2)-1)
-    
+  
+  previousMatch: (bracket_number, number) ->
+    bracket = @get('bracket')
+    console.log "Tournament.previousMatch"
+    console.log "previous match #{bracket_number} (#{number})"
+    console.log "#{bracket_number*2}"
+    console.log bracket.at(bracket_number*2)
+    if number == 'first'
+      return bracket.at bracket_number*2
+    if number == 'second'
+      return bracket.at bracket_number*2-1
+  
   mainTournament: ->
     main_tournament = this
     while main_tournament.get('parent_tournament') isnt null

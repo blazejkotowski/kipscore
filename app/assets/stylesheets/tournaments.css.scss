@@ -211,6 +211,22 @@ $totalColumnWidth: $columnWidth + $columnMarginRight;
     display: none;
   }
   
+  .undo-links {
+    position: absolute;
+    top: 2px;
+    left: -10px;
+    width: 10px;
+    a {
+      display: inline-block;
+      height: $totalPlayerHeight;
+      &:hover {
+        text-decoration: none;
+      }
+      width: 10px;
+    }
+    display: none;
+  }
+  
   
   .player {
     height: $playerHeight;
@@ -285,6 +301,9 @@ $totalColumnWidth: $columnWidth + $columnMarginRight;
   .match.active,
   .match:hover {
     .proceed-button {
+      display: block;
+    }
+    .undo-links {
       display: block;
     }
     .new {

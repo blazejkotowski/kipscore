@@ -108,8 +108,14 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
     @trigger "to_save"
     
     return true
-    
-    
+  
+  previousMatch: (player) ->
+    if player == 1
+      @index()*2
+    else if player == 2
+      @index()*2
+    false
+        
   addScores: (p1,p2) ->
     @get('scores').push([parseInt(p1),parseInt(p2)])
     @trigger "to_save"
@@ -132,13 +138,17 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
     
   empty: ->
     return (@get('player1').empty() && @get('player2').empty())
-    
-    
+  
   winnerMatch: ->
     @collection.tournament.winnerMatch(@index())
     
   loserMatch: ->
     @collection.tournament.loserMatch(@index())
+    
+  previousMatch: (player) ->
+    number = 'first'
+    number = 'second' if player == 2
+    @collection.tournament.previousMatch(@index(), number)
     
   index: ->
     try

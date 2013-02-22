@@ -22,6 +22,8 @@ class Kipscore.Views.Match extends Backbone.View
     'click a.proceed': 'proceedMatch'
     'focus input': -> @$el.addClass "active"
     'blur input': -> @$el.removeClass "active"
+    'click .undo-first': 'undoPlayer1'
+    'click .undo-second': 'undoPlayer2'
   
   newScore: (event) ->
     event.preventDefault()
@@ -58,6 +60,29 @@ class Kipscore.Views.Match extends Backbone.View
       if event isnt undefined
         alert "It's draw!"
         false
+        
+  undoPlayer1: (e) ->
+    e.preventDefault()
+    prev_match = @model.previousMatch(1)
+    @undoMatch(prev_match)
+    @model.set 'player1', new Kipscore.Models.Player()
+    
+  undoPlayer2: (e) ->
+    e.preventDefault()
+    prev_match = @model.previousMatch(2)
+    @undoMatch(prev_match)
+    @model.set 'player2', new Kipscore.Models.Player()
+    
+  undoMatch: (prev_match) ->
+    prev_match.set('scores', new Array())
+    prev_match.set('winner', null)
+    prev_match.set('loser', null)
+    prev_match.set('finished', false)
+    @model.set('finished', false)
+    @model.set('scores', new Array())
+    
+    console.log "prev_match", prev_match
+    console.log "current_match", @model
   
   setClass: ->
     cname = 'match'
@@ -92,6 +117,12 @@ class Kipscore.Views.Match extends Backbone.View
       proceed_link = $("<a/>").addClass("proceed").attr("href", "#").append($("<i/>").addClass("icon-chevron-right"))
       proceed_button = $("<div/>").addClass("proceed-button").append(proceed_link)    
       @$el.append(proceed_button)
+    
+    unless @model.get('finished') or not admin
+      undo_links = $('<div/>').addClass('undo-links')
+      undo_link_p1 = $('<a/>').addClass('undo-first').attr('href','#').append($("<i/>").addClass("icon-chevron-left")).appendTo(undo_links)
+      undo_link_p2 = $('<a/>').addClass('undo-second').attr('href','#').append($("<i/>").addClass("icon-chevron-left")).appendTo(undo_links)
+      @$el.append(undo_links)
     
     this
     
