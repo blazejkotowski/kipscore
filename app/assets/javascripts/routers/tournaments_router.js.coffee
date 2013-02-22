@@ -16,6 +16,8 @@ class Kipscore.Routers.Tournaments extends Backbone.Router
     # Displaying bracket
     tournament_view = new Kipscore.Views.Tournament({ model: @tournament })
     tournament_view.render()
+    results_view = new Kipscore.Views.Results({ model: @tournament.get('results') })
+    $('#tournament-container').after(results_view.render().el).after('<div class="clearfix"></div>')
   
   initTournament: ->
     #console.log "New tournament"
