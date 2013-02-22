@@ -78,9 +78,19 @@ class Kipscore.Views.Match extends Backbone.View
     prev_match.set('winner', null)
     prev_match.set('loser', null)
     prev_match.set('finished', false)
+    
+    loser_match = prev_match.loserMatch()
+    loser_match.set('scores', new Array())
+    if prev_match.index()%2
+      loser_match.set('player1', new Kipscore.Models.Player())
+    else
+      loser_match.set('player2', new Kipscore.Models.Player())
+    loser_match.set('finished', false)
+    
     @model.set('finished', false)
     @model.set('scores', new Array())
     
+    console.log "loser_match", loser_match
     console.log "prev_match", prev_match
     console.log "current_match", @model
   
