@@ -24,6 +24,7 @@ class Tournament < ActiveRecord::Base
 
   has_one :tournament_form, :dependent => :destroy
   accepts_nested_attributes_for :tournament_form
+  
   attr_accessible :tournament_form_attributes
   
   has_many :player_associations, :dependent => :delete_all
@@ -48,7 +49,6 @@ class Tournament < ActiveRecord::Base
   
   before_create :create_tournament_form
   
-  default_scope order('start_date')
   scope :with_form, includes(:tournament_form)
   
   def bracket(admin=false)

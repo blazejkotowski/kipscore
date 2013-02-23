@@ -2,8 +2,8 @@
   = f.input :name, :disabled => (@tournament.active? ? true : nil), :label => I18n.t("custom_translations.name", :default => "name").capitalize
   = f.input :start_date, :required => true, :label => I18n.t("custom_translations.start date", :default => "start date").capitalize do
     - @date = @tournament.start_date.nil?? DateTime.now : @tournament.start_date
-    = text_field_tag :start_date_date, @date.strftime("%Y-%m-%d"), :class => 'datepicker input-small', :disabled => (@tournament.active? ? true : nil)
-    = text_field_tag :start_date_time, @date.strftime("%H:%M"), :class => 'timepicker input-small', :disabled => (@tournament.active? ? true : nil)
+    = text_field_tag :start_date_date, @date.strftime("%Y-%m-%d"), :class => 'datepicker-dynamic input-small', :disabled => (@tournament.active? ? true : nil)
+    = text_field_tag :start_date_time, @date.strftime("%H:%M"), :class => 'timepicker-dynamic input-small', :disabled => (@tournament.active? ? true : nil)
   = f.input :description, :disabled => (@tournament.active? ? true : nil), :label => I18n.t("custom_translations.description", :default => "description").capitalize
   = f.input :open, :label => I18n.t("custom_translations.is open", :default => "is open").capitalize + "?"
   - if @tournament.tournament_form.present?
@@ -40,5 +40,5 @@
         = link_to I18n.t("custom_translations.delete", :default => 'delete').capitalize, tournament_path(@tournament), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'    
     
 %script
-  $('.datepicker').datepicker({format: 'yyyy-mm-dd', autoclose: true});
-  $('.timepicker').timepicker({showMeridian: false, defaultTime: 'value', showInputs: true });
+  $('.datepicker-dynamic').datepicker({format: 'yyyy-mm-dd', autoclose: true});
+  $('.timepicker-dynamic').timepicker({showMeridian: false, defaultTime: 'value', showInputs: true });

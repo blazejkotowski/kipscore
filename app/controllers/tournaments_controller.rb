@@ -8,7 +8,8 @@ class TournamentsController < ApplicationController
   # GET /tournaments
   # GET /tournaments.json
   def index
-    @tournaments = Tournament.all
+    @search = Tournament.search(params[:q])
+    @tournaments = @search.result
     @footer_bar = true
     
     respond_to do |format|

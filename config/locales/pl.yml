@@ -87,6 +87,14 @@ pl:
     
     "signup blocked": "Niestety, w wersji beta możliwość rejestracji została zablokowana"
     "facebook teaser": "Nie chcesz przegapić żadnego turnieju?<br>Polub nas na Facebooku!"
+    
+    "no tournaments": "Nie znaleziono żadnych turniejów."
+    
+    from: "od"
+    to: "do"
+    search: "szukaj"
+    "only not started": "tylko niewystartowane"
+    "only started": "tylko trwające"
   
   valid_email:
     validations:

@@ -24,3 +24,5 @@ jQuery ->
   
   $("#home-teaser a.about-us").on "click", ->
     $("a.about-us").each (index, obj) ->  $(obj).addClass("active")      
+  
+  $('.datepicker').datepicker({format: 'yyyy-mm-dd', autoclose: true})
