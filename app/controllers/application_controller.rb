@@ -1,7 +1,6 @@
 class ApplicationController < ActionController::Base
   
-  before_filter :set_locale, :set_mailer_host
-  before_filter :set_mailer_host
+  before_filter :set_locale, :set_mailer_host, :set_body_class
   
   # Always come back after login
   before_filter do
@@ -26,6 +25,14 @@ class ApplicationController < ActionController::Base
     
     def set_mailer_host
       ActionMailer::Base.default_url_options[:host] = request.host_with_port
+    end
+    
+    def set_body_class 
+      @body_class = ''
+      @body_class += "bracket " if params[:action] == "bracket"
+      @body_class += "static " if ['static_pages', 'sessions'].include? params[:controller]
+      @body_class += "with-bar" if @footer_bar.present?
+      @body_class = nil if @body_class.empty?
     end
   
 end

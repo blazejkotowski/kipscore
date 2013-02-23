@@ -9,3 +9,5 @@
     = I18n.t("static_pages.player_content").html_safe
   .span6
     #home-signup= render 'users/signup_form',  :signup_page => false
+    #like-button 
+      = render "shared/facebook_like_button"

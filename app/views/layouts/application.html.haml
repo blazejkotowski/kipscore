@@ -10,14 +10,10 @@
     %meta{ :property=>"fb:app_id", :content => Settings.facebook_app_id }
     = yield :meta_tags
 
-  - body_class = ''
-  - body_class += "bracket " if params[:action] == "bracket"
-  - body_class += "static " if ['static_pages', 'sessions'].include? params[:controller]
-  - body_class += "with-bar" if @footer_bar.present?
-  %body{ :class => body_class }
+  %body{ :class => @body_class }
     - if Rails.env.production?
       = render "shared/google_analytics"
-    - if Rails.env.staging? || Rails.env.production?
+    - if Rails.env.staging? || Rails.env.production? || Rails.env.development?
       = render "shared/facebook_connect"
     #bg-container.container
     :javascript
