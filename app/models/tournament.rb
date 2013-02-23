@@ -48,6 +48,7 @@ class Tournament < ActiveRecord::Base
   
   before_create :create_tournament_form
   
+  default_scope order('start_date')
   scope :with_form, includes(:tournament_form)
   
   def bracket(admin=false)

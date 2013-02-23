@@ -1,6 +1,10 @@
 - provide :title, I18n.t("custom_translations.tournaments", :default => "turnieje").capitalize
 
 - model_class = Tournament
+#facebook-like-top
+  .facebook-teaser
+    = I18n.t("custom_translations.facebook teaser").html_safe
+  = render "shared/facebook_like_button"
 .page-header
   %h1= I18n.t("custom_translations.tournaments", :default => "tournaments").capitalize
 %table.table.table-striped

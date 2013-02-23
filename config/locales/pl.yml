@@ -86,6 +86,7 @@ pl:
     observer: "obserwator"
     
     "signup blocked": "Niestety, w wersji beta możliwość rejestracji została zablokowana"
+    "facebook teaser": "Nie chcesz przegapić żadnego turnieju?<br>Polub nas na Facebooku!"
   
   valid_email:
     validations:

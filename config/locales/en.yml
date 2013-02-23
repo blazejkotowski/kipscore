@@ -2,6 +2,7 @@ en:
   custom_translations:
     "email not valid": "Email address you have entered is not valid."
     "hello": "hello"
+    "facebook teaser": "Don't want to miss any tournament?<br>Like us on facebook!"
     
   mail:
     tournament_congratulations: "Congratulations! Organizer of <strong>%{tournament_name}</strong> has just added you to start list.<br>Have a good luck!"
