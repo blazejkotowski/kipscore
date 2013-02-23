@@ -27,7 +27,7 @@
       %tr
         %th= sort_link @search, :name, I18n.t("custom_translations.name", :default => "name").capitalize
         %th= sort_link @search, :start_date, I18n.t("custom_translations.start date", :default => "start date").capitalize
-        %th= sort_link @search, :active, I18n.t("custom_translations.active", :default => "active").capitalize
+        %th= sort_link @search, :active, I18n.t("custom_translations.started", :default => "started").capitalize
         %th= I18n.t("custom_translations.actions", :default => "actions").capitalize
     %tbody
       - @tournaments.each do |tournament|

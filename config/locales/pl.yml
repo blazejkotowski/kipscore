@@ -37,8 +37,8 @@ pl:
     "update": "akutalizuj"
     "create": "stwórz"
     "go to bracket": "przejdź do drabinki"
-    "activate": "aktywuj"
-    "deactivate": "dezaktywuj"
+    "activate": "startuj"
+    "deactivate": "zatrzymaj"
     "delete": "usuń"
     "show players": "pokaż zawodników"
     "manage players": "zarzadzaj zawodnikami"
@@ -95,6 +95,7 @@ pl:
     search: "szukaj"
     "only not started": "tylko niewystartowane"
     "only started": "tylko trwające"
+    "started": "trwa"
   
   valid_email:
     validations:

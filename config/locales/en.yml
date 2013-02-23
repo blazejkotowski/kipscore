@@ -4,6 +4,8 @@ en:
     "hello": "hello"
     "facebook teaser": "Don't want to miss any tournament?<br>Like us on facebook!"
     "no tournaments": "There are no tournaments for your search terms."
+    "activate": "start"
+    "deactivate": "stop"
     
   mail:
     tournament_congratulations: "Congratulations! Organizer of <strong>%{tournament_name}</strong> has just added you to start list.<br>Have a good luck!"
