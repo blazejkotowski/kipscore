@@ -62,6 +62,9 @@
       #push-footer 
          
     %footer
+      - if params[:action] == 'home'
+        #like-button-home
+          = render "shared/facebook_like_button"
       - if @footer_bar.present?
         = render "static_pages/bar"
       .navbar.navbar-inverse
