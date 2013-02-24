@@ -63,8 +63,49 @@
   margin-right: 4px;
 }
 
-#players-modal {
+#players-modal, #bracket-modal {
   color: #333 !important;
+}
+
+#bracket-modal {
+  ol li:nth-child(even) {
+    margin-bottom: 10px;
+  }
+  .player {
+    cursor: pointer; 
+  }
+  margin: 0;
+  top: 10px;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  width: auto;
+  .modal-body {
+    -moz-column-count: 4;
+    -moz-column-gap: 20px;
+    -webkit-column-count: 4;
+    -webkit-column-gap: 20px;
+    column-count: 4;
+    column-gap: 20px;
+    max-height: inherit;
+    height: auto;
+    position: absolute;
+    top: 0;
+    bottom: 60px;
+    left: 0;
+    right: 0;
+    ol, ul {
+      max-height: 90%;
+    }
+  }
+  .modal-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    max-height: 40px;
+  }
 }
 
 #tournament-part {

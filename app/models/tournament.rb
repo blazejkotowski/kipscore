@@ -64,10 +64,24 @@ class Tournament < ActiveRecord::Base
       in json format. Bye are signed by nil
     """
     
-    if json_bracket.present? && active?
-      return (JSON.parse(json_bracket).merge({:admin=>admin, :new => false })).to_json
+    if json_bracket.present?
+      return (JSON.parse(json_bracket).merge({ :admin=>admin })).to_json
     end
-
+    
+    # Get random bracket
+    start_hash_list = generate_bracket
+    
+    json_list = json_bracket_from_players(start_hash_list)
+    update_attribute :json_bracket, json_list if active
+    json_list.merge({:admin => admin, :new => true})
+  end
+  
+  def random_bracket
+    start_hash_list = generate_bracket
+    json_bracket_from_players(start_hash_list)
+  end
+  
+  def generate_bracket
     # list of players sorted by rank
     list = players.confirmed.best
     iter = list.size
@@ -90,6 +104,7 @@ class Tournament < ActiveRecord::Base
     start_list = [-1]*bracket_size
     start_hash_list = []
     
+    first_in_group = 1
     groups.each_with_index do |group, index|
       group.shuffle! unless index == 0
       # For each position in shuffled group
@@ -99,34 +114,27 @@ class Tournament < ActiveRecord::Base
         if start_list[number] == -1
           player = list.pop
           start_list[number] = player
-          start_hash_list.append( { :start_position => number, :name => player.name, :rank => player.rank, :empty => false} )
+          start_hash_list.append( { :start_position => number, :name => player.name, :rank => player.rank, :empty => false, :label => "#{first_in_group}-#{first_in_group+group.size-1}", :label_id => index } )
           
           # If there is free bye, give it to current player
           if byes_number > 0
             if number % 2 == 0
               start_list[number + 1] = nil
-              start_hash_list.append( { :start_position => number + 1, :empty => false, :name => 'bye', :bye => true} )
+              start_hash_list.append( { :start_position => number + 1, :empty => false, :name => 'bye', :bye => true } )
             else
               start_list[number - 1] = nil
-              start_hash_list.append( { :start_position => number - 1, :empty => false, :name => 'bye', :bye => true} )
+              start_hash_list.append( { :start_position => number - 1, :empty => false, :name => 'bye', :bye => true } )
             end
             byes_number -= 1
           end
           
         end
-        
       end
+      first_in_group += group.size
       
     end
     
     start_hash_list.sort! { |a,b| a[:start_position] <=> b[:start_position] }
-    json_list = { :players => start_hash_list }
-    
-    update_attribute :json_bracket, json_list.to_json if active
-
-    json_list.merge({:admin => admin, :new => true})
-    
-    
   end
   
   def active?
@@ -173,6 +181,10 @@ class Tournament < ActiveRecord::Base
     def create_tournament_form
       build_tournament_form
       true
+    end
+    
+    def json_bracket_from_players(start_list)
+      { :players => start_list }
     end
   
 end

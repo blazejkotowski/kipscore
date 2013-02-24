@@ -23,6 +23,16 @@
         %h3= I18n.t("custom_translations.players", :default => "players").capitalize
       = render 'players_list', :edit => true
 
+#bracket-modal.modal.hide.fade{ :tabindex => -1, :role => 'dialog', "aria-labelledby" => "bracket-modal-label", "aria-hidden" => true }
+  :javascript
+    window.Kipscore.playersInitialize()
+  .modal-body
+  .modal-footer
+    = link_to I18n.t("custom_translations.randomize", :default => "randomize").capitalize, "#", :remote => true, :class => 'btn randomize' 
+    = link_to I18n.t("custom_translations.save", :default => 'save').capitalize, "#", :remote => true, :class => 'btn btn-success save'
+    %button.btn{ 'data-dismiss' => 'modal', 'aria-hidden' => true }
+      = I18n.t("custom_translations.close", :default => "close").capitalize
+
 - if request.xhr?
   #players-modal.modal.hide.fade{ :tabindex => -1, :role => 'dialog', 'aria-labelledby' => 'players-modal-label', 'aria-hidden' => true }
     .modal-body

@@ -1,0 +1,8 @@
+<% if @empty: %>
+  Empty
+<% else: %>
+  <% if @label && !@bye: %>
+    <span class="group-label"><%= "#{@label}" %></span>
+  <% end %>
+  <%= @name %>
+<% end %>

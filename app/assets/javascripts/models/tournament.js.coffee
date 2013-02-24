@@ -106,9 +106,10 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
   setSaving: (ms=1000) ->
     #console.log "trying to save"
     unless @saving()
-      @blockSaving()
-      context = this
-      setTimeout((-> Window.tournament.save()), ms)
+      if @get('main_tournament') and @get('admin')
+        @blockSaving()
+        context = this
+        setTimeout((-> Window.tournament.save()), ms)
   
   # Creates losers tournaments
   createRelatedTournaments: ->
@@ -183,19 +184,29 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
   isNew: ->
     @get('new')
     
-  save: ->
-    if @get('main_tournament') and @get('admin')
-      #console.log "saving"
-      $.ajax
-        type: 'put'
-        url: @url
-        data:
-          json_bracket: JSON.stringify(@toJSON())
-        complete:
-          _.bind(@releaseSaving, this)
+  save: (callback) ->
+    #console.log "saving"
+    if callback is undefined
+      callback = @releaseSaving
+    $.ajax
+      type: 'put'
+      url: @url
+      data:
+        json_bracket: JSON.stringify(@toJSON())
+      complete:
+        _.bind(callback, this)
 #    else
 #      console.log "Not saving"
-      
+  
+  savePlayers: (callback) ->
+    $.ajax
+      type: 'put'
+      url: @url
+      data:
+        json_bracket: JSON.stringify({players: @get('players').toJSON(), 'new': true})
+      complete:
+        _.bind(callback, this)
+  
   resultsUrl: ->
     parts = window.location.pathname.split('/')
     parts.slice(0,parts.length-1).join('/')+'/results'

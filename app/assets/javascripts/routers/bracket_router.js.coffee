@@ -1,4 +1,4 @@
-class Kipscore.Routers.Tournaments extends Backbone.Router
+class Kipscore.Routers.Bracket extends Backbone.Router
   routes:
     '': 'index'
       
@@ -20,7 +20,7 @@ class Kipscore.Routers.Tournaments extends Backbone.Router
     $('#tournament-container').after(results_view.render().el).after('<div class="clearfix"></div>')
   
   initTournament: ->
-    #console.log "New tournament"
+    console.log "New tournament"
     @players = @tournament.get('players')
     matches = new Kipscore.Collections.Matches()
     i = 0

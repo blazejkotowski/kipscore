@@ -86,35 +86,32 @@ class TournamentsController < ApplicationController
     
     admin = true if @tournament.user == current_user
     
-    if @tournament.active?
-      @manage = true if admin
-    else
-      notice = I18n.t("custom_translations.tournament is not active yet", :default => "tournament is not active yet").capitalize + "!"
-      flash_major_notice_now notice
-    end
+    @manage = true if admin
     
     respond_to do |format|
-      format.html
-      format.json { render json: @tournament.bracket(@manage || false) }
+      format.html { redirect_to @tournament, :notice => "Tournament is not active yet" unless @tournament.active?  }
+      format.json do 
+        if params[:random].present?
+          render json: @tournament.random_bracket
+        else
+          render json: @tournament.bracket(@manage || false)
+        end
+      end
     end
   end
   
   def bracket_update
     @tournament = Tournament.find(params[:tournament_id])
     
-    # Update only if user is owner and tournament is activated
-    unless @tournament.user == current_user && @tournament.active?
+    # Update only if user is owner
+    unless @tournament.user == current_user
       return render :json => { :updated => false, :error => "You can't update this tournament"}
     end
       
-    if @tournament.active
-      if @tournament.update_attribute :json_bracket, params[:json_bracket]
-        response = { :updated => true }
-      else
-        response = { :updated => false }
-      end
+    if @tournament.update_attribute :json_bracket, params[:json_bracket]
+      response = { :updated => true }
     else
-      response = { :updated => false, :error => 'Tournament not active' }
+      response = { :updated => false }
     end
     
     render :json => response.to_json

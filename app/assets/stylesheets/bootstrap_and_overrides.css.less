@@ -274,6 +274,42 @@ tr.info > td {
   }
 }
 
+#bracket-modal {
+  .player {
+    width: 180px;
+    font-size: 0.9em;
+    .border-radius(5px);
+    padding: 2px;
+    margin-top: 2px;
+    margin-bottom: 2px;
+    &.group0 {
+      background-color: lighten(@blue, 50%);
+    }
+    &.group1 {
+      background-color: lighten(@blue, 20%);
+    }
+    &.group2 {
+      background-color: @blue;
+    }
+    &.group3 {
+      background-color: @kipscoreColor;
+    }
+    &.group4 {
+      background-color: lighten(@kipscoreColor, 50%);
+    }
+    &.group5 {
+      background-color: lighten(@kipscoreColor, 20%);
+    }
+    
+    .group-label {
+      display: inline-block;
+      .border-radius(3px);
+      border: 1px solid #666;
+      padding: 0 2px;
+    }    
+  }
+}
+
 body.bracket {
   .container {
     min-width: 90%;

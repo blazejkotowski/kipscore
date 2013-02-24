@@ -49,6 +49,15 @@ jQuery ->
   
   changeTournament()
   
+  $("body").on "click", "#bracket-modal .randomize", (event) ->
+    event.preventDefault()
+    window.Kipscore.playersInitialize(true) # random bracket
+    
+  $("body").on "click", "#bracket-modal .save", (event) ->
+    event.preventDefault()
+    window.tournament.savePlayers -> 
+      alert ("saved!")
+  
   $("body").on "ajax:success", "form#add-player", (event, data) ->
     if data.created
       player = data.player
