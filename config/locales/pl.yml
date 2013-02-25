@@ -39,6 +39,9 @@ pl:
     "go to bracket": "przejdź do drabinki"
     "activate": "startuj"
     "deactivate": "zatrzymaj"
+    "start": "rozpocznij"
+    "break": "przerwij"
+    "finish": "zakończ"
     "delete": "usuń"
     "show players": "pokaż zawodników"
     "manage players": "zarzadzaj zawodnikami"
@@ -96,6 +99,18 @@ pl:
     "only not started": "tylko niewystartowane"
     "only started": "tylko trwające"
     "started": "trwa"
+    
+    "You can't delete finsihed tournament": "Nie możesz usunąć zakończonego turnieju"
+    "This tournament is already finished": "Ten turniej jest już zakończony"
+    "Successfully finished tournament": "Zakończono turniej poprawnie"
+    "This tournament is not even started": "Turniej nie jest nawet rozpoczęty"
+    "Tournament is not started yet": "Turniej nie jest jeszcze rozpoczęty"
+    "set bracket": "ustaw drabinkę"
+    "randomize": "losuj"
+    "save": "zapisz"
+    "search": "szukaj"
+    "only started": "tylko trwające"
+    "more": "więcej"
   
   valid_email:
     validations:

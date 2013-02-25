@@ -6,6 +6,11 @@ en:
     "no tournaments": "There are no tournaments for your search terms."
     "activate": "start"
     "deactivate": "stop"
+    "You can't delete finsihed tournament": "You can't delete finsihed tournament"
+    "This tournament is already finished": "This tournament is already finished"
+    "Successfully finished tournament": "Successfully finished tournament"
+    "This tournament is not even started": "This tournament is not even started"
+    "Tournament is not started yet": "Tournament is not started yet"
     
   mail:
     tournament_congratulations: "Congratulations! Organizer of <strong>%{tournament_name}</strong> has just added you to start list.<br>Have a good luck!"

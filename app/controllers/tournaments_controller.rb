@@ -8,6 +8,10 @@ class TournamentsController < ApplicationController
   # GET /tournaments
   # GET /tournaments.json
   def index
+    if params[:state_started] == '1'
+      params[:q] = { :state_eq => 'started' }.merge(params[:q])
+    end
+        
     @search = Tournament.search(params[:q])
     @tournaments = @search.result
     @footer_bar = true
@@ -70,7 +74,7 @@ class TournamentsController < ApplicationController
   # DELETE /tournaments/1
   def destroy
     if @tournament.finished?
-      redirect_to tournaments_user_url(:anchor => "tid=#{@tournament.id}"), :notice => "You can't delete finsihed tournament"
+      redirect_to tournaments_user_url(:anchor => "tid=#{@tournament.id}"), :notice => I18n.t("custom_translations.You can't delete finsihed tournament")
     else
       @tournament.destroy
     end
@@ -85,15 +89,15 @@ class TournamentsController < ApplicationController
       @tournament.stop    
       @tournament.update_attributes :json_bracket => nil, :json_results => nil
     else
-      notice = "This tournament is already finished"
+      notice = I18n.t("custom_translations.This tournament is already finished")
     end
     redirect_to tournaments_user_url(:anchor => "tid=#{@tournament.id}"), :notice => notice
   end
   
   def finish
-    notice = "Successfully finished tournament"
+    notice = I18n.t("custom_translations.Successfully finished tournament")
     unless @tournament.finish
-      notice = "This tournament is not even started"
+      notice = I18n.t("custom_translations.This tournament is not even started")
     end
     redirect_to tournaments_user_url(:anchor => "tid=#{@tournament.id}"), :notice => notice
   end
@@ -106,7 +110,7 @@ class TournamentsController < ApplicationController
     @manage = true if admin
     
     respond_to do |format|
-      format.html { redirect_to @tournament, :notice => "Tournament is not started yet" unless @tournament.started? || @tournament.finished?  }
+      format.html { redirect_to @tournament, :notice => I18n.t("custom_translations.Tournament is not started yet") unless @tournament.started? || @tournament.finished?  }
       format.json do 
         if params[:random].present?
           render json: @tournament.random_bracket
