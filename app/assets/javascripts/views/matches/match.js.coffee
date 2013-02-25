@@ -63,37 +63,12 @@ class Kipscore.Views.Match extends Backbone.View
         
   undoPlayer1: (e) ->
     e.preventDefault()
-    prev_match = @model.previousMatch(1)
-    @undoMatch(prev_match)
-    @model.set 'player1', new Kipscore.Models.Player()
+    @model.undoPlayer(1)
     
   undoPlayer2: (e) ->
     e.preventDefault()
-    prev_match = @model.previousMatch(2)
-    @undoMatch(prev_match)
-    @model.set 'player2', new Kipscore.Models.Player()
-    
-  undoMatch: (prev_match) ->
-    prev_match.set('scores', new Array())
-    prev_match.set('winner', null)
-    prev_match.set('loser', null)
-    prev_match.set('finished', false)
-    
-    loser_match = prev_match.loserMatch()
-    loser_match.set('scores', new Array())
-    if prev_match.index()%2
-      loser_match.set('player1', new Kipscore.Models.Player())
-    else
-      loser_match.set('player2', new Kipscore.Models.Player())
-    loser_match.set('finished', false)
-    
-    @model.set('finished', false)
-    @model.set('scores', new Array())
-    
-    console.log "loser_match", loser_match
-    console.log "prev_match", prev_match
-    console.log "current_match", @model
-  
+    @model.undoPlayer(2)
+      
   setClass: ->
     cname = 'match'
     if @model.empty()

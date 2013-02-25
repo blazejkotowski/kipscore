@@ -47,7 +47,6 @@ class Kipscore.Models.Results extends Backbone.RelationalModel
     
   save: ->
     if @admin()
-      console.log "saving results"
       $.ajax
         type: 'put'
         url: @url
@@ -59,8 +58,6 @@ class Kipscore.Models.Results extends Backbone.RelationalModel
   fillResults: ->
     if @get('players').length > 0
       return false
-    
-    console.log "filling results"
     
     players = @get('players')      
     n = @get('places_number')
