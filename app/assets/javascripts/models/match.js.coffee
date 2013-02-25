@@ -47,7 +47,7 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
         @collection.tournament.trigger "to_save"
     
   pickWinner: ->
-    # Not pickd if match not ready
+    # Not picked if match not ready
     unless @ready() && @collection.tournament.mainTournament().get('admin')
       return false
       

@@ -1,3 +1,5 @@
+- provide :title, "#{@tournament.name} - " + I18n.t("custom_translations.bracket", :default => 'bracket').capitalize
+
 .row-fluid
   .span12
     %ul.breadcrumb
