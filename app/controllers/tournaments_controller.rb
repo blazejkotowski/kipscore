@@ -106,9 +106,7 @@ class TournamentsController < ApplicationController
   def bracket
     @tournament = Tournament.find(params[:tournament_id])
     
-    admin = true if @tournament.user == current_user
-    
-    @manage = true if admin
+    @manage = true if @tournament.user == current_user && @tournament.started?
     
     respond_to do |format|
       format.html { redirect_to @tournament, :notice => I18n.t("custom_translations.Tournament is not started yet") unless @tournament.started? || @tournament.finished?  }
