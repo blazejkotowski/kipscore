@@ -29,7 +29,8 @@
     - if request[:action] == 'edit'
       - if @tournament.created?
         = link_to I18n.t("custom_translations.set bracket", :default => 'set bracket').capitalize, '#bracket-modal', :data => { :toggle => 'modal' }, :role => 'button', :class => 'btn btn-modal'
-      = link_to I18n.t("custom_translations.go to bracket", :default => 'go to bracket').capitalize, tournament_bracket_path(@tournament), :class => 'btn'
+      - unless @tournament.created?
+        = link_to I18n.t("custom_translations.go to bracket", :default => 'go to bracket').capitalize, tournament_bracket_path(@tournament), :class => 'btn'
     .margin-top
       - if @tournament.created?
         = f.button :submit, request[:action] == 'edit' ? I18n.t("custom_translations.update", :default => 'update').capitalize : I18n.t("custom_translations.create", :default => 'create').capitalize, :class => 'btn'
