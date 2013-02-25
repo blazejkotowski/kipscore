@@ -1,5 +1,5 @@
 - edit ||= false
-- edit = false if @tournament.active
+- edit = false unless @tournament.created?
 
 - if edit
   = form_tag tournament_players_path(@tournament), :method => 'post', :id => 'add-player', :remote => true do

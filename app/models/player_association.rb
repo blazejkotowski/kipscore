@@ -34,7 +34,7 @@ class PlayerAssociation < ActiveRecord::Base
     
     state :active
     state :inactive
-    state :confirmed    
+    state :confirmed
   end
   
   

@@ -23,7 +23,8 @@ Kipscore::Application.routes.draw do
   match '/observer' => 'static_pages#observer', :as => 'observer'
   
   resources :tournaments do
-    put 'activate', :on => :member
+    put 'start', :on => :member
+    put 'finish', :on => :member
     match 'bracket' => 'tournaments#bracket', :via => :get
     match 'bracket' => 'tournaments#bracket_update', :via => :put
     match 'results' => 'tournaments#results', :via => :get

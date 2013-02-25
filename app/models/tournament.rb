@@ -18,7 +18,7 @@ class Tournament < ActiveRecord::Base
   
   friendly_id :name, :use => :slugged
   
-  attr_accessible :active, :name, :start_date, :description, :json_bracket, :open, :json_results
+  attr_accessible :state, :name, :start_date, :description, :json_bracket, :open, :json_results
   
   belongs_to :user
 
@@ -51,6 +51,29 @@ class Tournament < ActiveRecord::Base
   
   scope :with_form, includes(:tournament_form)
   
+  scope :finished, -> {with_state(:finished)}
+  scope :started, -> {with_state(:started)}
+  scope :created, -> {with_state(:created)}
+  
+  state_machine :initial => :created do
+    event :start do
+      transition :created => :started
+    end
+    
+    event :finish do
+      transition :started => :finished
+    end
+    
+    event :stop do
+      transition :started => :created
+    end
+    
+    state :created
+    state :started
+    state :finished
+  end  
+    
+  
   def bracket(admin=false)
     """
     If json_bracket is not defined
@@ -72,7 +95,7 @@ class Tournament < ActiveRecord::Base
     start_hash_list = generate_bracket
     
     json_list = json_bracket_from_players(start_hash_list)
-    update_attribute :json_bracket, json_list if active
+    update_attribute :json_bracket, json_list if started?
     json_list.merge({:admin => admin, :new => true})
   end
   
@@ -137,12 +160,8 @@ class Tournament < ActiveRecord::Base
     start_hash_list.sort! { |a,b| a[:start_position] <=> b[:start_position] }
   end
   
-  def active?
-    self.active
-  end 
-  
   def joinable?
-    !self.active && self.open
+    !self.started? && !self.finished? && self.open
   end
   
   def results

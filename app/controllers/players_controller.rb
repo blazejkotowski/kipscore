@@ -90,7 +90,7 @@ class PlayersController < ApplicationController
     end
     
     def not_active
-      if @tournament.active
+      unless @tournament.created?
         @result = { :error => 'Tournament active' }
         if request.xhr?
           render_result

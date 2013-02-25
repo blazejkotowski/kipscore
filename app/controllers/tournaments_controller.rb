@@ -2,7 +2,7 @@ class TournamentsController < ApplicationController
   include TournamentsHelper
   
   before_filter :signed_in_user, :only => [:new, :create]
-  before_filter :correct_user, :only => [:edit, :update, :destroy, :activate]
+  before_filter :correct_user, :only => [:edit, :update, :destroy, :start, :finish]
   before_filter :get_tournament, :only => [:results, :results_update]
   before_filter :concatenate_datetime, :only => [:create, :update]
   # GET /tournaments
@@ -57,7 +57,7 @@ class TournamentsController < ApplicationController
 
   # PUT /tournaments/1
   def update
-    if @tournament.active?
+    unless @tournament.created?
       return redirect_to(tournaments_user_path(:anchor => "tid=#{@tournament.id}"), :notice => I18n.t("custom_translations.you are unable to edit active tournament", :default => "you are unable to edit active tournament.").capitalize)
     end
     if @tournament.update_attributes(params[:tournament])
@@ -69,16 +69,33 @@ class TournamentsController < ApplicationController
 
   # DELETE /tournaments/1
   def destroy
-    @tournament.destroy
+    if @tournament.finished?
+      redirect_to tournaments_user_url(:anchor => "tid=#{@tournament.id}"), :notice => "You can't delete finsihed tournament"
+    else
+      @tournament.destroy
+    end
     redirect_to tournaments_user_url
   end
   
-  def activate
-    @tournament.toggle! :active
-    unless @tournament.active?
+  def start
+    notice = nil
+    if @tournament.created?
+      @tournament.start
+    elsif @tournament.started?
+      @tournament.stop    
       @tournament.update_attributes :json_bracket => nil, :json_results => nil
+    else
+      notice = "This tournament is already finished"
     end
-    redirect_to tournaments_user_url(:anchor => "tid=#{@tournament.id}")
+    redirect_to tournaments_user_url(:anchor => "tid=#{@tournament.id}"), :notice => notice
+  end
+  
+  def finish
+    notice = "Successfully finished tournament"
+    unless @tournament.finish
+      notice = "This tournament is not even started"
+    end
+    redirect_to tournaments_user_url(:anchor => "tid=#{@tournament.id}"), :notice => notice
   end
   
   def bracket
@@ -89,7 +106,7 @@ class TournamentsController < ApplicationController
     @manage = true if admin
     
     respond_to do |format|
-      format.html { redirect_to @tournament, :notice => "Tournament is not active yet" unless @tournament.active?  }
+      format.html { redirect_to @tournament, :notice => "Tournament is not started yet" unless @tournament.started? || @tournament.finished?  }
       format.json do 
         if params[:random].present?
           render json: @tournament.random_bracket
@@ -104,7 +121,7 @@ class TournamentsController < ApplicationController
     @tournament = Tournament.find(params[:tournament_id])
     
     # Update only if user is owner
-    unless @tournament.user == current_user
+    if @tournament.user != current_user || @tournament.finished?
       return render :json => { :updated => false, :error => "You can't update this tournament"}
     end
       
@@ -124,7 +141,7 @@ class TournamentsController < ApplicationController
   def results_update
     @tournament = Tournament.find(params[:tournament_id])
     # Update only if user is owner and tournament is activated
-    unless @tournament.user == current_user && @tournament.active?
+    unless @tournament.user == current_user && @tournament.started?
       return render :json => { :updated => false, :error => "You can't update this tournament"}
     end
     

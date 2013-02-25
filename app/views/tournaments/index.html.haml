@@ -16,8 +16,8 @@
     = f.text_field :start_date_gteq, :class => 'datepicker input-small', :placeholder => I18n.t("custom_translations.from", :default => "from").capitalize
     = f.text_field :start_date_lteq, :class => 'datepicker input-small', :placeholder => I18n.t("custom_translations.to", :default => "to").capitalize
   .field-wrapper
-    = f.check_box :active_true, :value => '1'
-    = f.label :active_true, I18n.t("custom_translation.only started", :default => "only started").capitalize
+    = f.check_box :state_eq, :value => 'started'
+    = f.label :state_eq, I18n.t("custom_translation.only started", :default => "only started").capitalize
   .field-wrapper
     = f.submit I18n.t("custom_translation.search", :default => "search").capitalize, :class => 'btn btn-small'
 
@@ -27,14 +27,14 @@
       %tr
         %th= sort_link @search, :name, I18n.t("custom_translations.name", :default => "name").capitalize
         %th= sort_link @search, :start_date, I18n.t("custom_translations.start date", :default => "start date").capitalize
-        %th= sort_link @search, :active, I18n.t("custom_translations.started", :default => "started").capitalize
+        %th= sort_link @search, :state, I18n.t("custom_translations.started", :default => "started").capitalize
         %th= I18n.t("custom_translations.actions", :default => "actions").capitalize
     %tbody
       - @tournaments.each do |tournament|
         %tr
           %td= link_to tournament.name, tournament_path(tournament)
           %td= tournament.start_date
-          %td= tournament.active ? I18n.t("custom_translations.yes", :default => 'yes').capitalize : I18n.t("custom_translations.no", :default => 'no').capitalize
+          %td= tournament.started ? I18n.t("custom_translations.yes", :default => 'yes').capitalize : I18n.t("custom_translations.no", :default => 'no').capitalize
           %td
             = link_to I18n.t("custom_translations.more", :default => "more").capitalize , tournament_path(tournament), :class => 'btn btn-mini'
             = link_to I18n.t("custom_translations.bracket", :default => "bracket").capitalize, tournament_bracket_path(tournament), :class => 'btn btn-mini btn-success'

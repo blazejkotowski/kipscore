@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130221232157) do
+ActiveRecord::Schema.define(:version => 20130224232500) do
 
   create_table "player_associations", :force => true do |t|
     t.integer  "tournament_id"
@@ -71,7 +71,6 @@ ActiveRecord::Schema.define(:version => 20130221232157) do
     t.integer  "user_id"
     t.string   "name"
     t.datetime "start_date"
-    t.boolean  "active"
     t.datetime "created_at",                     :null => false
     t.datetime "updated_at",                     :null => false
     t.text     "description"
@@ -79,6 +78,7 @@ ActiveRecord::Schema.define(:version => 20130221232157) do
     t.string   "slug"
     t.boolean  "open",         :default => true
     t.text     "json_results"
+    t.string   "state"
   end
 
   add_index "tournaments", ["slug"], :name => "index_tournaments_on_slug"
