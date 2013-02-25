@@ -5,21 +5,22 @@ class TournamentsController < ApplicationController
   before_filter :correct_user, :only => [:edit, :update, :destroy, :start, :finish]
   before_filter :get_tournament, :only => [:results, :results_update]
   before_filter :concatenate_datetime, :only => [:create, :update]
+  before_filter :perform_search, :only => [:index, :search]
+  
   # GET /tournaments
   # GET /tournaments.json
   def index
-    if params[:state_started] == '1'
-      params[:q] = { :state_eq => 'started' }.merge(params[:q])
-    end
-        
-    @search = Tournament.search(params[:q])
-    @tournaments = @search.result
     @footer_bar = true
     
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @tournaments }
     end
+  end
+  
+  def search
+    @footer_bar = true
+    render 'index'
   end
 
   # GET /tournaments/1
@@ -167,6 +168,19 @@ class TournamentsController < ApplicationController
     
     def get_tournament
       @tournament = Tournament.find(params[:tournament_id])
+    end
+    
+    def perform_search
+      case params.try('[]', :state)
+      when 'started'
+        @search = Tournament.started.search(params[:q])
+      when 'finished'
+        @search = Tournament.finished.search(params[:q])
+      else
+        @search = Tournament.created.search(params[:q])
+      end
+          
+      @tournaments = @search.result
     end
     
 end

@@ -54,6 +54,7 @@ class Tournament < ActiveRecord::Base
   scope :finished, -> {with_state(:finished)}
   scope :started, -> {with_state(:started)}
   scope :created, -> {with_state(:created)}
+  scope :managable, -> {without_state(:finished)}
   
   state_machine :initial => :created do
     event :start do

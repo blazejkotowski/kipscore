@@ -8,16 +8,18 @@
 .page-header
   %h1= I18n.t("custom_translations.tournaments", :default => "tournaments").capitalize
 
-= search_form_for @search, :class => 'form-inline search-form' do |f|
+%ul.nav.nav-tabs
+  %li{ :class => ('active' if ['created', nil].include?(params[:state]) ) }= link_to t("navigation.tournaments.index.upcoming").capitalize, tournaments_path
+  %li{ :class => ('active' if params[:state] == 'started') }= link_to t("navigation.tournaments.index.started").capitalize, tournaments_path(:state => 'started')
+  %li{ :class => ('active' if params[:state] == 'finished') }= link_to t("navigation.tournaments.index.finished").capitalize, tournaments_path(:state => 'finished')
+
+= search_form_for @search, :url => search_tournaments_path(:state => params[:state]), :method => :post, :class => 'form-inline search-form' do |f|
   .field-wrapper
     = f.text_field :name_cont, :placeholder => I18n.t("custom_translations.name", :default=>'name').capitalize
   .field-wrapper
     = f.label :start_date, I18n.t("custom_translations.start date", :default=>'start date').capitalize
     = f.text_field :start_date_gteq, :class => 'datepicker input-small', :placeholder => I18n.t("custom_translations.from", :default => "from").capitalize
     = f.text_field :start_date_lteq, :class => 'datepicker input-small', :placeholder => I18n.t("custom_translations.to", :default => "to").capitalize
-  .field-wrapper
-    = check_box_tag :state_started, '1', (params[:state_started] == '1')
-    = label_tag :state_started, I18n.t("custom_translations.only started", :default => "only started").capitalize
   .field-wrapper
     = f.submit I18n.t("custom_translations.search", :default => "search").capitalize, :class => 'btn btn-small'
 
@@ -27,14 +29,12 @@
       %tr
         %th= sort_link @search, :name, I18n.t("custom_translations.name", :default => "name").capitalize
         %th= sort_link @search, :start_date, I18n.t("custom_translations.start date", :default => "start date").capitalize
-        %th= sort_link @search, :state, I18n.t("custom_translations.started", :default => "started").capitalize
         %th= I18n.t("custom_translations.actions", :default => "actions").capitalize
     %tbody
       - @tournaments.each do |tournament|
         %tr
           %td= link_to tournament.name, tournament_path(tournament)
-          %td= tournament.start_date
-          %td= tournament.started? ? I18n.t("custom_translations.yes", :default => 'yes').capitalize : I18n.t("custom_translations.no", :default => 'no').capitalize
+          %td= tournament.start_date.strftime("%d-%m-%Y, %H:%M")
           %td
             = link_to I18n.t("custom_translations.more", :default => "more").capitalize , tournament_path(tournament), :class => 'btn btn-mini'
             = link_to I18n.t("custom_translations.bracket", :default => "bracket").capitalize, tournament_bracket_path(tournament), :class => 'btn btn-mini btn-success'

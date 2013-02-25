@@ -315,3 +315,14 @@ body.bracket {
     min-width: 90%;
   }
 }
+
+.nav-tabs {
+  li {
+    &.active > a, &.active > a:hover, a:hover {
+      background: @kipscoreColor;
+      border: 1px solid darken(@kipscoreColor, 10%);
+      color: #fff;
+    }
+  }
+  border-color: darken(@kipscoreColor, 10%);
+}

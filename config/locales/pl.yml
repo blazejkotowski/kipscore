@@ -111,6 +111,13 @@ pl:
     "search": "szukaj"
     "only started": "tylko trwające"
     "more": "więcej"
+    
+  navigation:
+    tournaments:
+      index:
+        upcoming: "nadchodzące"
+        started: "trwające"
+        finished: "zakończone"
   
   valid_email:
     validations:

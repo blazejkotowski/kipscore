@@ -12,6 +12,13 @@ en:
     "This tournament is not even started": "This tournament is not even started"
     "Tournament is not started yet": "Tournament is not started yet"
     
+  navigation:
+    tournaments:
+      index:
+        upcoming: "upcoming"
+        started: "started"
+        finished: "finished"
+    
   mail:
     tournament_congratulations: "Congratulations! Organizer of <strong>%{tournament_name}</strong> has just added you to start list.<br>Have a good luck!"
     see_you: "See you on Tournament!"

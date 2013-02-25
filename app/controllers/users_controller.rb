@@ -34,7 +34,7 @@ class UsersController < ApplicationController
   end
   
   def tournaments
-    @tournaments = current_user.tournaments
+    @tournaments = current_user.tournaments.managable
   end
   
   private
