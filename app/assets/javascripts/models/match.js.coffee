@@ -36,10 +36,11 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
     @set 'scores', new Array() if @get('scores') == undefined
     
     # Auto-pick winner (in case of bye)
-    @on "change:player1 change:player2", ->
-      try
-        if @pickWinner()
-          @setNextMatches()
+    # uncomment to enable
+#    @on "change:player1 change:player2", ->
+#      try
+#        if @pickWinner()
+#          @setNextMatches()
           
     @on "to_save", ->
       try
