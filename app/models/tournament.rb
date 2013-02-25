@@ -118,7 +118,7 @@ class Tournament < ActiveRecord::Base
     bracket_size = 2**power
     byes_number = bracket_size - list.size # number of "free"
     
-    groups = [[bracket_size-1, 0]]
+    groups = [[0, bracket_size-1]]
     for i in 1...power
       groups.append []
     end

@@ -23,14 +23,14 @@ class Kipscore.Routers.Bracket extends Backbone.Router
     console.log "New tournament"
     @players = @tournament.get('players')
     matches = new Kipscore.Collections.Matches()
-    i = 0
+    i = @players.size()-1
     match = new Kipscore.Models.Match()
-    while i < @players.size()
+    while i >= 0
       match.addPlayer(@players.at(i))
       if match.ready()
         matches.add match
         match = new Kipscore.Models.Match()
-      i++
+      i--
     # Create tournament from matches
     @tournament.set { 'min_position': 0, 'max_position':0, 'players_number': @players.size(), 'bracket': matches, 'new': true }
     @tournament.initNew()
