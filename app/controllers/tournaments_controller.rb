@@ -169,6 +169,15 @@ class TournamentsController < ApplicationController
     end
     
     def perform_search
+      # default sorting by start_date
+      if params.try('[]', :q).try('[]', :s).nil?
+        if params[:q].present?
+          params[:q][:s] = 'start_date desc'
+        else
+          params[:q] = { :s => 'start_date desc' }
+        end
+      end
+      
       case params.try('[]', :state)
       when 'started'
         @search = Tournament.started.search(params[:q])
