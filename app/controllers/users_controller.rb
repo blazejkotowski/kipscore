@@ -39,7 +39,7 @@ class UsersController < ApplicationController
   
   private
     def not_signed_in_user
-      redirect_to user_path if signed_in?
+      redirect_to user_path if user_signed_in?
     end
 
 end

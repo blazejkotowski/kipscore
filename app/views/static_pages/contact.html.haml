@@ -5,7 +5,7 @@
     .page-header
       %h2= I18n.t("custom_translations.contact form", :default => "contact form").capitalize
     = form_tag contact_path, :id => 'contact-form' do
-      - unless signed_in?
+      - unless user_signed_in?
         = label_tag :name do
           = I18n.t("custom_translations.name and surname", :default => "name and surname").capitalize
           %i.icon-user

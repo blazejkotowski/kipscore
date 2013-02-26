@@ -2,14 +2,9 @@ class ApplicationController < ActionController::Base
   
   before_filter :set_locale, :set_mailer_host, :set_body_class
   
-  # Always come back after login
-  before_filter do
-    store_location unless self.class == SessionsController
+  if Rails.env.staging?
+    http_basic_authenticate_with :name => 'tournaments', :password => 'tournaments'
   end
-  
-#  if Rails.env.production?
-#    http_basic_authenticate_with :name => 'tournaments', :password => 'tournaments'
-#  end
   
   protect_from_forgery
   
@@ -31,7 +26,7 @@ class ApplicationController < ActionController::Base
     def set_body_class 
       @body_class = ''
       @body_class += "bracket " if params[:action] == "bracket"
-      @body_class += "static " if ['static_pages', 'sessions'].include? params[:controller]
+      @body_class += "static " if ['static_pages', 'sessions', 'devise'].include? params[:controller].split('/').first
       @body_class += "with-bar" if @footer_bar.present?
       @body_class = nil if @body_class.empty?
     end

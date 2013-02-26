@@ -1,17 +1,23 @@
 Kipscore::Application.routes.draw do
 
+  devise_for :users
+
+  resource :user, :only => [:tournaments] do
+    match 'tournaments' => 'users#tournaments'
+  end
+
   root :to => 'static_pages#home'
 
-  match '/signup' => 'users#new', :as => 'signup'
+  #match '/signup' => 'users#new', :as => 'signup'
   
-  resource :user do
-    get 'tournaments', :on => :collection
-  end
+  #resource :user do
+    #get 'tournaments', :on => :collection
+  #end
     
-  match '/signin' => 'sessions#create', :as => 'signin'  
-  match '/signout' => 'sessions#destroy', :as => 'signout'
+  #match '/signin' => 'sessions#create', :as => 'signin'  
+  #match '/signout' => 'sessions#destroy', :as => 'signout'
   
-  resources :sessions, :only => [:create, :new, :destroy]
+  #resources :sessions, :only => [:create, :new, :destroy]
 
   match '/about' =>  'static_pages#about', :as => 'about'
   match '/contact' => 'static_pages#contact', :as => 'contact', :via => :get

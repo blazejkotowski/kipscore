@@ -8,6 +8,6 @@
     %h2= I18n.t("custom_translations.player", :default => "player").capitalize
     = I18n.t("static_pages.player_content").html_safe
   .span6
-    #home-signup= render 'users/signup_form',  :signup_page => false
+    #home-signup= render 'devise/registrations/signup_form',  :signup_page => false
     #like-button 
       = render "shared/facebook_like_button"

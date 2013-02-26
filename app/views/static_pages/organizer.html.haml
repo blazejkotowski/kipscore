@@ -16,6 +16,6 @@
         %li Stwórz listę startową dodając zawodników. Aplikacja będzie podpowiadać Ci nazwiska na podstawie list rankingowych,
         %li Klikając w przycisk "start" rozpoczniesz  turniej. Program przeprowadzi losowanie graczy oraz utworzy drabinkę turniejową.
   .span6
-    #home-signup= render 'users/signup_form',  :signup_page => false
+    #home-signup= render 'devise/registrations/signup_form',  :signup_page => false
     #like-button 
       = render "shared/facebook_like_button"
