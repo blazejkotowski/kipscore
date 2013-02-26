@@ -19,5 +19,9 @@ module ApplicationHelper
   def current_uri
     "#{request.protocol}#{request.host_with_port}#{request.path}"
   end
+  
+  def sport_options
+    Sport.all.map { |s| [s.name, s.id] }
+  end
 
 end

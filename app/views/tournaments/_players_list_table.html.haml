@@ -8,8 +8,9 @@
     - if edit
       %tr
         %th
-          = select_tag :ranking_id, options_for_select(@rankings) if !@rankings.empty?
-          = text_field_tag "player[name]", '', :data => { :autocomplete_source => "/players/autocomplete?ranking_id=#{@rankings.first.last}" }
+          - unless @rankings.empty?
+            = select_tag :ranking_id, options_for_select(@rankings) if !@rankings.empty?
+          = text_field_tag "player[name]", '', :data => { :autocomplete_source => "/players/autocomplete?ranking_id=#{@rankings.try(:first).try(:last)}" }
         %th
           = text_field_tag "player[rank]", '', :class => 'rank'
         %th

@@ -15,6 +15,8 @@
 
 = search_form_for @search, :url => search_tournaments_path(:state => params[:state]), :method => :post, :class => 'form-inline search-form' do |f|
   .field-wrapper
+    = f.select :sport_id_eq, options_for_select(sport_options)
+  .field-wrapper
     = f.text_field :name_cont, :placeholder => I18n.t("custom_translations.name", :default=>'name').capitalize
   .field-wrapper
     = f.label :start_date, I18n.t("custom_translations.start date", :default=>'start date').capitalize

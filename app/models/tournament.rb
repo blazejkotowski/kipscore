@@ -18,9 +18,11 @@ class Tournament < ActiveRecord::Base
   
   friendly_id :name, :use => :slugged
   
-  attr_accessible :state, :name, :start_date, :description, :json_bracket, :open, :json_results
+  attr_accessible :state, :name, :sport_id, :start_date 
+  attr_accessible :description, :json_bracket, :open, :json_results
   
   belongs_to :user
+  belongs_to :sport
 
   has_one :tournament_form, :dependent => :destroy
   accepts_nested_attributes_for :tournament_form
@@ -46,8 +48,11 @@ class Tournament < ActiveRecord::Base
   validates_presence_of :name
   validates_presence_of :start_date
   validates_presence_of :description
+  validates_presence_of :sport_id
   
   before_create :create_tournament_form
+  
+  default_scope includes(:sport)
   
   scope :with_form, includes(:tournament_form)
   
