@@ -6,6 +6,7 @@ Kipscore::Application.routes.draw do
 
   resource :user, :only => [:tournaments] do
     match 'tournaments' => 'users#tournaments'
+    match 'profile' => 'user_profiles#update', :via => :put
   end
 
   root :to => 'static_pages#home'

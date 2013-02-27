@@ -26,7 +26,7 @@ class ApplicationController < ActionController::Base
     def set_body_class 
       @body_class = ''
       @body_class += "bracket " if params[:action] == "bracket"
-      @body_class += "static " if ['static_pages', 'sessions', 'devise'].include? params[:controller].split('/').first
+      @body_class += "static " if ['static_pages', 'sessions', 'devise', 'user_profiles'].include?(params[:controller].split('/').first)
       @body_class += "with-bar" if @footer_bar.present?
       @body_class = nil if @body_class.empty?
     end
