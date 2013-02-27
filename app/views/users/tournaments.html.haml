@@ -1,5 +1,8 @@
 - model_class = Tournament
 - provide :title, I18n.t("custom_translations.manage your tournaments", :default => "manage your tournaments").capitalize
+
+= render "shared/user_navigation"
+
 - unless @tournaments.empty?
   .row
     .span5
