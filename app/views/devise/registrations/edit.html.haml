@@ -18,9 +18,10 @@
           = link_to t("custom_translations.delete your account", :default => "delete your account").capitalize, cancel_user_registration_path, :class => "btn btn-danger", :confirm => "Are you sure? It is unreversible!", :method => :delete
   .span6.pull-left
     = simple_form_for current_user.profile, :url => profile_user_path, :multipart => true do |f|
-      = f.input :club
+      = f.input :club, :label => "Club name"
       = f.input :link, :placeholder => "#{request.protocol}#{request.host_with_port}/LinkName"
       = f.input :description
+      = f.input :contact, :label => "Contact information", :rows => 3
       = f.label :avatar
       .thumbnail.medium= image_tag current_user.profile.avatar.url(:medium)
       %div

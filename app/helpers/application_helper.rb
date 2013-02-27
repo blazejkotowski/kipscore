@@ -45,4 +45,8 @@ module ApplicationHelper
     redirect_to root_path unless current_user.admin?
   end
   
+  def user_description(content, args = {} )
+    simple_format(sanitize(Rinku.auto_link(content, :all, 'target="_blank"')), args)
+  end
+  
 end

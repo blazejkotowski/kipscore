@@ -29,12 +29,14 @@
   %table.table.table-striped
     %thead
       %tr
+        %th= I18n.t("custom_translations.organizer", :default => "organizer").capitalize
         %th= I18n.t("custom_translations.name", :default => "name").capitalize
         %th= I18n.t("custom_translations.start date", :default => "start date").capitalize
         %th= I18n.t("custom_translations.actions", :default => "actions").capitalize
     %tbody
       - @tournaments.each do |tournament|
         %tr
+          %td= link_to tournament.user.profile.club, user_profile_path(tournament.user.profile.link)
           %td= link_to tournament.name, tournament_path(tournament)
           %td= tournament.start_date.strftime("%d-%m-%Y, %H:%M")
           %td

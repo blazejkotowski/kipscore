@@ -13,6 +13,7 @@ class UserProfilesController < ApplicationController
   def show
     @profile = UserProfile.find_by_link(params[:id])
     raise ActiveRecord::RecordNotFound if @profile.nil?
+    @tournaments = @profile.user.tournaments
   end
   
   private

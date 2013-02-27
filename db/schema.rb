@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130227194214) do
+ActiveRecord::Schema.define(:version => 20130227212731) do
 
   create_table "player_associations", :force => true do |t|
     t.integer  "tournament_id"
@@ -106,6 +106,7 @@ ActiveRecord::Schema.define(:version => 20130227194214) do
     t.datetime "avatar_updated_at"
     t.boolean  "public"
     t.string   "link"
+    t.text     "contact"
   end
 
   add_index "user_profiles", ["link"], :name => "index_user_profiles_on_link"

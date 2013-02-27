@@ -17,6 +17,8 @@ class User < ActiveRecord::Base
   validates :email, :email => true, :presence => true, :uniqueness => true
   validates_confirmation_of :password
   
+  scope :with_profile, includes(:profile)
+  
   def admin?
     admin
   end

@@ -16,7 +16,7 @@ class TournamentsController < ApplicationController
       format.html # index.html.erb
       format.json { render json: @tournaments }
     end
-  end
+  end 
   
   def search
     @footer_bar = true
@@ -180,11 +180,11 @@ class TournamentsController < ApplicationController
       
       case params.try('[]', :state)
       when 'started'
-        @search = Tournament.started.search(params[:q])
+        @search = Tournament.started.with_user.search(params[:q])
       when 'finished'
-        @search = Tournament.finished.search(params[:q])
+        @search = Tournament.finished.with_user.search(params[:q])
       else
-        @search = Tournament.created.search(params[:q])
+        @search = Tournament.created.with_user.search(params[:q])
       end
           
       @tournaments = @search.result

@@ -1,1 +1,24 @@
-= @profile.inspect
+%h1= @profile.club
+
+.row-fluid
+  .span6
+    .page-header
+      %h2 Information
+    .well{ :style => "vertical-align: middle;"}
+      .pull-left.thumbnail.medium= image_tag @profile.avatar.url(:medium)
+      .pull-left.contact-info{ :style => "vertical-align: middle;"}
+        = user_description(@profile.contact)
+      .clearfix
+    = user_description(@profile.description, :class => "tournament-description")
+  .span6
+    .page-header
+      %h2 Tournaments
+    - unless @tournaments.started.empty?
+      %h4 Started
+      = render "shared/tournaments_list", :tournaments => @tournaments.started
+    - unless @tournaments.created.empty?
+      %h4 Upcoming
+      = render "shared/tournaments_list", :tournaments => @tournaments.created
+    - unless @tournaments.finished.empty?
+      %h4 Finished
+      = render "shared/tournaments_list", :tournaments => @tournaments.finished
