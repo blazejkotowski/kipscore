@@ -1,5 +1,5 @@
 class UserProfilesController < ApplicationController
-  before_filter :load_profile
+  before_filter :load_profile, :only => [:update]
   authorize_resource :user_profile
   
   def update
@@ -8,6 +8,11 @@ class UserProfilesController < ApplicationController
       flash[:error] ||= "Avatar content type " + @user_profile.errors[:avatar_content_type].first
     end
     redirect_to edit_user_registration_path
+  end
+  
+  def show
+    @profile = UserProfile.find_by_link(params[:id])
+    raise ActiveRecord::RecordNotFound if @profile.nil?
   end
   
   private

@@ -19,6 +19,7 @@
   .span6.pull-left
     = simple_form_for current_user.profile, :url => profile_user_path, :multipart => true do |f|
       = f.input :club
+      = f.input :link, :placeholder => "#{request.protocol}#{request.host_with_port}/LinkName"
       = f.input :description
       = f.label :avatar
       .thumbnail.medium= image_tag current_user.profile.avatar.url(:medium)
