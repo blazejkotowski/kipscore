@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :omniauthable, :omniauth_providers => [:facebook]
 
   attr_accessible :name, :email, :password, :password_confirmation, 
-                  :remember_me, :provider, :uid
+                  :remember_me, :provider, :uid, :admin
   before_create :validations
                   
   has_many :tournaments
@@ -13,6 +13,10 @@ class User < ActiveRecord::Base
   validates_presence_of :encrypted_password
   validates :email, :email => true, :presence => true, :uniqueness => true
   validates_confirmation_of :password
+  
+  def admin?
+    admin
+  end
   
   private
     def validations
