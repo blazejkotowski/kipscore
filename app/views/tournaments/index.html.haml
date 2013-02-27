@@ -36,7 +36,7 @@
     %tbody
       - @tournaments.each do |tournament|
         %tr
-          %td= link_to tournament.user.profile.club, user_profile_path(tournament.user.profile.link)
+          %td= link_to tournament.user.profile.club, user_profile_path(tournament.user.profile.link) if tournament.user.profile.link.present?
           %td= link_to tournament.name, tournament_path(tournament)
           %td= tournament.start_date.strftime("%d-%m-%Y, %H:%M")
           %td
