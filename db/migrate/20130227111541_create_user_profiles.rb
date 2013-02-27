@@ -7,7 +7,5 @@ class CreateUserProfiles < ActiveRecord::Migration
 
       t.timestamps
     end
-    # create user profiles for existing users
-    User.all.each { |user| user.create_profile unless user.profile.present? }
   end
 end
