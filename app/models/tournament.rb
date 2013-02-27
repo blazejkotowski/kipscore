@@ -55,7 +55,7 @@ class Tournament < ActiveRecord::Base
   default_scope includes(:sport)
   
   scope :with_form, includes(:tournament_form)
-  scope :with_user, includes(:user)
+  scope :with_user, includes(:user => [:profile])
   
   scope :finished, -> {with_state(:finished)}
   scope :started, -> {with_state(:started)}
