@@ -16,3 +16,9 @@ namespace :ranking do
   end
   
 end
+
+desc "Keeping app awake"
+task :call_app => :environment do
+  uri = URI.parse('http://beta.kipscore.pl/')
+  open(uri).read
+end
