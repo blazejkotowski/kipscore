@@ -46,6 +46,7 @@
   .modal-header
     %h3 Join tournament
   .modal-body
+    .notifications
     = render "tournament_forms/tournament_form", :tournament => @tournament, :nosubmit => true
   .modal-footer
     = button_tag "Close", :data => { :dismiss => :modal }, "aria-hidden" => true, :class => "btn"

@@ -19,7 +19,18 @@ window.Kipscore =
         window.players_view = players_view
         $("#bracket-modal .modal-body").html('')
         $("#bracket-modal .modal-body").append(players_view.render().el)
-        
+  insertNotification: (message, type = "info", selector = ".container.notifications") ->
+    $notification = $("<div/>")
+                    .addClass("alert alert-#{type}")
+                    .html(message)
+                    
+    $closeButton = $("<button/>")
+                  .addClass("close")
+                  .attr("type", "button")
+                  .attr("data-dismiss", "alert")
+                  .html("&times;")
+                  .prependTo($notification)
+    $(selector).append($notification)
 
 jQuery ->
   

@@ -21,16 +21,26 @@ class PlayersController < ApplicationController
       @result[:delete_url] = tournament_player_path(@tournament, player)
       render :json => @result  
     
-    elsif !request.xhr?
+    else
       player_association = PlayerAssociation.new(params[:player_association].merge({:player => player, :tournament => @tournament}))
       player_association.email = "" if player_association.email.nil?
       if player_association.save
         UserMailer.confirm_participation(player_association, I18n.locale).deliver
-        flash_major_notice I18n.t("custom_translations.joined tournament", :default => "You have joined tournament, but it's not all! Now check your mail to confirm your participation. Without email confirmation your participation desire will be ignored!")
-        redirect_to tournament_path(@tournament)
+        message = I18n.t("custom_translations.joined tournament", :default => "You have joined tournament, but it's not all! Now check your mail to confirm your participation. Without email confirmation your participation desire will be ignored!")
+        
+        if request.xhr?
+          render :json => { :created => true, :message => message }.to_json
+        else
+          flash_major_notice message
+          redirect_to tournament_path(@tournament)
+        end
       else
-        flash.now[:notice] = I18n.t('custom_translations.email not valid').capitalize
-        render "new"
+        if request.xhr?
+          render :json => { :created => false, :message => I18n.t('custom_translations.email not valid') }
+        else
+          flash.now[:notice] = I18n.t('custom_translations.email not valid').capitalize
+          render "new"
+        end
       end
     end
     

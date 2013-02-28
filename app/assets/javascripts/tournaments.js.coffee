@@ -91,10 +91,19 @@ jQuery ->
 
   $("body").on "ajax:success", "form#add-player", ->  
     enableInputs()
+  
+  $("body").on "ajax:success", "#join-modal form", (e, xhr, status) ->
+    if xhr.created
+      $("#join-modal .modal-body").html('')
+      Kipscore.insertNotification(xhr.message, "success", "#join-modal .modal-body")
+    else
+      $("#join-modal .notifications").html('')
+      Kipscore.insertNotification(xhr.message, "error", "#join-modal .notifications")      
     
   $("body").on "click", "#join-modal .join-button", (e) ->
     e.preventDefault()
     $("#join-modal form").submit()
+
       
   
     

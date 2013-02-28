@@ -9,6 +9,12 @@
   background: transparent;
 }
 
+.artifically-hidden {
+  opacity: 0;
+  position: absolute;
+  left: -9999px;
+}
+
 .margin-top {
   margin-top: 10px;
 }
