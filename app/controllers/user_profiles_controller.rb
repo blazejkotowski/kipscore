@@ -1,13 +1,17 @@
 class UserProfilesController < ApplicationController
-  before_filter :load_profile, :only => [:update]
+  before_filter :load_profile, :only => [:update, :edit]
   authorize_resource :user_profile
   
+  def edit
+    
+  end
+  
   def update
-    unless @user_profile.update_attributes(params[:user_profile])
-      flash[:error] = "Avatar size " + @user_profile.errors[:avatar_file_size].first
-      flash[:error] ||= "Avatar content type " + @user_profile.errors[:avatar_content_type].first
+    @user_profile.assign_attributes(params[:user_profile])
+    if @user_profile.valid?
+      @user_profile.save
     end
-    redirect_to edit_user_registration_path
+    render 'edit'
   end
   
   def show

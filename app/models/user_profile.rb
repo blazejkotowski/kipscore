@@ -4,7 +4,9 @@ class UserProfile < ActiveRecord::Base
   
   belongs_to :user
   
-  validate :link, :format => /^[a-z0-9-.]+$/, :blank => true, :nil => true, :uniqueness => true
+  validates_format_of :link, :with => /^[a-zA-Z0-9-]+$/
+  validate :link, :allow_blank => true, :uniqueness => true, :allow_nil => true
+  #:allow_blank => true, :allow_blank => true, :uniqueness => true
   validates_attachment_content_type :avatar, :content_type => /image/
   validates_attachment :avatar, :size => { :less_than => 1.megabyte }
   

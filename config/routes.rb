@@ -6,10 +6,10 @@ Kipscore::Application.routes.draw do
 
   resource :user, :only => [:tournaments] do
     match 'tournaments' => 'users#tournaments'
-    match 'profile' => 'user_profiles#update', :via => :put
+    resource :user_profile, :as => 'profile', :path => 'profile', :only => [:edit, :update]
   end
   
-  resources :user_profiles, :path => 'profile', :only => [:show]
+  match "profile/:id" => 'user_profiles#show', :as => "user_profile"
 
   root :to => 'static_pages#home'
 

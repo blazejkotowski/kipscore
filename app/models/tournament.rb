@@ -52,8 +52,7 @@ class Tournament < ActiveRecord::Base
   
   before_create :create_tournament_form
   
-  default_scope includes(:sport)
-  
+  scope :with_sport, includes(:sport)
   scope :with_form, includes(:tournament_form)
   scope :with_user, includes(:user => [:profile])
   

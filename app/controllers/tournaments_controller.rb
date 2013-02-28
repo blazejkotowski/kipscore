@@ -26,7 +26,7 @@ class TournamentsController < ApplicationController
   # GET /tournaments/1
   # GET /tournaments/1.json
   def show
-    @tournament = Tournament.with_form.find(params[:id])
+    @tournament = Tournament.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
