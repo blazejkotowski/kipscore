@@ -10,12 +10,4 @@ module SessionsHelper
     session[:return_to] = request.url
   end
   
-  def signed_in_user
-    unless user_signed_in?
-      store_location
-      flash[:notice] = 'Please sign in'
-      redirect_to root_url
-    end
-  end
-  
 end

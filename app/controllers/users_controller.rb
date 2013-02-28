@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :signed_in_user, :only => [:update, :edit, :tournaments]
+  before_filter :authenticate_user!, :only => [:update, :edit, :tournaments]
   before_filter :not_signed_in_user, :only => [:new]
   def new
     @user = User.new

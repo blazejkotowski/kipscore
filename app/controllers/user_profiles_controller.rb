@@ -1,5 +1,5 @@
 class UserProfilesController < ApplicationController
-  before_filter :load_profile, :only => [:update, :edit]
+  before_filter :authenticate_user!, :load_profile, :only => [:update, :edit]
   authorize_resource :user_profile
   
   def edit
@@ -22,6 +22,6 @@ class UserProfilesController < ApplicationController
   
   private
     def load_profile
-      @user_profile = current_user.profile
+      @user_profile = current_user.try(:profile)
     end
 end
