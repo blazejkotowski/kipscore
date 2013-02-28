@@ -90,7 +90,12 @@ jQuery ->
     disableInputs()
 
   $("body").on "ajax:success", "form#add-player", ->  
-    enableInputs()  
+    enableInputs()
+    
+  $("body").on "click", "#join-modal .join-button", (e) ->
+    e.preventDefault()
+    $("#join-modal form").submit()
+      
   
     
       

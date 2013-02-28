@@ -67,6 +67,18 @@
   color: #333 !important;
 }
 
+#join-modal {
+  background-color: #333;
+  color: #fff;
+  .modal-header {
+    background-color: #555;
+  }
+  .modal-footer {
+    background-color: #555;
+    box-shadow: none;
+  }
+}
+
 #bracket-modal {
   ol li:nth-child(even) {
     margin-bottom: 10px;

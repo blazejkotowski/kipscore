@@ -17,7 +17,7 @@
     - unless @tournament.created?
       = link_to I18n.t("custom_translations.go to bracket", :default => "go to bracket").capitalize, tournament_bracket_path(@tournament), :class => 'btn btn-primary btn-large'
     - if @tournament.joinable?
-      = link_to I18n.t("custom_translations.join", :default => "join").capitalize, tournament_join_path(@tournament), :class => 'btn btn-warning btn-large'
+      = link_to I18n.t("custom_translations.join", :default => "join").capitalize, "#join-modal", :role => :button, :class => 'btn btn-warning btn-large', :data => { :toggle => 'modal' }
 
 .row-fluid
   .span6
@@ -41,3 +41,13 @@
     
 - content_for :meta_tags do
   = render "tournaments/tournament_meta"
+
+#join-modal.modal.hide.fade{ :tabindex => -1, :role => :dialog, "aria-hidden" => true }
+  .modal-header
+    %h3 Join tournament
+  .modal-body
+    = render "tournament_forms/tournament_form", :tournament => @tournament, :nosubmit => true
+  .modal-footer
+    = button_tag "Close", :data => { :dismiss => :modal }, "aria-hidden" => true, :class => "btn"
+    = button_tag "Join", :class => 'join-button btn btn-success'
+  

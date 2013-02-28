@@ -1,4 +1,6 @@
-= form_tag tournament_players_path(@tournament), :method => :post do
+- form = tournament.tournament_form
+- nosubmit ||= false
+= form_tag tournament_players_path(tournament), :method => :post do
   - if form.name
     = label_tag "player[name]", I18n.t("custom_translations.name and surname", :default => "name and surname").capitalize
     = text_field_tag "player[name]"
@@ -16,6 +18,7 @@
     = text_area_tag "player_association[comment]"
     
   = label_tag 'player_association[email]', "E-mail"
-  = email_field_tag 'player_association[email]', '', :class => "span12"
-  .form-actions
-    = submit_tag I18n.t("custom_translations.join", :default => "join").capitalize, :class => 'btn btn-success'
+  = email_field_tag 'player_association[email]'
+  - unless nosubmit
+    .form-actions
+      = submit_tag I18n.t("custom_translations.join", :default => "join").capitalize, :class => 'btn btn-success'
