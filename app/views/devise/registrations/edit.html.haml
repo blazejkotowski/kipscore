@@ -7,11 +7,11 @@
     %fieldset
       = f.input :email, :required => true, :autofocus => true, :label => 'E-mail'
       = f.input :name, :autofocus => true, :label => I18n.t('custom_translations.name and surname', :default => 'name and surname').capitalize
-      = f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false, :label => I18n.t('custom_translations.password', :default =>'password').capitalize
+      = f.input :password, :autocomplete => "off", :hint => I18n.t("devise.registrations.leave_it_blank"), :required => false, :label => I18n.t('custom_translations.password', :default =>'password').capitalize
       = f.input :password_confirmation, :label => I18n.t('custom_translations.repeat password', :default =>'repeat password').capitalize, :required => false
-      = f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true
+      = f.input :current_password, :label => I18n.t("custom_translations.current password").capitalize, :hint => I18n.t("devise.registrations.current_password_needed"), :required => true
       .form-actions.background-transparent
-        = f.button :submit, t("custom_translation.update", :default => "update").capitalize
+        = f.button :submit, I18n.t("custom_translations.update", :default => "update").capitalize
       .form-actions
-        %h3= t("custom_translations.unhappy", :default => "unhappy").capitalize + "?"
-        = link_to t("custom_translations.delete your account", :default => "delete your account").capitalize, cancel_user_registration_path, :class => "btn btn-danger", :confirm => "Are you sure? It is unreversible!", :method => :delete
+        %h3= I18n.t("custom_translations.unhappy", :default => "unhappy").capitalize + "?"
+        = link_to I18n.t("custom_translations.delete your account").capitalize, cancel_user_registration_path, :class => "btn btn-danger", :confirm => "Are you sure? It is unreversible!", :method => :delete

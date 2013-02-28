@@ -1,5 +1,8 @@
 pl:
   custom_translations:
+    account: "konto"
+    "edit profile": "edytuj profil"
+    "payments": "płatności"
     "tournaments": "turnieje"
     "about us": "o nas"
     "contact": "kontakt"
@@ -50,6 +53,7 @@ pl:
     "description": "opis"
     "manage your tournaments": "zarządzaj swoimi turniejami"
     "manage tournament": "zarządzaj turniejem"
+    "manage tournaments": "zarządzaj turniejami"
     "manage": "zarządzaj"
     "create new tournament": "stwórz nowy turniej"
     "your tournaments": "twoje turnieje"
@@ -80,6 +84,8 @@ pl:
     "comment": "komentarz"
     "fields": "pola"
     "is open": "jest otwarty"
+    "current password": "akutalne hasło"
+    "unhappy": "niezadowolony"
     
     "hello": "witaj"
     
@@ -87,6 +93,7 @@ pl:
     organizer: "organizator"
     player: "zawodnik"
     observer: "obserwator"
+    "delete your account": "usuń swoje konto"
     
     "signup blocked": "Niestety, w wersji beta możliwość rejestracji została zablokowana"
     "facebook teaser": "Nie chcesz przegapić żadnego turnieju?<br>Polub nas na Facebooku!"
@@ -113,6 +120,9 @@ pl:
     "more": "więcej"
     
     "you have to set bracket first": "musisz najpierw ustawić drabinkę"
+    "current profile link": "aktualny link do profilu"
+    "club name": "nazwa klubu"
+    "profile_not_public": "Twój profil nie jest w tej chwili publiczny"
     
   navigation:
     tournaments:

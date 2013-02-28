@@ -4,17 +4,17 @@
 
 .span8.offset2
   = simple_form_for @user_profile, :url => url_for(:controller => "user_profiles", :action => "update"), :multipart => true, :html => { :class => "form-horizontal" } do |f|
-    = f.input :club, :label => "Club name"
+    = f.input :club, :label => I18n.t("custom_translations.club name").capitalize
     = f.input :link, :placeholder => "#{request.protocol}#{request.host_with_port}/LinkName"
     .control-group
-      %label.control-label.negative-top-big Current profile link
+      %label.control-label.negative-top-big= I18n.t("custom_translations.current profile link").capitalize
       .controls.negative-top-medium
         - if @user_profile.link.present?
           = link_to user_profile_url(@user_profile.link_was), user_profile_url(@user_profile.link_was)
         - else
-          Currently your profile is not public.
-    = f.input :description
-    = f.input :contact, :label => "Contact information", :rows => 3
+          = I18n.t("custom_translations.profile_not_public").capitalize
+    = f.input :description, :label => I18n.t("custom_translations.description", :default => "description").capitalize
+    = f.input :contact, :label => I18n.t("custom_translations.contact information", :default => "contact information").capitalize, :rows => 3
     .control-group
       = f.label :avatar
       .controls
@@ -22,4 +22,4 @@
         %div
           = f.file_field :avatar
     .form-actions
-      = f.button :submit, t("custom_translation.update", :default => "update").capitalize
+      = f.button :submit, I18n.t("custom_translations.update", :default => "update").capitalize

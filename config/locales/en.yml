@@ -12,6 +12,11 @@ en:
     "This tournament is not even started": "This tournament is not even started"
     "Tournament is not started yet": "Tournament is not started yet"
     "you have to set bracket first": "you have to set bracket first"
+    "delete your account": "delete your account"
+    "current password": "current password"
+    "current profile link": "current profile link"
+    "club name": "club name"
+    "profile_not_public": "Currently your profile is not public"
     
   navigation:
     tournaments:
