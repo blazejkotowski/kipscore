@@ -85,7 +85,9 @@ class TournamentsController < ApplicationController
   def start
     notice = nil
     if @tournament.created?
-      @tournament.start
+      unless @tournament.start
+        flash[:error] = t("custom_translations.you have to set bracket first").capitalize
+      end
     elsif @tournament.started?
       @tournament.stop    
       @tournament.update_attributes :json_bracket => nil, :json_results => nil

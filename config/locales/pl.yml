@@ -112,6 +112,8 @@ pl:
     "only started": "tylko trwające"
     "more": "więcej"
     
+    "you have to set bracket first": "musisz najpierw ustawić drabinkę"
+    
   navigation:
     tournaments:
       index:

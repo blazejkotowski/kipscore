@@ -13,7 +13,7 @@ class Kipscore.Models.Results extends Backbone.RelationalModel
   ]
   
   initialize: (attrs) ->
-    @url = attrs.url
+    @url = attrs.url + '.json'
     
     @fetch
       complete: _.bind(@fillResults, this)

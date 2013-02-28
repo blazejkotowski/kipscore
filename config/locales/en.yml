@@ -11,6 +11,7 @@ en:
     "Successfully finished tournament": "Successfully finished tournament"
     "This tournament is not even started": "This tournament is not even started"
     "Tournament is not started yet": "Tournament is not started yet"
+    "you have to set bracket first": "you have to set bracket first"
     
   navigation:
     tournaments:

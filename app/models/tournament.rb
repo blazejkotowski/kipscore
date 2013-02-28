@@ -74,6 +74,10 @@ class Tournament < ActiveRecord::Base
       transition :started => :created
     end
     
+    state :started do
+      validates_presence_of :json_bracket
+    end
+    
     state :created
     state :started
     state :finished

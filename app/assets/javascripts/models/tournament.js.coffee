@@ -1,6 +1,6 @@
 class Kipscore.Models.Tournament extends Backbone.RelationalModel
 
-  url: window.location.pathname  
+  url: window.location.pathname + '.json'  
   
   defaults:
     'players_number': 0
