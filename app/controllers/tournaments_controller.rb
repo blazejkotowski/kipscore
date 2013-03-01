@@ -1,7 +1,7 @@
 class TournamentsController < ApplicationController
   include TournamentsHelper
   
-  before_filter :signed_in_user, :only => [:new, :create]
+  before_filter :authenticate_user!, :only => [:new, :create]
   before_filter :correct_user, :only => [:edit, :update, :destroy, :start, :finish]
   before_filter :get_tournament, :only => [:results, :results_update]
   before_filter :concatenate_datetime, :only => [:create, :update]
