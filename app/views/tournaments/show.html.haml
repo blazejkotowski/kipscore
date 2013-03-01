@@ -25,7 +25,7 @@
       %strong= I18n.t("custom_translations.start date", :default => "start date").capitalize  + ':'
       = @tournament.start_date
     %p
-      = simple_format(@tournament.description, :class => 'tournament-description')
+      = user_description(@tournament.description, :class => 'tournament-description')
   
   .span6
     - unless @tournament.players.confirmed.empty?
