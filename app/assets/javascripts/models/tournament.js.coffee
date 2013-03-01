@@ -61,7 +61,7 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
     
     @on "to_save", ->
       # Do not save more than 1 time per second
-      @setSaving()
+      @mainTournament().setSaving()
       
     # Do not save on beginning
     context = this
