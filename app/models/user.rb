@@ -1,12 +1,7 @@
 class User < ActiveRecord::Base
-  if Settings.beta_version
-    devise :database_authenticatable,
-         :recoverable, :rememberable, :confirmable
-  else
-    devise :database_authenticatable, :registerable,
+  devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :confirmable, 
          :omniauthable, :omniauth_providers => [:facebook]
-  end
 
   attr_accessible :name, :email, :password, :password_confirmation, 
                   :remember_me, :provider, :uid, :admin, :profile

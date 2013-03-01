@@ -1,8 +1,12 @@
 Kipscore::Application.routes.draw do
 
   mount RailsAdmin::Engine => '/admin', :as => 'rails_admin'
-
-  devise_for :users
+  
+  if Settings.beta_version
+    devise_for :users, :controllers => { :registrations => "registrations" } 
+  else
+    devise_for :users
+  end
 
   resource :user, :only => [:tournaments] do
     match 'tournaments' => 'users#tournaments'
