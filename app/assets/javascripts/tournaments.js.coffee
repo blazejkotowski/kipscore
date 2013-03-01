@@ -61,7 +61,7 @@ jQuery ->
   $("body").on "ajax:success", "form#add-player", (event, data) ->
     if data.created
       player = data.player
-      $row = $("<tr/>").attr("data-id", player.id)
+      $row = $("<tr/>").attr("data-id", data.player_association.id)
       $row.append($("<td/>").text(player.name))
       if player.rank isnt null
         $row.append($("<td/>").text(player.rank))
@@ -78,11 +78,11 @@ jQuery ->
   
   $("body").on "ajax:success", "a.delete-player", (event, data) ->
     if data.removed
-      $("#players-table tr[data-id=#{data.player.id}]").remove()
+      $("#players-table tr[data-id=#{data.player_association.id}]").remove()
       
   $("body").on "ajax:success", "a.confirm-player", (event, data) ->
     if data.confirmed
-      $line = $("#players-table tr[data-id=#{data.player.id}]")
+      $line = $("#players-table tr[data-id=#{data.player_association.id}]")
       $line.removeClass("unconfirmed")
       $line.find("a.confirm-player").remove()
       

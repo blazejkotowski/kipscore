@@ -21,7 +21,7 @@
     - unless player_associations.empty?
       - player_associations.each_with_index do |player_assoc, index|
         - player = player_assoc.player
-        %tr{ :class => ("unconfirmed" unless player_assoc.confirmed?), :data => { :id => player.id } }
+        %tr{ :class => ("unconfirmed" unless player_assoc.confirmed?), :data => { :id => player_assoc.id } }
           %td
             = "#{index+1}." unless edit
             = player.name

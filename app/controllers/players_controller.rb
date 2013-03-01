@@ -18,6 +18,7 @@ class PlayersController < ApplicationController
       player_association = PlayerAssociation.create(:player => player, :tournament => @tournament, :state => :confirmed)
       @result[:created] = true
       @result[:player] = player
+      @result[:player_association] = player_association
       @result[:delete_url] = tournament_player_path(@tournament, player)
       render :json => @result  
     
@@ -53,15 +54,16 @@ class PlayersController < ApplicationController
     @result = { :removed => false, :player => player, :destroyed => false }
     
     unless player.nil?
-      @tournament.player_associations.find_by_player_id(player.id).delete
+      pa = @tournament.player_associations.find_by_player_id(player.id)
+      pa.delete
+      
       unless player.fetched
         player.delete
         @result[:destroyed] = true
-      else
-        @tournament.players.delete(player)
       end
-      
+            
       @result[:removed] = true
+      @result[:player_association] = pa
     end
       
     respond_to do |format|

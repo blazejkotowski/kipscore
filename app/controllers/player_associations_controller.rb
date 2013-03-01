@@ -15,10 +15,10 @@ class PlayerAssociationsController < ApplicationController
     if player_association.present?  
       player_association.confirm
       UserMailer.organizer_confirmation(player_association, I18n.locale).deliver
-      return render(:json => { :confirmed => true, :player => player_association.player })
+      return render(:json => { :confirmed => true, :player_association => player_association, :player => player_association.player })
     end
     
-    render(:json => { :confirmed => false, :player => player_association.player.to_json })
+    render(:json => { :player_association => player_association, :confirmed => false, :player => player_association.player.to_json })
   end  
   
 end
