@@ -17,7 +17,7 @@ en:
     "current profile link": "current profile link"
     "club name": "club name"
     "profile_not_public": "Currently your profile is not public"
-    
+    "last tournaments": "last tournaments"    
   navigation:
     tournaments:
       index:

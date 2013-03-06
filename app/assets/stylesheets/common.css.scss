@@ -1,3 +1,15 @@
+.pagination > ul > li > span, .pagination > ul > li > a  {
+  border: 0;
+  background: rgba(255,255,255,.25);
+}
+
+.pagination > ul > li:hover,
+.pagination > ul > li.active {
+  a, span{
+    background: rgba(255,255,255,.35);
+  }
+}
+
 .thumbnail {
   &.medium {
     width: 150px;

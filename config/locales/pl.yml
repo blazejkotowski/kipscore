@@ -123,6 +123,7 @@ pl:
     "current profile link": "aktualny link do profilu"
     "club name": "nazwa klubu"
     "profile_not_public": "Twój profil nie jest w tej chwili publiczny"
+    "last tournaments": "ostatnie turnieje"
     
   navigation:
     tournaments:

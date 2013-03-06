@@ -20,6 +20,7 @@
 //= require bootstrap-timepicker
 //= require jquery.gracket.min
 //= require tournaments
+//= require user_profiles
 //= require underscore
 //= require backbone
 //= require backbone-relational

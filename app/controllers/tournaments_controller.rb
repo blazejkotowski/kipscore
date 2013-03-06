@@ -182,11 +182,11 @@ class TournamentsController < ApplicationController
       
       case params.try('[]', :state)
       when 'started'
-        @search = Tournament.started.with_user.search(params[:q])
+        @search = Tournament.started.page(params[:page]).with_user.search(params[:q])
       when 'finished'
-        @search = Tournament.finished.with_user.search(params[:q])
+        @search = Tournament.finished.page(params[:page]).with_user.search(params[:q])
       else
-        @search = Tournament.created.with_user.search(params[:q])
+        @search = Tournament.created.page(params[:page]).with_user.search(params[:q])
       end
           
       @tournaments = @search.result

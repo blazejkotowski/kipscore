@@ -13,13 +13,18 @@
     = user_description(@profile.description, :class => "tournament-description")
   .span6
     .page-header
-      %h2 Tournaments
-    - unless @tournaments.started.empty?
-      %h4 Started
-      = render "shared/tournaments_list", :tournaments => @tournaments.started
-    - unless @tournaments.created.empty?
-      %h4 Upcoming
-      = render "shared/tournaments_list", :tournaments => @tournaments.created
-    - unless @tournaments.finished.empty?
-      %h4 Finished
-      = render "shared/tournaments_list", :tournaments => @tournaments.finished
+      %h2= I18n.t("custom_translations.last tournaments").capitalize
+    %ul#tournaments-tabs.nav.nav-tabs
+      - unless @tournaments.started.empty?
+        %li= link_to I18n.t("navigation.tournaments.index..started").capitalize, "#started_tournaments", :data => { :toggle=>"tab" }
+      - unless @tournaments.created.empty?
+        %li= link_to I18n.t("navigation.tournaments.index.upcoming").capitalize, "#upcoming_tournaments", :data => { :toggle=>"tab" }
+      - unless @tournaments.finished.empty?
+        %li= link_to I18n.t("navigation.tournaments.index..finished").capitalize, "#finished_tournaments", :data => { :toggle=>"tab" }
+    .tab-content
+      - unless @tournaments.started.empty?
+        #started_tournaments.tab-pane= render "shared/tournaments_list", :tournaments => @tournaments.started.first(15)
+      - unless @tournaments.created.empty?
+        #upcoming_tournaments.tab-pane= render "shared/tournaments_list", :tournaments => @tournaments.created.first(15)
+      - unless @tournaments.finished.empty?
+        #finished_tournaments.tab-pane= render "shared/tournaments_list", :tournaments => @tournaments.finished.first(15)
