@@ -1,6 +1,6 @@
 %ul.nav.nav-tabs
   %li{ :class => ('active' if controller_name == 'registrations' && action_name=='edit')}= link_to I18n.t('custom_translations.account', :default => "account").capitalize, edit_user_registration_path
   %li{ :class => ('active' if controller_name == 'user_profiles') }= link_to I18n.t('custom_translations.edit profile', :default => "edit profile").capitalize, edit_user_profile_path
-  %li{ :class => ('active' if controller_name == 'users' && action_name = 'tournaments') }= link_to I18n.t('custom_translations.manage tournaments', :default => 'manage tournaments').capitalize, tournaments_user_path
+  %li{ :class => ('active' if controller_name == 'users' && action_name == 'tournaments') }= link_to I18n.t('custom_translations.manage tournaments', :default => 'manage tournaments').capitalize, tournaments_user_path
   %li= link_to I18n.t('custom_translations.payments', :default => 'payments').capitalize, "#"
 
