@@ -6,7 +6,7 @@
     .page-header
       %h2 Information
     .well{ :style => "vertical-align: middle;"}
-      .pull-left.thumbnail.medium= image_tag @profile.avatar.url(:medium)
+      .pull-left.thumbnail.medium= image_tag @profile.avatar_url(:medium)
       .pull-left.contact-info{ :style => "vertical-align: middle;"}
         = user_description(@profile.contact)
       .clearfix

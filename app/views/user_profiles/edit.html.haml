@@ -18,7 +18,7 @@
     .control-group
       = f.label :avatar
       .controls
-        .thumbnail.medium= image_tag current_user.profile.avatar.url(:medium)
+        .thumbnail.medium= image_tag current_user.profile.avatar_url(:medium)
         %div
           = f.file_field :avatar
     .form-actions

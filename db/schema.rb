@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130227212731) do
+ActiveRecord::Schema.define(:version => 20130307183947) do
 
   create_table "player_associations", :force => true do |t|
     t.integer  "tournament_id"
@@ -98,15 +98,12 @@ ActiveRecord::Schema.define(:version => 20130227212731) do
     t.string   "club"
     t.integer  "user_id"
     t.text     "description"
-    t.datetime "created_at",          :null => false
-    t.datetime "updated_at",          :null => false
-    t.string   "avatar_file_name"
-    t.string   "avatar_content_type"
-    t.integer  "avatar_file_size"
-    t.datetime "avatar_updated_at"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
     t.boolean  "public"
     t.string   "link"
     t.text     "contact"
+    t.string   "avatar"
   end
 
   add_index "user_profiles", ["link"], :name => "index_user_profiles_on_link"
