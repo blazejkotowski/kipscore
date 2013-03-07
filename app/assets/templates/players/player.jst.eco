@@ -1,8 +1,16 @@
-<% if @empty: %>
-  Empty
-<% else: %>
+<% unless @empty: %>
   <!--<% if @rank != -1: %>
     <%= @rank %>. 
   <% end %>-->
+  <% if @end_position: %>
+    <span class="badge badge-info position">
+      <%= @end_position %>
+    </span>
+  <% end %>
+  <% if @end_position && @winner: %>
+    <span class="badge badge-success">
+      <i class="icon-star"></i>
+    </span>
+  <% end %>
   <%= @name %>
 <% end %>

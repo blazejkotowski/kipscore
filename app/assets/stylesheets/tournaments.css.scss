@@ -67,6 +67,11 @@
   color: #333 !important;
 }
 
+#players-modal {
+  width: 850px;
+  margin-left: -425px;
+}
+
 #join-modal {
   background-color: #333;
   color: #fff;
@@ -156,15 +161,15 @@ table.results {
 }
 
 
-$playerHeight: 22px;
-$playerPadding: 3px;
+$playerHeight: 25px;
+$playerPadding: 6px;
 $totalPlayerHeight: $playerHeight + $playerPadding*2;
 
 $baseMatchMargin: 20px;
 $baseMatchPadding: 0;
 $baseMatchBorder: 1px;
 $baseMatchHeight: $totalPlayerHeight*2;
-$baseMatchWidth: 200px;
+$baseMatchWidth: 250px;
 $totalMatchHeight: $baseMatchHeight + $baseMatchBorder*2 + $baseMatchPadding*2;
 $column1MatchMargin: $baseMatchMargin*2 + $totalMatchHeight/2 - 1;
 $column2MatchMargin: $column1MatchMargin*2 + $totalMatchHeight/2 - 1;
@@ -188,6 +193,7 @@ $totalColumnWidth: $columnWidth + $columnMarginRight;
 
 
 .tournament-bracket-wrapper {
+  background-color: rgba(255,255,255,0.2);
   overflow-x: auto;
   padding-bottom: 0;
   position: relative;
@@ -197,11 +203,12 @@ $totalColumnWidth: $columnWidth + $columnMarginRight;
 }
 
 .tournament-title {
+  
   margin-bottom: -10px;
   margin-left: 10px;
-  font-size: 1.5em;
+  font-size: 1.4em;
   position: relative;
-  bottom: 20px;
+  bottom: 17px;
 }
 
 .scroll-top, .tournament-bracket {
@@ -230,10 +237,9 @@ $totalColumnWidth: $columnWidth + $columnMarginRight;
 }
 
 .tournament-bracket {
-  background-color: rgba(255,255,255,0.2);
   padding: 10px;
-  min-width: 98%;
-
+  float: right;
+  
   .scroll-top {
     height: 20px;
   }  
@@ -247,7 +253,7 @@ $totalColumnWidth: $columnWidth + $columnMarginRight;
   
   .proceed-button {
     position: absolute;
-    right: -6px;
+    right: -12px;
     top: 0;
     bottom:0;
     padding: 0 3px;
@@ -259,6 +265,8 @@ $totalColumnWidth: $columnWidth + $columnMarginRight;
       position: relative;
 	    font-weight: bold;
 	    color: #666;
+	    padding-right: 4px;
+	    padding-left: 4px;
 	    text-decoration: none;
     }
     display: none;
@@ -282,6 +290,16 @@ $totalColumnWidth: $columnWidth + $columnMarginRight;
   
   
   .player {
+    &.winner {
+      font-weight: bold;
+    }
+    .icon-star {
+      color: gold;
+    }
+    .position {
+      font-weight: bold;
+      font-color: #fff;
+    }
     height: $playerHeight;
     padding: $playerPadding;
     width: 100%;
@@ -341,7 +359,7 @@ $totalColumnWidth: $columnWidth + $columnMarginRight;
         }
         
         tr:nth-child(odd) {
-          color: #fff;
+          color: #333;
           td {
             background: #9bc44b;
             border-color: #ddd;

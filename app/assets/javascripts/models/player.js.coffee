@@ -5,12 +5,25 @@ class Kipscore.Models.Player extends Backbone.RelationalModel
     'rank': -1
     'empty': false
     'bye': false
+    'winner': false
+    'end_position': null
     
   initialize: ->
-    if this.get('name') is undefined
-      this.set({ 'name': '', 'empty': true })
+    if @get('name') is undefined
+      @set({ 'name': '', 'empty': true })
   
   empty: ->
-    return this.get('empty')
+    return @get('empty')
+    
+  bye: ->
+    return @get('bye')
+    
+  clone: ->
+    new Kipscore.Models.Player
+      name: @get('name')
+      start_position: @get("start_position")
+      rank: @get("rank")
+      empty: @get("empty")
+      bye: @get("bye")
 
 Kipscore.Models.Player.setup()

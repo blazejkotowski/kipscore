@@ -53,10 +53,12 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
       
     # Match with bye case
     if @get('player1').get('bye') && not @get('player2').empty()
+      @get('player2').set("winner", true) 
       @set 'winner', @get('player2')
       @set 'loser', @get('player1')
       return true
     if @get('player2').get('bye') && not @get('player1').empty()
+      @get('player1').set("winner", true) 
       @set 'winner', @get('player1')
       @set 'loser', @get('player2')
       return true
@@ -71,11 +73,13 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
     
     # Player1 win
     if res1 > res2
+      @get('player1').set("winner", true) 
       @set 'winner', @get('player1')
       @set 'loser', @get('player2')
       true
     # Player2 win
     else if res2 > res1
+      @get('player2').set('winner',true)
       @set 'winner', @get('player2')
       @set 'loser', @get('player1')
       true
@@ -94,11 +98,13 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
       wmatch.addPlayer @get('winner'), @index()%2 ? 1 : 2
     else
       position = @collection.tournament.get('min_position')
+      @get('winner').set('end_position', position)
       @collection.tournament.mainTournament().get('results').add(position, @get('winner'))
     unless lmatch is false
       lmatch.addPlayer @get('loser'), @index()%2 ? 1 : 2
     else
       position = @collection.tournament.get('min_position')+1
+      @get('loser').set('end_position', position)
       @collection.tournament.mainTournament().get('results').add(position, @get('loser'))
       
     @set 'finished', true
@@ -120,10 +126,10 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
       
   addPlayer: (player, position = 0) ->
     if (position == 0 || position == 2) and @get('player2').empty()
-      @set 'player2', player
+      @set 'player2', player.clone()
       true
     else if (position == 0 || position == 1) and @get('player1').empty()
-      @set 'player1', player
+      @set 'player1', player.clone()
       true
     else
       false
@@ -134,7 +140,12 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
     not(player1.empty() or player2.empty())
     
   empty: ->
-    return (@get('player1').empty() && @get('player2').empty())
+    return ((@get('player1').empty() && @get('player2').empty()) ||
+            (@get('player1').empty() && @get('player2').bye()) ||
+            (@get('player2').empty() && @get('player1').bye()) ||
+            (@get('player1').bye() && @get('player2').bye()))
+            
+    
   
   winnerMatch: ->
     @collection.tournament.winnerMatch(@index())
@@ -159,15 +170,14 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
     @set 'scores', new Array()
     
   undoMatch: ->
-    @set
-      'scores': new Array()
-      'winner': null
-      'loser': null
-      'finished': false
+    @restart()
     
     loser_match = @loserMatch()
     winner_match = @winnerMatch()
-    loser_match.set('scores', new Array())
+    
+    loser_match.restart()
+    winner_match.restart()
+    
     if @index()%2
       loser_match.set('player1', new Kipscore.Models.Player())
       winner_match.set('player1', new Kipscore.Models.Player())
@@ -176,6 +186,15 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
       winner_match.set('player2', new Kipscore.Models.Player())
     
     @set('finished', false)
+    
+  restart: ->
+    @get('player1').set('winner', false)
+    @get('player2').set('winner', false)
+    @set
+      'scores': new Array()
+      'winner': null
+      'loser': null
+      'finished': false
     
   index: ->
     try

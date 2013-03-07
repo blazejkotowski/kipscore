@@ -61,8 +61,11 @@ class Kipscore.Views.Tournament extends Backbone.View
     
     # Render related tournaments recursivly
     rt = @model.get('related_tournaments')
-    rt.each (t) ->
-      tv = new Kipscore.Views.Tournament({ model: t })
+    titer = rt.length - 1
+    console.log titer
+    while titer >= 0
+      tv = new Kipscore.Views.Tournament({ model: rt.at(titer) })
       tv.render()
+      titer--
     
     this
