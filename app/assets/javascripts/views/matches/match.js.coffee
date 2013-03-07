@@ -98,6 +98,8 @@ class Kipscore.Views.Match extends Backbone.View
     scores = @scores((false if @model.get('finished') or not @model.ready() or not admin))
     $(@el).append(scores)
     
+    @drawLines()
+    
     unless @model.get('finished') or not @model.ready() or not admin
       proceed_link = $("<a/>").addClass("proceed").attr("href", "#").append($("<i/>").addClass("icon-chevron-right"))
       proceed_button = $("<div/>").addClass("proceed-button").append(proceed_link)    
@@ -129,4 +131,10 @@ class Kipscore.Views.Match extends Backbone.View
       new_score = $('<a/>').attr('href','#').addClass("new").append($("<i/>").addClass("icon-plus")).appendTo(scores_div)  
     
     scores_div
+    
+  drawLines: ->
+    unless @model.index() == 1
+      @$el.append($('<div/>').addClass("lines"))
+    unless @model.columnNumber() == 0
+      @$el.append($("<div/>").addClass("lines-connector"))
     

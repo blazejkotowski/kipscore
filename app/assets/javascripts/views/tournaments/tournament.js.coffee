@@ -44,7 +44,7 @@ class Kipscore.Views.Tournament extends Backbone.View
       # Create next column
       if @model.columnNumber(i+1) != @model.columnNumber(i+2)
         $wrapper.append(column)
-        column = $('<div/>').addClass("column#{@model.columnNumber(i+1)}")
+        column = $('<div/>').addClass("column column#{@model.columnNumber(i+1)}")
         column.append($('<div/>').addClass('round-title').text("Round #{@model.columnNumber(i+1)+1}"))
       
       match_view = new Kipscore.Views.Match({ model: bracket.at(i) })

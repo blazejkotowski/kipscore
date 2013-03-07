@@ -314,10 +314,31 @@ $totalColumnWidth: $columnWidth + $columnMarginRight;
     display: inline-block;
     vertical-align: middle;
     position: relative;
+    .lines {
+      display: block;
+      position: absolute;
+      top: $totalPlayerHeight;
+      width: 12px;
+      right: -24px;
+      height: $baseMatchMargin*2 + $totalPlayerHeight*2;
+      border: 2px solid;
+      border-left: 0;
+    }
+    .lines-connector {
+      display: block;
+      position: absolute;
+      left: -12px;
+      top: $totalPlayerHeight;
+      border-top: 2px solid #fff;
+      width: 12px;
+    }
+    &:nth-child(odd) .lines {
+      display: none;
+    }
     .scores {
       position: absolute;
       height: 100%;
-      right: -5px;
+      right: -11px;
       top: 0;
       .new {
         position: relative;
@@ -339,6 +360,7 @@ $totalColumnWidth: $columnWidth + $columnMarginRight;
       }
       
       table {
+        font-size: 12px;
         display: table !important;
         height: 100%;
         float: left;
@@ -390,7 +412,7 @@ $totalColumnWidth: $columnWidth + $columnMarginRight;
   
   .finished:hover {
     .scores {
-      right: -5px;
+      right: -11px;
     }
   }
   
@@ -404,42 +426,49 @@ $totalColumnWidth: $columnWidth + $columnMarginRight;
   .column1 {
     .match {
       margin: $column1MatchMargin 0;
+      .lines { height: $column1MatchMargin*2 + $totalPlayerHeight*2; }
     }
   }
   
   .column2 {
     .match {
       margin: $column2MatchMargin 0;
+      .lines { height: $column2MatchMargin*2 + $totalPlayerHeight*2; }
     }
   }
   
   .column3 {
     .match {
       margin: $column3MatchMargin 0;
+      .lines { height: $column3MatchMargin*2 + $totalPlayerHeight*2; }
     }
   }
   
   .column4 {
     .match {
       margin: $column4MatchMargin 0;
+      .lines { height: $column4MatchMargin*2 + $totalPlayerHeight*2; }
     }
   }
   
   .column5 {
     .match {
       margin: $column5MatchMargin 0;
+      .lines { height: $column5MatchMargin*2 + $totalPlayerHeight*2; }
     }
   }
   
   .column6 {
     .match {
       margin: $column6MatchMargin 0;
+      .lines { height: $column6MatchMargin*2 + $totalPlayerHeight*2; }
     }
   }
   
   .column7 {
     .match {
       margin: $column7MatchMargin 0;
+      .lines { height: $column7MatchMargin*2 + $totalPlayerHeight*2; }
     }
   }
 }

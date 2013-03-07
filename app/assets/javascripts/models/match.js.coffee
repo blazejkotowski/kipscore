@@ -196,6 +196,8 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
       'loser': null
       'finished': false
     
+  columnNumber: ->
+    @get('tournament').columnNumber(@index())
   index: ->
     try
       return @collection.indexOf(this)+1
