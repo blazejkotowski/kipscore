@@ -140,7 +140,7 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
     log2(this.get('bracket_size')) - log2(bracket_number)
     
   maxColumnNumber: ->
-    return Math.floor(Math.log(this.get('bracket_size')) / Math.LN2)
+    Math.floor(Math.log(this.get('bracket_size')) / Math.LN2)
     
   winnerMatch: (bracket_number) ->
     if bracket_number == 1
@@ -169,10 +169,7 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
       tournament = @get('parent_tournament')
     
     unless tournament is null
-      match = tournament.get('bracket').at match_index
-      console.log "picked tournament", tournament
-      console.log "found match", match
-      match
+      tournament.get('bracket').at match_index
       
       
   mainTournament: ->
@@ -193,8 +190,11 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
   isNew: ->
     @get('new')
     
+  isMain: ->
+    @get('min_position') == 1
+    
   save: (callback) ->
-    #console.log "saving"
+    console.log "saving"
     if callback is undefined
       callback = @releaseSaving
     $.ajax

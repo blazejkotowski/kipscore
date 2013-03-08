@@ -98,14 +98,16 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
       wmatch.addPlayer @get('winner'), @index()%2 ? 1 : 2
     else
       position = @collection.tournament.get('min_position')
-      @get('winner').set('end_position', position)
-      @collection.tournament.mainTournament().get('results').add(position, @get('winner'))
+      unless @get('winner').bye()
+        @get('winner').set('end_position', position)
+        @collection.tournament.mainTournament().get('results').add(position, @get('winner'))
     unless lmatch is false
       lmatch.addPlayer @get('loser'), @index()%2 ? 1 : 2
     else
       position = @collection.tournament.get('min_position')+1
-      @get('loser').set('end_position', position)
-      @collection.tournament.mainTournament().get('results').add(position, @get('loser'))
+      unless @get('loser').bye()
+        @get('loser').set('end_position', position)
+        @collection.tournament.mainTournament().get('results').add(position, @get('loser'))
       
     @set 'finished', true
     @trigger "to_save"
@@ -169,6 +171,8 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
     @set 'finished', false
     @set 'scores', new Array()
     
+    @trigger "to_save"
+    
   undoMatch: ->
     @restart()
     
@@ -198,6 +202,7 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
     
   columnNumber: ->
     @get('tournament').columnNumber(@index())
+    
   index: ->
     try
       return @collection.indexOf(this)+1

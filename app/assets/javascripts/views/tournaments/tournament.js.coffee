@@ -8,6 +8,10 @@ class Kipscore.Views.Tournament extends Backbone.View
   append: ->
     $(@el).appendTo("#tournament-container")
     
+    # Set proper float
+    if @$el.children(".tournament-bracket").outerWidth() > @$el.outerWidth()
+      @$el.children(".tournament-bracket").css("float","left")
+    
     # Top scroll
     $scroll_wrapper = $("<div/>").addClass("scroll-top-wrapper empty").insertBefore(@$el)
     unless @empty is undefined
@@ -45,7 +49,10 @@ class Kipscore.Views.Tournament extends Backbone.View
       if @model.columnNumber(i+1) != @model.columnNumber(i+2)
         $wrapper.append(column)
         column = $('<div/>').addClass("column column#{@model.columnNumber(i+1)}")
-        column.append($('<div/>').addClass('round-title').text("Round #{@model.columnNumber(i+1)+1}"))
+        $roundTitle = $('<div/>').addClass('round-title')
+        if @model.isMain()
+          $roundTitle.text("Round #{@model.columnNumber(i+1)+1}")
+        column.append($roundTitle)
       
       match_view = new Kipscore.Views.Match({ model: bracket.at(i) })
 
@@ -62,7 +69,6 @@ class Kipscore.Views.Tournament extends Backbone.View
     # Render related tournaments recursivly
     rt = @model.get('related_tournaments')
     titer = rt.length - 1
-    console.log titer
     while titer >= 0
       tv = new Kipscore.Views.Tournament({ model: rt.at(titer) })
       tv.render()

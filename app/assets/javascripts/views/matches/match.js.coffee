@@ -107,8 +107,10 @@ class Kipscore.Views.Match extends Backbone.View
     
     unless @model.get('finished') or not admin
       undo_links = $('<div/>').addClass('undo-links')
-      undo_link_p1 = $('<a/>').addClass('undo-first').attr('href','#').append($("<i/>").addClass("icon-chevron-left")).appendTo(undo_links)
-      undo_link_p2 = $('<a/>').addClass('undo-second').attr('href','#').append($("<i/>").addClass("icon-chevron-left")).appendTo(undo_links)
+      unless @model.get('player1').empty()
+        undo_link_p1 = $('<a/>').addClass('undo-first').attr('href','#').append($("<i/>").addClass("icon-chevron-left")).appendTo(undo_links)
+      unless @model.get('player2').empty()
+        undo_link_p2 = $('<a/>').addClass('undo-second').attr('href','#').append($("<i/>").addClass("icon-chevron-left")).appendTo(undo_links)
       @$el.append(undo_links)
     
     this
