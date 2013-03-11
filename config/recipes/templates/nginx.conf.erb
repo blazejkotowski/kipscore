@@ -3,13 +3,8 @@ upstream unicorn_<%= application %> {
 }
 
 server {
-  <% unless server_name do %>
-    listen 80 default deferred;
-  <% end %>
-  <% if server_name do %>
-    listen default deferred;
-    server_name <%= server_name %>;
-  <% end %>
+  listen <%= nginx_server_port %><% unless nginx_server_name %> default deferred<% end %>;
+  <% if nginx_server_name %>server_name <%= nginx_server_name %>;<% end %>
   root <%= current_path %>;
 
   location ^~ /assets/ {

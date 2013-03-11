@@ -13,9 +13,9 @@ set -e
 # Feel free to change any of the following variables for your app:
 TIMEOUT=${TIMEOUT-60}
 APP_ROOT=<%= current_path %>
-PID=<%= unicorn_pid %}
-CMD="cd $APP_ROOT; <%= runner %> unicorn -D -c <%= unicorn_config %> -E <%= fetch(:stage) %>"
-AS_USER=deployer
+PID=<%= unicorn_pid %>
+CMD="cd $APP_ROOT; <%= runner %> unicorn -D -c <%= unicorn_config %> -E <%= stage %>"
+AS_USER=<% unicorn_user %>
 set -u
 
 OLD_PIN="$PID.oldbin"
