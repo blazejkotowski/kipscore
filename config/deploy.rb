@@ -5,7 +5,7 @@ server "198.211.121.192", :web, :app, :db, primary: true
 task :staging do
   set :stage, "staging"
   set :unicorn_workers, 1
-  set :nginx_server_name, "beta.kipscore.pl beta.kipscore.com kipscore.vps"
+  set :nginx_server_name, "staging.kipscore.pl staging.kipscore.com kipscore.staging"
 end
 
 task :production do
