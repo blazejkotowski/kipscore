@@ -1,5 +1,5 @@
 namespace :nginx do
-  task :setup
+  task :setup do
     template "nginx.conf", "/tmp/nginx.conf"
     run "#{sudo} mv /tmp/nginx.conf /etc/nginx/sites-enabled/#{fetch(:application)}"
     restart
