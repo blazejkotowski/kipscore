@@ -1,11 +1,16 @@
-upstream unicorn {
-  server unix:/tmp/unicorn.kipscore.sock fail_timeout=0;
+upstream unicorn_<%= application %> {
+  server unix:/tmp/unicorn.<%= application %>.sock fail_timeout=0;
 }
 
 server {
-  listen 80 default deferred;
-  # server_name example.com;
-  root /home/deployer/apps/kipscore/current/public;
+  <% unless server_name do %>
+    listen 80 default deferred;
+  <% end %>
+  <% if server_name do %>
+    listen default deferred;
+    server_name <%= server_name %>;
+  <% end %>
+  root <%= current_path %>;
 
   location ^~ /assets/ {
     gzip_static on;
@@ -18,7 +23,7 @@ server {
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
     proxy_set_header Host $http_host;
     proxy_redirect off;
-    proxy_pass http://unicorn;
+    proxy_pass http://unicorn_<%= application %>;
   }
 
   error_page 500 502 503 504 /500.html;
