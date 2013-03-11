@@ -1,4 +1,3 @@
-set_default(:unicorn_user, user)
 set_default(:unicorn_config, "#{current_path}/config/unicorn.rb")
 set_default(:unicorn_log, "#{current_path}/log/unicorn.log")
 set_default(:unicorn_pid, "#{current_path}/tmp/pids/unicorn.pid")
