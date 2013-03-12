@@ -1,5 +1,4 @@
 require "bundler/capistrano"
-require "whenever/capistrano"
 
 server "198.211.121.192", :web, :app, :db, primary: true
 
@@ -36,9 +35,7 @@ set(:rails_env) { fetch(:stage) }
 default_run_options[:pty] = true
 ssh_options[:forward_agent] = true
 
-#set(:runner) { "RAILS_ENV=#{fetch(:stage)} bundle exec" }
-set(:run_cmd) { "RAILS_ENV=#{fetch(:stage)} bundle exec" }
-
+set(:runner) { "RAILS_ENV=#{fetch(:stage)} bundle exec" }
 
 load 'config/recipes/base.rb'
 load 'config/recipes/whenever.rb'
