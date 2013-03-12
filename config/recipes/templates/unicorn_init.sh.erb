@@ -14,7 +14,7 @@ set -e
 TIMEOUT=${TIMEOUT-60}
 APP_ROOT="<%= current_path %>"
 PID="<%= unicorn_pid %>"
-CMD="cd $APP_ROOT; <%= runner %> unicorn -D -c <%= unicorn_config %> -E <%= stage %>"
+CMD="cd $APP_ROOT; <%= run_cmd %> unicorn -D -c <%= unicorn_config %> -E <%= stage %>"
 AS_USER="<%= unicorn_user %>"
 set -u
 
