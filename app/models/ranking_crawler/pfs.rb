@@ -4,6 +4,7 @@ class RankingCrawler::Pfs < RankingCrawler::RankingCrawler
   
   def initialize
     @base_url = "http://pfs.ligowe.info/"
+    @sport_name = "Squash"
     super
   end
 

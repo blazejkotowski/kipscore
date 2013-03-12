@@ -12,9 +12,9 @@ class RankingCrawler::RankingCrawler
     # fetch rankings from database
     # rankings = Ranking.all
     
-    Ranking.all.each do |ranking|
-      ranking = "#{name.split(':').first}::#{ranking.name.split.join}".constantize.new
-      ranking.sync
+    rankings.each do |ranking|
+      r = "#{name.split(':').first}::#{ranking.name.split.join}".constantize.new
+      r.sync
     end
     create_indexes(:all)
   end
@@ -40,8 +40,14 @@ class RankingCrawler::RankingCrawler
   def players_list
   end
   
+  def sport
+    @sport ||= Sport.find_or_initialize_by_name(@sport_name)
+    @sport.save if @sport.new_record?
+    @sport
+  end
+  
   def ranking
-    @ranking ||= Ranking.find_or_initialize_by_name(name)
+    @ranking ||= Ranking.find_or_initialize_by_name_and_sport_id(name, sport.id)
     @ranking.save if @ranking.new_record?
     @ranking
   end
