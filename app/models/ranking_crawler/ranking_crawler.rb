@@ -13,7 +13,7 @@ class RankingCrawler::RankingCrawler
     # rankings = Ranking.all
     
     rankings.each do |ranking|
-      r = "#{name.split(':').first}::#{ranking.name.split.join}".constantize.new
+      r = "#{name.split(':').first}::#{ranking.split.join}".constantize.new
       r.sync
     end
     create_indexes(:all)
