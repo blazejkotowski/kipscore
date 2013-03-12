@@ -1,7 +1,7 @@
 namespace :whenever do
   task :start, :roles => :app do
     unless stage == "staging"
-      run "cd #{current_path} && #{fetch(:runner)} whenever --update-crontab #{application} --set environment=#{fetch(:stage)}"
+      run "cd #{current_path} && #{sudo} #{fetch(:runner)} whenever --update-crontab #{application} --set environment=#{fetch(:stage)}"
     end
   end
   after "deploy:restart", "whenever:start"

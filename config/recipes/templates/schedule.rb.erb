@@ -1,3 +1,5 @@
+set :output, "<%= shared_path %>/log/whenever.log"
+
 every 1.day, :at => '4:00 am' do
   rake "ranking:sync_players"
 end
