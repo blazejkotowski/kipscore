@@ -1,4 +1,5 @@
 require "bundler/capistrano"
+require "whenever/capistrano"
 
 server "198.211.121.192", :web, :app, :db, primary: true
 
@@ -39,8 +40,9 @@ set(:runner) { "RAILS_ENV=#{fetch(:stage)} bundle exec"}
 
 
 load 'config/recipes/base.rb'
-load 'config/recipes/nginx.rb'
+load 'config/recipes/whenever.rb'
 load 'config/recipes/unicorn.rb'
+load 'config/recipes/nginx.rb'
 load 'config/recipes/postgresql.rb'
 
 
