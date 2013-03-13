@@ -108,8 +108,60 @@ input.ui-autocomplete-loading {
   }
 }
 
+
 span.tooltip-trigger i {
   cursor: pointer;
   display: inline-block;
   padding: 5px;
+}
+
+$tooltipColor: #333;
+$tooltipBackground: #fff;
+$tooltipColorReverse: #fff;
+$tooltipBackgroundReverse: #333;
+
+.tooltip {
+  &.in {
+    opacity: 1 !important;
+  }
+  .tooltip-inner {
+    font-weight: bold;
+    background: $tooltipBackground;
+    color: $tooltipColor;
+    box-shadow: 2px 2px 1px rgba(0,0,0,0.6)
+  }
+  &.top .tooltip-arrow {
+    border-top-color: $tooltipBackground !important;
+  }
+  &.bottom .tooltip-arrow {
+    border-bottom-color: $tooltipBackground !important;
+  }
+  &.right .tooltip-arrow {
+    border-right-color: $tooltipBackground !important;
+  }
+  &.left .tooltip-arrow {
+    border-left-color: $tooltipBackground !important;
+  }
+}
+
+#bracket-modal, #players-modal {
+  .tooltip {
+    .tooltip-inner {
+      color: $tooltipColorReverse;
+      background: $tooltipBackgroundReverse;
+      box-shadow: 2px 2px 1px rgba(255,255,255,0.6);
+    }
+    &.top .tooltip-arrow {
+      border-top-color: $tooltipBackgroundReverse !important;
+    }
+    &.bottom .tooltip-arrow {
+      border-bottom-color: $tooltipBackgroundReverse !important;
+    }
+    &.right .tooltip-arrow {
+      border-right-color: $tooltipBackgroundReverse !important;
+    }
+    &.left .tooltip-arrow {
+      border-left-color: $tooltipBackgroundReverse !important;
+    }
+  }
 }
