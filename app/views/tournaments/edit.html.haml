@@ -28,7 +28,7 @@
     window.Kipscore.playersInitialize()
   .modal-body
   .modal-footer
-    = link_to I18n.t("custom_translations.randomize", :default => "randomize").capitalize, "#", {:remote => true, :class => 'tooltip-trigger btn randomize'}.merge(tooltip_attrs('randomize'))
+    = link_to I18n.t("custom_translations.randomize", :default => "randomize").capitalize, "#", tooltip_attrs('randomize', :remote => true, :class => 'tooltip-trigger btn randomize')
     = link_to I18n.t("custom_translations.save", :default => 'save').capitalize, "#", :remote => true, :class => 'btn btn-success save'
     %button.btn{ 'data-dismiss' => 'modal', 'aria-hidden' => true }
       = I18n.t("custom_translations.close", :default => "close").capitalize
