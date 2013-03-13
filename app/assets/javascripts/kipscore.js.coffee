@@ -31,6 +31,8 @@ window.Kipscore =
                   .html("&times;")
                   .prependTo($notification)
     $(selector).append($notification)
+  enableTooltips: =>
+    $('.tooltip-trigger').tooltip()
 
 jQuery ->
   
@@ -50,3 +52,5 @@ jQuery ->
     $("a.about-us").each (index, obj) ->  $(obj).addClass("active")      
   
   $('.datepicker').datepicker({format: 'yyyy-mm-dd', autoclose: true})
+  
+  $('.tooltip-trigger').tooltip()

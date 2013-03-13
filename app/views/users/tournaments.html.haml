@@ -19,7 +19,7 @@
             %tr{ :data => { :tid => tournament.id } }
               %td= link_to tournament.name, tournament_path(tournament)
               %td= tournament.start_date.strftime("%d-%m-%Y, %H:%M")
-              %td= link_to I18n.t("custom_translations.manage", :default => 'manage').capitalize, edit_tournament_path(tournament), :class => 'btn btn-mini manage-button', :remote => 'true', :data=> { :tid => tournament.id }
+              %td= link_to I18n.t("custom_translations.manage", :default => 'manage').capitalize, edit_tournament_path(tournament), tooltip_attrs('manage', {:class => 'btn btn-mini manage-button', :remote => 'true', :data => {:tid => tournament.id, :placement => :right } })
       = link_to I18n.t("custom_translations.create new tournament", :default => 'create new tournament').capitalize, new_tournament_path, :class => 'btn btn-large btn-primary'
     .span7#tournament-part
       .page-header

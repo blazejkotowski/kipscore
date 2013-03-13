@@ -10,12 +10,14 @@
         %th
           - unless @rankings.empty?
             = select_tag :ranking_id, options_for_select(@rankings) if !@rankings.empty?
+            = content_tag :span, tooltip_attrs('select_ranking', :data => {:placement => "right"}) do
+              %i.icon-question-sign
             %br/
           = text_field_tag "player[name]", '', :data => { :autocomplete_source => "/players/autocomplete?ranking_id=#{@rankings.try(:first).try(:last)}" }
         %th
           = text_field_tag "player[rank]", '', :class => 'rank'
         %th
-          = submit_tag '+', :class => 'btn btn-success btn-medium'
+          = submit_tag '+', tooltip_attrs('add_player', :class => 'btn btn-success btn-medium')
   %tbody
     - player_associations = @tournament.player_associations.likely if edit
     - player_associations = @tournament.player_associations.confirmed unless edit
@@ -33,8 +35,8 @@
               - if popover_info.present?
                 = link_to "#", :class => "popover-btn btn btn-medium", :data => { :toggle => "popover", :placement => "left", :shown => false, :original_title => "Info", :html => true, :content => "#{popover_info}"} do
                   %i.icon-info-sign
-              = link_to '-', tournament_player_path(@tournament, player), :method => 'delete', :remote => 'true', :class => 'btn btn-danger btn-medium delete-player'
+              = link_to '-', tournament_player_path(@tournament, player), tooltip_attrs('remove_player', :method => 'delete', :remote => 'true', :class => 'btn btn-danger btn-medium delete-player')
               - unless player_assoc.confirmed?
-                = link_to player_association_confirmation_path(player, @tournament.id), :method => :put, :remote => :true, :class => 'btn btn-medium btn-warning confirm-player' do
+                = link_to player_association_confirmation_path(player, @tournament.id), tooltip_attrs('confirm_player', :method => :put, :remote => :true, :class => 'btn btn-medium btn-warning confirm-player') do
                   %i.icon-ok
                   

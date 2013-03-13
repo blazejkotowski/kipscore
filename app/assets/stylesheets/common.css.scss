@@ -107,3 +107,9 @@ input.ui-autocomplete-loading {
     display: inline-block;
   }
 }
+
+span.tooltip-trigger i {
+  cursor: pointer;
+  display: inline-block;
+  padding: 5px;
+}

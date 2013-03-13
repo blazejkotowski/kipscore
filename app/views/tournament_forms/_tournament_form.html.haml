@@ -5,13 +5,19 @@
     = label_tag "player[name]", I18n.t("custom_translations.name and surname", :default => "name and surname").capitalize
     = text_field_tag "player[name]"
   - if form.rank
-    = label_tag "player[rank]", I18n.t("custom_translations.rank", :default => "rank").capitalize
+    = label_tag "player[rank]" do
+      = content_tag :span, tooltip_attrs('ranking_field', :data => {:placement => :right }) do
+        = I18n.t("custom_translations.rank", :default => "rank").capitalize
+        %i.icon-question-sign
     = text_field_tag "player[rank]", '', :class => "input-mini"
   - if form.phone
     = label_tag "player_association[phone]", I18n.t("custom_translations.phone", :default => "phone").capitalize
     = text_field_tag "player_association[phone]", '', :class => "input-medium"
   - if form.licence
-    = label_tag "player_association[licence]", I18n.t("custom_translations.licence", :default => "licence").capitalize
+    = label_tag "player_association[licence]" do
+      = content_tag :span, tooltip_attrs('licence_field', :data => {:placement => "right"}) do
+        = I18n.t("custom_translations.licence", :default => "licence").capitalize
+        %i.icon-question-sign
     = text_field_tag "player_association[licence]"
   - if form.comment
     = label_tag "player_association[comment]", I18n.t("custom_translations.comment", :default => "comment").capitalize

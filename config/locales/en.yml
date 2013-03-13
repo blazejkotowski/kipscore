@@ -35,3 +35,25 @@ en:
     players: "<p>You're in the section for players.</p><p>With kipscore, joining the tournament becomes easy as never before. Choose from the \"list of tournaments\" that on which you want to take part. Using the \"join\" you'll go to the tournament registration.</p><p>You'll receive an e-mail with a link in which you have to \"click\" to confirm your notification.</p><p>Adding to the list will be after the verification by the organizer.</p><p>The whole thing shouldn’t take more than a few minutes</p>"
     organizer: "<p>You're in the section for the organizers.</p><p>You'll find here all the informations necessary to create a tournament. The program allows you to create a tournament in an intuitive and simple way, in just a few steps! Find out how easy it is!</p>"
     observer: "<p>You are in the section for observers.</p><p>Kipscore allows you tracking the progress of events that interest us, no registration required. You can check out the game plan, view their schedule, and when they will be activated, you will see the whole progress the tournament.</p><p>You can cheer your friends and keep tracking of their actions without leaving home.</p>"
+    
+  tooltips:
+    manage: "Edit your tournament" #
+    set_bracket: "Allows you to manage your bracket. Random bracket with possibility of manual changes." #
+    randomize: "Generates random bracket by ranking" #
+    update: "Saves changes in selected tournament." #
+    start: "Starts tournament. Sets tournaments state to \"started\". Disables changes before breaking tournament." #
+    break: "Breaks currently started tournaemnt and deletes progress. Changes are enabled again." #
+    finish: "Finishes tournament. You will be unable to do anything with finished tournament." #
+    delete: "Permanently deletes tournament." #
+    is_open: "Selecting option allow players manually join your tournament. Fields are information participant must fill in form." #
+    manage_players: "Allows you to create start list by adding/deleting players. At the end of list players willing to participate appear." #
+    select_ranking: "Select ranking you want autocomplete function be related with." #
+    
+    add_player: "Add player to start list" #
+    remove_player: "Remove player from list" #
+    player_info: "Information about player"
+    confirm_player: "Confirms players participation. He will be added to start list." #
+    
+    ranking_field: "Your ranking number (ranking associated with tournament)"
+    licence_field: "Your licence number given by certain sports organization."
+

@@ -19,4 +19,21 @@ module LayoutHelper
     info == '' ? nil : info
   end
   
+  def tooltip_attrs(key, attrs = {})
+#    if attrs[:data].try("[]", :toggle).nil?
+#      attrs[:data].merge!({:toggle => "tooltip"}) if attrs[:data].present?
+#      attrs[:data] = {:toggle => "tooltip"} if attrs[:data].nil?
+#    else
+#      attrs[:data][:toggle] += " tooltip"
+#    end
+    
+    if attrs[:class].nil?
+      attrs[:class] = "tooltip-trigger"
+    else
+      attrs[:class] += " tooltip-trigger"
+    end
+    
+    { :title => I18n.t("tooltips.#{key}") }.merge(attrs)
+  end
+  
 end

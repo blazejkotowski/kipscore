@@ -34,7 +34,7 @@
       %h3= I18n.t("custom_translations.there are no player yet", :default => "there are no players yet").capitalize + "."
     - if @tournament.user == current_user
       .form-actions
-        = link_to I18n.t("custom_translations.edit", :default => "edit").capitalize, manage_tournament_path(@tournament), :class => 'btn'
+        = link_to I18n.t("custom_translations.edit", :default => "edit").capitalize, manage_tournament_path(@tournament), tooltip_attrs('manage', :class => 'btn')
 .row-fluid
   .span12.facebook-comments
     = render "shared/facebook_comments"

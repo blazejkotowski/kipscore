@@ -166,3 +166,22 @@ pl:
     
   notifications:
     beta_version: "<h2>Drogi Użytkowniku!</h2><p>Jeżeli czytasz ten tekst, oznacza to, że korzystasz z wersji testowej Kipscore.</p><p>Jest nam niezmiernie miło, że Twoja obecność na tej stronie, przyczyni się do wyeliminowania ewentualnych błędów, oraz ulepszenia obecnej wersji.</p><p>Prosimy o cierpliwość w trakcie ładowania poszczególnych podstron, oraz wyrozumiałość, jeżeli coś pójdzie nie tak.</p>"
+    
+  tooltips:
+    manage: "Przechodzisz do edycji wybranego turnieju"
+    set_bracket: "Przechodzisz do panelu zarządzania drabinką. Losowanie automatyczne, z możliwością wprowadzania zmian ręcznie."
+    randomize: "Przeprowadza losowanie zawodników, według listy rankingowej."
+    update: "Zapisuje zmiany wprowadzone w wybranym turnieju."
+    start: "Rozpoczynasz turniej. Status turnieju ustawia na \"Trwający\". Brak możliwości wprowadzenia zmian przed przerwaniem turnieju."
+    break: "Zatrzymuje trwający turniej oraz kasuje jego dotychczasowy przebieg. Wprowadzanie zmian jest ponownie możliwe."
+    finish: "Zakańcza turniej. Po zakończeniu nie wprowadzisz już żadnych zmian."
+    delete: "Usuwa trwale turniej."
+    is_open: "Zaznaczenie opcji umożliwia dołączanie do turnieju przez zawodników. Poszczególne pola oznaczają informacje, które zawodnik musi podać w formularzu zgłoszeniowym do turnieju."
+    manage_players: "Tworzysz listę startową dodając, lub usuwając zawodników. Pojawiają się na niej osoby, które wyraziły chęć wzięcia udziału w turnieju."
+    select_ranking: "Wybierz ranking, według którego odbywa się turniej w celu prawidłowego działania funkcji autopodpowiadania."
+    add_player: "Dodaj zawodnika do listy."
+    remove_player: "Usuń zawodnika z listy."
+    player_info: "Informacje na temat zawodnika"
+    confirm_player: "Akceptujesz zgłoszenie zawodnika. Zostanie dodany do listy turniejowej."
+    ranking_field: "Numer rankingu według, którego rozgrywany jest turniej."
+    licence_field: "Twój numer licencji nadany przez organizacje sportową."
