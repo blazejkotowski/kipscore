@@ -91,10 +91,26 @@ jQuery ->
 
   $("body").on "ajax:success", "form#add-player", ->  
     enableInputs()
+    
+  disableModalForm= ->
+    $("#join-modal form input").each (index, obj) ->
+      $(obj).attr("disabled", "true") 
+    $("#join-modal .join-button").attr("disabled", "true")
+    
+  enableModalForm= ->
+    $("#join-modal form input").each (index, obj) ->
+      $(obj).removeAttr("disabled")
+    $("#join-modal .join-button").removeAttr("disabled")  
+  
+  $("body").on "ajax:error", "#join-modal form", (e, xhr, status) ->
+    enableModalForm()
+    Kipscore.insertNotification("Error", "error", "#join-modal .notifications")
   
   $("body").on "ajax:success", "#join-modal form", (e, xhr, status) ->
+    enableModalForm()
     if xhr.created
       $("#join-modal .modal-body").html('')
+      $("#join-modal .join-button").remove()
       Kipscore.insertNotification(xhr.message, "success", "#join-modal .modal-body")
     else
       $("#join-modal .notifications").html('')
@@ -102,6 +118,7 @@ jQuery ->
     
   $("body").on "click", "#join-modal .join-button", (e) ->
     e.preventDefault()
+    disableModalForm()
     $("#join-modal form").submit()
 
       

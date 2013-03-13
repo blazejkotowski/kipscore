@@ -1,6 +1,6 @@
 - form = tournament.tournament_form
 - nosubmit ||= false
-= form_tag tournament_players_path(tournament), :method => :post, :remote => true do
+= form_tag tournament_players_path(tournament), :method => :post, :remote => nosubmit do
   - if form.name
     = label_tag "player[name]", I18n.t("custom_translations.name and surname", :default => "name and surname").capitalize
     = text_field_tag "player[name]"

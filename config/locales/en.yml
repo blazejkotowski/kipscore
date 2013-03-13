@@ -18,6 +18,8 @@ en:
     "club name": "club name"
     "profile_not_public": "Currently your profile is not public"
     "last tournaments": "last tournaments"    
+    "joining": "joining"
+    
   navigation:
     tournaments:
       index:
