@@ -172,7 +172,7 @@ pl:
     manage: "Przechodzisz do edycji wybranego turnieju"
     set_bracket: "Przechodzisz do panelu zarządzania drabinką. Losowanie automatyczne, z możliwością wprowadzania zmian ręcznie."
     randomize: "Przeprowadza losowanie zawodników, według listy rankingowej."
-    update: "Zapisuje zmiany wprowadzone w wybranym turnieju."
+    update: "Zapisuje wprowadzone zmiany."
     start: "Rozpoczynasz turniej. Status turnieju ustawia na \"Trwający\". Brak możliwości wprowadzenia zmian przed przerwaniem turnieju."
     break: "Zatrzymuje trwający turniej oraz kasuje jego dotychczasowy przebieg. Wprowadzanie zmian jest ponownie możliwe."
     finish: "Zakańcza turniej. Po zakończeniu nie wprowadzisz już żadnych zmian."
@@ -186,3 +186,4 @@ pl:
     confirm_player: "Akceptujesz zgłoszenie zawodnika. Zostanie dodany do listy turniejowej."
     ranking_field: "Numer rankingu według, którego rozgrywany jest turniej."
     licence_field: "Twój numer licencji nadany przez organizacje sportową."
+    permalink: "http://kipscore.com/<example-link>\n\nUstalasz jak ma wyglądać link do Twojego profilu. Zostaw puste, jeśli nie chcesz, żeby Twój profil był publiczny."

@@ -42,7 +42,7 @@ en:
     manage: "Edit your tournament" #
     set_bracket: "Allows you to manage your bracket. Random bracket with possibility of manual changes." #
     randomize: "Generates random bracket by ranking" #
-    update: "Saves changes in selected tournament." #
+    update: "Saves changes." #
     start: "Starts tournament. Sets tournaments state to \"started\". Disables changes before breaking tournament." #
     break: "Breaks currently started tournaemnt and deletes progress. Changes are enabled again." #
     finish: "Finishes tournament. You will be unable to do anything with finished tournament." #
@@ -58,4 +58,6 @@ en:
     
     ranking_field: "Your ranking number (ranking associated with tournament)"
     licence_field: "Your licence number given by certain sports organization."
+    
+    permalink: "http://kipscore.com/<example-username>\n\nDecide where your profile will be available. Leave it blank if you don't want your profile to be public."
 
