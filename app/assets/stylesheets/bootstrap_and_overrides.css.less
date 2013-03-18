@@ -18,6 +18,8 @@
 // Bootstrap variables overwriting
 @kipscoreColor:         #9ec64d;
 
+@baseFontSize: 13px;
+
 @linkColor:             @kipscoreColor;
 
 @btnPrimaryBackground:              @kipscoreColor;
@@ -50,13 +52,17 @@ legend {
   color: @textColor;
 }
 
+h1 {
+  font-size: 30px;
+}
+
 h2 {
   font-size: 21px;
   color: @kipscoreColor;
 }
 
 h3 {
-  font-size: 19px;
+  font-size: 18px;
 }
 
 h2,h3 {
@@ -220,7 +226,7 @@ body.static {
       color: @textColor;
     }
   }
-  font-size: 16px;
+  font-size: @baseFontSize;
   a {
     font-weight: bold;
   }
