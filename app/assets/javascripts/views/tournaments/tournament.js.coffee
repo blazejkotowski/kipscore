@@ -1,4 +1,4 @@
-class Kipscore.Views.Tournament extends Backbone.View
+class Kipscore.Views.BracketTournament extends Backbone.View
   
   tagName: 'div'
   className: 'tournament-bracket-wrapper empty'    
@@ -70,7 +70,7 @@ class Kipscore.Views.Tournament extends Backbone.View
     rt = @model.get('related_tournaments')
     titer = rt.length - 1
     while titer >= 0
-      tv = new Kipscore.Views.Tournament({ model: rt.at(titer) })
+      tv = new Kipscore.Views.BracketTournament({ model: rt.at(titer) })
       tv.render()
       titer--
     

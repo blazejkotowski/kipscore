@@ -1,4 +1,4 @@
-class Kipscore.Models.Tournament extends Backbone.RelationalModel
+class Kipscore.Models.BracketTournament extends Backbone.RelationalModel
 
   url: window.location.pathname + '.json'  
   
@@ -39,7 +39,7 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
     {
       key: 'related_tournaments'
       type: Backbone.HasMany
-      relatedModel: "Kipscore.Models.Tournament"
+      relatedModel: "Kipscore.Models.BracketTournament"
       reverseRelation:
         key: 'parent_tournament'
         type: Backbone.HasOne
@@ -123,7 +123,7 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
     # For each column create tournament for 2 times less players
     # from (tournament min_position + column_players/2) to column max_position places
     while cur_players >= 4
-      new_tournament = new Kipscore.Models.Tournament
+      new_tournament = new Kipscore.Models.BracketTournament
         'players_number': cur_players/2
         'max_position': max_position
         'min_position': min_position + cur_players/2
@@ -220,4 +220,4 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
     parts = window.location.pathname.split('/')
     parts.slice(0,parts.length-1).join('/')+'/results'
       
-Kipscore.Models.Tournament.setup()
+Kipscore.Models.BracketTournament.setup()
