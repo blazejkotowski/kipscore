@@ -26,7 +26,7 @@
 //= require backbone-relational
 //= require kipscore
 //= require_tree ../templates
-//= require_tree ./models
+//= require models/models
 //= require_tree ./collections
 //= require_tree ./views
 //= require_tree ./routers

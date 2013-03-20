@@ -1,4 +1,4 @@
-class Kipscore.Models.BracketTournament extends Kipscore.Models.Tournament
+class Kipscore.Models.Tournament extends Backbone.RelationalModel
 
   url: window.location.pathname + '.json'  
   
@@ -12,24 +12,23 @@ class Kipscore.Models.BracketTournament extends Kipscore.Models.Tournament
     'admin': false
     'new': false
   
-  relations: Kipscore.Models.Tournament.prototype.relations.concat([
-    {
-      key: 'bracket'
-      type: Backbone.HasMany
-      relatedModel: 'Kipscore.Models.Match'
+  relations: [
+    { 
+      key: 'results'
+      type: Backbone.HasOne
+      includeInJSON: false
+      relatedModel: 'Kipscore.Models.Results'
       reverseRelation:
         key: 'tournament'
+        includeInJSON: false
         type: Backbone.HasOne
     },
     {
-      key: 'related_tournaments'
+      key: 'players'
       type: Backbone.HasMany
-      relatedModel: "Kipscore.Models.BracketTournament"
-      reverseRelation:
-        key: 'parent_tournament'
-        type: Backbone.HasOne
-    }
-  ])
+      relatedModel: 'Kipscore.Models.Player'
+    },
+  ]
   
   initialize: ->
     if @get('main_tournament') and @get('results') is null
@@ -205,4 +204,4 @@ class Kipscore.Models.BracketTournament extends Kipscore.Models.Tournament
     parts = window.location.pathname.split('/')
     parts.slice(0,parts.length-1).join('/')+'/results'
       
-Kipscore.Models.BracketTournament.setup()
+#Kipscore.Models.Tournament.setup()
