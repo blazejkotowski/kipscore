@@ -13,12 +13,10 @@
 //= require jquery
 //= require jquery-ui
 //= require jquery_ujs
-//= require jquery.jsPlumb.min
 //= require jquery.ba-bbq
 //= require twitter/bootstrap
 //= require bootstrap-datepicker
 //= require bootstrap-timepicker
-//= require jquery.gracket.min
 //= require tournaments
 //= require user_profiles
 //= require underscore

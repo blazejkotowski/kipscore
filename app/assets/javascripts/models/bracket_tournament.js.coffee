@@ -2,15 +2,13 @@ class Kipscore.Models.BracketTournament extends Kipscore.Models.Tournament
 
   url: window.location.pathname + '.json'  
   
-  defaults:
-    'players_number': 0
+  defaults: _.extend(this.__super__.defaults,
+  {
     'bracket_size': 0
     'max_position': 0
     'min_position': 0
-    'saving': false
     'main_tournament': false
-    'admin': false
-    'new': false
+  })
   
   relations: Kipscore.Models.Tournament.prototype.relations.concat([
     {
@@ -32,25 +30,9 @@ class Kipscore.Models.BracketTournament extends Kipscore.Models.Tournament
   ])
   
   initialize: ->
-    if @get('main_tournament') and @get('results') is null
-      results = new Kipscore.Models.Results({ 'url': @resultsUrl(), 'admin': @get('admin') })
-      @set 'results', results
-    
-    if @isNew()
-      @initNew()
-      context = this
-      setTimeout((-> context.mainTournament().setSaving()), 2000)
-      
+    super()   
     # Set bracket tournament variable to actual tournament
     @get('bracket').tournament = this
-    
-    @on "to_save", ->
-      # Do not save more than 1 time per second
-      @mainTournament().setSaving()
-      
-    # Do not save on beginning
-    context = this
-    setTimeout((-> context.mainTournament().set('saving', 0)), 2000)
   
   initNew: ->
     power = 1
@@ -85,25 +67,16 @@ class Kipscore.Models.BracketTournament extends Kipscore.Models.Tournament
     # Perform empty tournaments for next tours  
     @createRelatedTournaments()    
     
-    @set 'new', false
+    super()
           
-  # Sets saving flag for ms miliseconds
-  setSaving: (ms=1000) ->
-    #console.log "trying to save"
-    unless @saving()
-      if @get('main_tournament') and @get('admin')
-        @blockSaving()
-        context = this
-        setTimeout((-> Window.tournament.save()), ms)
-  
   # Creates losers tournaments
   createRelatedTournaments: ->
     tournaments = new Kipscore.Collections.Tournaments()
     
-    cur_players = this.get('players_number')
+    cur_players = @get('players_number')
     
-    min_position = this.get('min_position')
-    max_position = this.get('max_position')
+    min_position = @get('min_position')
+    max_position = @get('max_position')
         
     # For each column create tournament for 2 times less players
     # from (tournament min_position + column_players/2) to column max_position places
@@ -117,29 +90,29 @@ class Kipscore.Models.BracketTournament extends Kipscore.Models.Tournament
       max_position -= cur_players/2
       cur_players /= 2
       
-    this.set 'related_tournaments', tournaments
+    @set 'related_tournaments', tournaments
   
   columnNumber: (bracket_number) ->
     log2 = (x) ->
       Math.floor(Math.log(x) / Math.LN2)
-    log2(this.get('bracket_size')) - log2(bracket_number)
+    log2(@get('bracket_size')) - log2(bracket_number)
     
   maxColumnNumber: ->
-    Math.floor(Math.log(this.get('bracket_size')) / Math.LN2)
+    Math.floor(Math.log(@get('bracket_size')) / Math.LN2)
     
   winnerMatch: (bracket_number) ->
     if bracket_number == 1
       return false
-    bracket = this.get('bracket')
+    bracket = @get('bracket')
     bracket.at (Math.floor(bracket_number/2)-1)
   
   loserMatch: (bracket_number) ->
     if bracket_number == 1
       return false
-    tournament = this.get('related_tournaments').at(this.columnNumber(bracket_number))
+    tournament = @get('related_tournaments').at(@columnNumber(bracket_number))
     bracket = tournament.get('bracket')
     bracket.at (Math.floor(bracket_number/2)-1)
-  
+    
   previousMatch: (bracket_number, number) ->
     bracket = @get('bracket')
 
@@ -156,53 +129,7 @@ class Kipscore.Models.BracketTournament extends Kipscore.Models.Tournament
     unless tournament is null
       tournament.get('bracket').at match_index
       
-      
-  mainTournament: ->
-    main_tournament = this
-    while main_tournament.get('parent_tournament') isnt null
-      main_tournament = main_tournament.get('parent_tournament')
-    main_tournament
-    
-  saving: ->
-    @mainTournament().get('saving')
-  
-  blockSaving: ->
-    @mainTournament().set('saving', true)
-    
-  releaseSaving: ->
-    @mainTournament().set('saving', false)
-    
-  isNew: ->
-    @get('new')
-    
   isMain: ->
     @get('min_position') == 1
     
-  save: (callback) ->
-    console.log "saving"
-    if callback is undefined
-      callback = @releaseSaving
-    $.ajax
-      type: 'put'
-      url: @url
-      data:
-        json_bracket: JSON.stringify(@toJSON())
-      complete:
-        _.bind(callback, this)
-#    else
-#      console.log "Not saving"
-  
-  savePlayers: (callback) ->
-    $.ajax
-      type: 'put'
-      url: @url
-      data:
-        json_bracket: JSON.stringify({players: @get('players').toJSON(), 'new': true})
-      complete:
-        _.bind(callback, this)
-  
-  resultsUrl: ->
-    parts = window.location.pathname.split('/')
-    parts.slice(0,parts.length-1).join('/')+'/results'
-      
 Kipscore.Models.BracketTournament.setup()

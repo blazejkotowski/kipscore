@@ -74,6 +74,10 @@ class Tournament < ActiveRecord::Base
       transition :started => :created
     end
     
+    after_transition :started => :created do |tournament, transition|
+      tournament.update_attributes :json_bracket => nil, :json_results => nil
+    end
+    
     state :started do
       validates_presence_of :json_bracket
     end

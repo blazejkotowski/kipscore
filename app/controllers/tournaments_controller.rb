@@ -90,7 +90,6 @@ class TournamentsController < ApplicationController
       end
     elsif @tournament.started?
       @tournament.stop    
-      @tournament.update_attributes :json_bracket => nil, :json_results => nil
     else
       notice = I18n.t("custom_translations.This tournament is already finished")
     end
