@@ -26,9 +26,12 @@
           = text_field_tag "player[rank]", '', :class => 'rank'
         - if form.licence?
           %th
+            = text_field_tag "player_association[licence]", '', :class => 'rank'
         %th
+          = text_field_tag "player_association[email]", ''
         - if form.phone?
           %th
+            = text_field_tag "player_association[phone]", ''
         - if form.comment?
           %th
         %th

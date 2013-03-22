@@ -15,11 +15,17 @@ class PlayersController < ApplicationController
     end
     
     if request.xhr? && @tournament.user == current_user
-      player_association = PlayerAssociation.create(:player => player, :tournament => @tournament, :state => :confirmed)
-      @result[:created] = true
-      @result[:player] = player
-      @result[:player_association] = player_association
-      @result[:delete_url] = tournament_player_path(@tournament, player)
+      player_association = PlayerAssociation.new(params[:player_association].merge({:player => player, :tournament => @tournament, :state => :confirmed}))
+      player_association.email = nil if player_association.email.blank?
+      if player_association.save
+        @result[:created] = true
+        @result[:player] = player
+        @result[:player_association] = player_association
+        @result[:form] = @tournament.tournament_form
+        @result[:delete_url] = tournament_player_path(@tournament, player)
+      else
+        @result[:errors] = player_association.errors.full_messages
+      end
       render :json => @result  
     
     else

@@ -68,6 +68,14 @@ jQuery ->
       else
         $row.append($("<td/>").text(''))
       
+      if data.form.licence
+        $("<td/>").text(data.player_association.licence || '').appendTo($row)
+      $("<td/>").text(data.player_association.email || '').appendTo($row)
+      if data.form.phone
+        $("<td/>").text(data.player_association.phone || '').appendTo($row)
+      if data.form.comment
+        $("<td/>").text(data.player_association.comment || '').appendTo($row)
+      
       $delete_button = $("<a/>").attr("href", data.delete_url).addClass("btn btn-danger btn-medium delete-player").text("-")
       $delete_button.attr("data-method", "delete").attr("data-remote", "true").attr("rel", "nofollow")
       $row.append($("<td/>").html($delete_button))
