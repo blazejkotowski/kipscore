@@ -62,6 +62,7 @@ class TournamentsController < ApplicationController
 
   # PUT /tournaments/1
   def update
+    logger.debug @tournament
     unless @tournament.created?
       return redirect_to(tournaments_user_path(:anchor => "tid=#{@tournament.id}"), :notice => I18n.t("custom_translations.you are unable to edit active tournament", :default => "you are unable to edit active tournament.").capitalize)
     end
