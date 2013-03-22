@@ -1,9 +1,17 @@
+- form = @tournament.tournament_form
 %table#players-table.table.table-condensed
   %thead
     %tr
       %th= I18n.t("custom_translations.player", :default => "player").capitalize
       %th= I18n.t("custom_translations.rank", :default => "rank").capitalize
       - if edit
+        - if form.licence?
+          %th= I18n.t("cusotm_translations.licence", :default => "licence").capitalize
+        %th Email
+        - if form.phone?
+          %th= I18n.t("custom_translations.phone", :default => "phone").capitalize
+        - if form.comment?
+          %th= I18n.t("custom_translations.comment", :default => "comment").capitalize
         %th= I18n.t("custom_translations.action", :default => "action").capitalize
     - if edit
       %tr
@@ -16,6 +24,13 @@
           = text_field_tag "player[name]", '', :data => { :autocomplete_source => "/players/autocomplete?ranking_id=#{@rankings.try(:first).try(:last)}" }
         %th
           = text_field_tag "player[rank]", '', :class => 'rank'
+        - if form.licence?
+          %th
+        %th
+        - if form.phone?
+          %th
+        - if form.comment?
+          %th
         %th
           = submit_tag '+', tooltip_attrs('add_player', :class => 'btn btn-success btn-medium')
   %tbody
@@ -30,11 +45,16 @@
             = player.name
           %td= player.rank
           - if edit
+            - if form.licence?
+              %td= player_assoc.licence || ''
+            %td= player_assoc.email || ''
+            - if form.phone?
+              %td= player_assoc.phone || ''
+            - if form.comment?
+              %td
+                %span.bold.tooltip-trigger{ :title => player_assoc.comment, :data => { :toggle => "tooltip"}}
+                  = truncate player_assoc.comment, :length => 20 || ''
             %td
-              - popover_info = popover_player_info(player_assoc)
-              - if popover_info.present?
-                = link_to "#", :class => "popover-btn btn btn-medium", :data => { :toggle => "popover", :placement => "left", :shown => false, :original_title => "Info", :html => true, :content => "#{popover_info}"} do
-                  %i.icon-info-sign
               = link_to '-', tournament_player_path(@tournament, player), tooltip_attrs('remove_player', :method => 'delete', :remote => 'true', :class => 'btn btn-danger btn-medium delete-player')
               - unless player_assoc.confirmed?
                 = link_to player_association_confirmation_path(player, @tournament.id), tooltip_attrs('confirm_player', :method => :put, :remote => :true, :class => 'btn btn-medium btn-warning confirm-player') do

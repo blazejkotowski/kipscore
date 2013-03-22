@@ -125,6 +125,35 @@
   }
 }
 
+#players-modal {
+  margin: 0;
+  top: 10px;
+  bottom: 10px;
+  left: 10px;
+  right: 10px;
+  width: auto;
+  .tooltip {
+    white-space: normal !important;
+  }
+  .modal-body {
+    max-height: inherit;
+    height: auto;
+    position: absolute;
+    top: 0;
+    bottom: 60px;
+    left: 0;
+    right: 0;
+  }
+  .modal-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 30px;
+    max-height: 40px;
+  }
+}
+
 #tournament-part {
   #tournament-players {
     max-height: 200px;
