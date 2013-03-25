@@ -50,6 +50,7 @@ Kipscore::Application.routes.draw do
   end
   
   resources :bracket_tournament, :controller => "tournaments"
+  resources :round_robin_tournament, :controller => "tournaments"
   
   match 'email-confirm/:email_code' => 'player_associations#activate', :via => :get, :as => 'player_association_activation'
   match 'player_association/:player_id/:tournament_id/confirm' => 'player_associations#confirm', :via => :put, :as => 'player_association_confirmation'

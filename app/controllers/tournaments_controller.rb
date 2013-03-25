@@ -139,6 +139,16 @@ class TournamentsController < ApplicationController
     render :json => response.to_json
   end
   
+  def rounds
+    @tournament = Tournament.find(params[:tournament_id])
+    respond_to do |format|
+      format.json { render :json => @tournament.rounds }
+    end
+  end
+  
+  def rounds_update
+  end
+  
   def results
     render :json => @tournament.results.to_json
   end
