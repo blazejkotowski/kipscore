@@ -1,13 +1,18 @@
+<% i = 1 %>
 <% for round in @rounds: %>
-  <div class="round">
-  <% for match in round.models: %>
-    <% p1 = new Kipscore.Views.Player({ model: match.get('player1') }) %>
-    <% p2 = new Kipscore.Views.Player({ model: match.get('player2') }) %>
-    <div class="match">
-      <%- p1.render().$el.html() %>
-      <%- p2.render().$el.html() %>
-    </div>    
-  <% end %>
-  </div>
-  <br><br>
+  <table class="round table table-striped">
+    <thead>
+      <tr>
+        <td>Round <%= i++ %></td>
+      </tr>
+    </thead>
+    <tbody>
+    <% for match in round.models: %>
+      <% mv = new Kipscore.Views.RoundRobinMatch({ model: match }) %>
+      <tr class="round-robin-match">
+        <%- mv.render().$el.html() %>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
 <% end %>

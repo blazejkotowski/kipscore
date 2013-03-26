@@ -15,6 +15,7 @@
  *= require bootstrap_variables
  *= require common
  *= require tournaments
+ *= require round_robin
  *= require static_pages
  *= require users
  *= require sessions

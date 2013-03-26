@@ -1,7 +1,7 @@
 class Kipscore.Views.RoundRobinTournament extends Backbone.View
   
   tagName: 'div'
-  className: 'tournament-wrapper'    
+  className: 'round-robin-wrapper'    
   
   template: JST['tournaments/round_robin']
   
