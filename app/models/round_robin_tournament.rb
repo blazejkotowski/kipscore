@@ -1,5 +1,7 @@
 class RoundRobinTournament < Tournament
   
+  attr_accessible :win_points, :loss_points, :draw_points, :base_points
+  
   def rounds(admin=false)
     list = players.confirmed.best
     player_numbers = generate_rounds

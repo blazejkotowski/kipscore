@@ -1,5 +1,6 @@
 en:
   custom_translations:
+    "set points": "set points"
     "competition system": "competition system"
     "email not valid": "Email address you have entered is not valid."
     "hello": "hello"
@@ -42,6 +43,7 @@ en:
   tooltips:
     manage: "Edit your tournament" #
     set_bracket: "Allows you to manage your bracket. Random bracket with possibility of manual changes." #
+    set_points: "Allows you to set points granted to player in case of win, loss or draw. Sum of that points decide about final results of tournament."
     randomize: "Generates random bracket by ranking" #
     update: "Saves changes." #
     start: "Starts tournament. Sets tournaments state to \"started\". Disables changes before breaking tournament." #

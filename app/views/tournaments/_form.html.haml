@@ -36,8 +36,13 @@
         - else
           = I18n.t("custom_translations.manage players", :default => "manage players").capitalize
     - if request[:action] == 'edit'
+      
       - if @tournament.created?
-        = link_to I18n.t("custom_translations.set bracket", :default => 'set bracket').capitalize, '#bracket-modal', tooltip_attrs("set_bracket", {:data => { :toggle => 'modal' }, :role => 'button', :class => 'btn btn-modal'})
+        - if @tournament.type == "BracketTournament"
+          = link_to I18n.t("custom_translations.set bracket", :default => 'set bracket').capitalize, '#bracket-modal', tooltip_attrs("set_bracket", {:data => { :toggle => 'modal' }, :role => 'button', :class => 'btn btn-modal'})
+        - elsif @tournament.type == "RoundRobinTournament"
+          = link_to I18n.t("custom_translations.set points", :default => 'set points').capitalize, '#round-robin-modal', tooltip_attrs("set_points", {:data => { :toggle => 'modal' }, :role => 'button', :class => 'btn btn-modal'})
+        
       - unless @tournament.created?
         = link_to I18n.t("custom_translations.go to bracket", :default => 'go to bracket').capitalize, tournament_bracket_path(@tournament), :class => 'btn'
     .margin-top

@@ -1,5 +1,6 @@
 pl:
   custom_translations:
+    "set points": "ustal punktacje"
     "competition system": "system rozgrywek"
     account: "konto"
     "edit profile": "edytuj profil"
@@ -172,6 +173,7 @@ pl:
   tooltips:
     manage: "Przechodzisz do edycji wybranego turnieju"
     set_bracket: "Przechodzisz do panelu zarządzania drabinką. Losowanie automatyczne, z możliwością wprowadzania zmian ręcznie."
+    set_points: "Ustawiasz ile punktów zostanie przyznane zawodnikowi w przypadku wygranej, przegranej lub remisu. Suma tych punktów wpływa ustalenie ostatecznych wyników turnieju."
     randomize: "Przeprowadza losowanie zawodników, według listy rankingowej."
     update: "Zapisuje wprowadzone zmiany."
     start: "Rozpoczynasz turniej. Status turnieju ustawia na \"Trwający\". Brak możliwości wprowadzenia zmian przed przerwaniem turnieju."

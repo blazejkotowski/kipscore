@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130322093936) do
+ActiveRecord::Schema.define(:version => 20130326141040) do
 
   create_table "player_associations", :force => true do |t|
     t.integer  "tournament_id"
@@ -90,6 +90,10 @@ ActiveRecord::Schema.define(:version => 20130322093936) do
     t.string   "state"
     t.integer  "sport_id"
     t.string   "type"
+    t.integer  "win_points"
+    t.integer  "loss_points"
+    t.integer  "draw_points"
+    t.integer  "base_points"
   end
 
   add_index "tournaments", ["slug"], :name => "index_tournaments_on_slug"
