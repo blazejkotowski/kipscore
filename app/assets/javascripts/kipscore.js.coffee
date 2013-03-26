@@ -6,6 +6,9 @@ window.Kipscore =
   bracketInitialize: -> 
     router = new Kipscore.Routers.Bracket()
     Backbone.history.start()
+  roundRobinInitialize: ->
+    router = new Kipscore.Routers.RoundRobin()
+    Backbone.history.start()
   playersInitialize: (random = false) ->
     hashParams = jQuery.deparam.fragment()
     tid = hashParams["tid"]

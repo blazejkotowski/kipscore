@@ -1,0 +1,13 @@
+<% for round in @rounds: %>
+  <div class="round">
+  <% for match in round.models: %>
+    <% p1 = new Kipscore.Views.Player({ model: match.get('player1') }) %>
+    <% p2 = new Kipscore.Views.Player({ model: match.get('player2') }) %>
+    <div class="match">
+      <%- p1.render().$el.html() %>
+      <%- p2.render().$el.html() %>
+    </div>    
+  <% end %>
+  </div>
+  <br><br>
+<% end %>

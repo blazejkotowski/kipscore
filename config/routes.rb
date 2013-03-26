@@ -43,6 +43,8 @@ Kipscore::Application.routes.draw do
     put 'finish', :on => :member
     match 'bracket' => 'tournaments#bracket', :via => :get
     match 'bracket' => 'tournaments#bracket_update', :via => :put
+    match 'rounds' => 'tournaments#rounds', :via => :get
+    match 'rounds' => 'tournaments#rounds_update', :via => :put
     match 'results' => 'tournaments#results', :via => :get
     match 'results' => 'tournaments#results_update', :via => :put
     match 'join' => 'players#new', :via => :get

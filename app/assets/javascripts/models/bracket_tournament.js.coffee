@@ -1,6 +1,4 @@
 class Kipscore.Models.BracketTournament extends Kipscore.Models.Tournament
-
-  url: window.location.pathname + '.json'  
   
   defaults: _.extend(this.__super__.defaults,
   {

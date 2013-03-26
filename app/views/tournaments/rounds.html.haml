@@ -1,0 +1,27 @@
+- provide :title, "#{@tournament.name} - " + I18n.t("custom_translations.rounds", :default => 'rounds').capitalize
+
+.row-fluid
+  .span12
+    %ul.breadcrumb
+      %li
+        = link_to I18n.t("custom_translations.tournaments", :default => "tournaments").capitalize, tournaments_path
+        %span.divider &gt;
+      %li
+        = link_to @tournament.name, @tournament
+        %span.divider &gt;
+      %li.active
+        = I18n.t("custom_translations.rounds", :default => "rounds").capitalize
+      
+
+.row-fluid
+  #tournament-container.span12
+  
+.row-fluid
+  .span12.facebook-comments
+    = render "shared/facebook_comments"
+
+:javascript
+  Kipscore.roundRobinInitialize()
+  
+- content_for :meta_tags do
+  = render "tournaments/tournament_meta"
