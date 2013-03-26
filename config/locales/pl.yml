@@ -1,5 +1,6 @@
 pl:
   custom_translations:
+    "competition system": "system rozgrywek"
     account: "konto"
     "edit profile": "edytuj profil"
     "payments": "płatności"

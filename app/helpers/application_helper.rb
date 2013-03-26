@@ -49,4 +49,11 @@ module ApplicationHelper
     simple_format(sanitize(Rinku.auto_link(content, :all, 'target="_blank"')), args)
   end
   
+  def competition_systems(tournament = nil)
+    [
+      ["Bracket", "BracketTournament"],
+      ["Round Robin", "RoundRobinTournament"]
+    ]
+  end
+  
 end

@@ -19,7 +19,7 @@ class Tournament < ActiveRecord::Base
   friendly_id :name, :use => :slugged
   
   attr_accessible :state, :name, :sport_id, :start_date,
-                  :description, :open, :json_results
+                  :description, :open, :json_results, :type
   
   belongs_to :user
   belongs_to :sport
@@ -49,6 +49,8 @@ class Tournament < ActiveRecord::Base
   validates_presence_of :start_date
   validates_presence_of :description
   validates_presence_of :sport_id
+  validates_presence_of :type
+  validate :check_type
   
   before_create :create_tournament_form
   
@@ -99,6 +101,13 @@ class Tournament < ActiveRecord::Base
     def create_tournament_form
       build_tournament_form
       true
+    end
+    
+    def check_type
+      klass = Module.const_get(type)
+      klass.is_a?(Class)
+    rescue NameError
+      errors.add(:type, "should be one from the list")
     end
   
 end

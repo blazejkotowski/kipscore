@@ -1,5 +1,7 @@
 = simple_form_for @tournament, :as => "tournament", :html => { :class => 'form-horizontal' } do |f|
   = f.association :sport, :include_blank => false, :disabled => (@tournament.created? ? nil : true)
+  = f.input :type, :label => I18n.t("custom_translations.competition system").capitalize do
+    = f.select :type, options_for_select(competition_systems, @tournament.type)
   = f.input :name, :disabled => (@tournament.created? ? nil : true), :label => I18n.t("custom_translations.name", :default => "name").capitalize
   = f.input :start_date, :required => true, :label => I18n.t("custom_translations.start date", :default => "start date").capitalize do
     - @date = @tournament.start_date.nil?? DateTime.now : @tournament.start_date
