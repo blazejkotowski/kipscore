@@ -67,9 +67,17 @@ class TournamentsController < ApplicationController
       return redirect_to(tournaments_user_path(:anchor => "tid=#{@tournament.id}"), :notice => I18n.t("custom_translations.you are unable to edit active tournament", :default => "you are unable to edit active tournament.").capitalize)
     end
     if @tournament.update_attributes(params[:tournament])
-      redirect_to tournaments_user_path(:anchor => "tid=#{@tournament.id}"), :notice => I18n.t("custom_translations.tournament was successfully updated", :default => 'tournament was successfully updated').capitalize
+      if request.xhr?
+        render :json => { :updated => true }.to_json
+      else
+        redirect_to tournaments_user_path(:anchor => "tid=#{@tournament.id}"), :notice => I18n.t("custom_translations.tournament was successfully updated", :default => 'tournament was successfully updated').capitalize
+      end
     else
-      redirect_to tournaments_user_path(:anchor => "tid=#{@tournament.id}"), :notice => I18n.t("custom_translations.data is not correct", :default => 'data is not correct').capitalize
+      if request.xhr?
+        render :json => { :data => params[:tournament], :updated => false }.to_json
+      else
+        redirect_to tournaments_user_path(:anchor => "tid=#{@tournament.id}"), :notice => I18n.t("custom_translations.data is not correct", :default => 'data is not correct').capitalize
+      end
     end
   end
 
@@ -172,7 +180,7 @@ class TournamentsController < ApplicationController
     end
     
     def concatenate_datetime
-      if params[:tournament].present?
+      if params[:tournament].present? && params[:start_date_date].present?
         params[:tournament][:start_date] = "#{params[:start_date_date]} #{params[:start_date_time]}"
       end
     end

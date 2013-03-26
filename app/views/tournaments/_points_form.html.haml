@@ -1,0 +1,10 @@
+- tournament ||= nil
+- unless tournament.nil?
+  = simple_form_for tournament, :as => "tournament", :method => :put, :remote => true, 
+    :html => { :id => "round-robin-points-form", :class => "form-horizontal" } do |f|
+    = f.input :base_points
+    = f.input :win_points
+    = f.input :loss_points
+    = f.input :draw_points
+    .form-actions{ :class => 'artifically-hidden' }
+      = f.submit "Save"

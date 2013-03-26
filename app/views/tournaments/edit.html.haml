@@ -37,7 +37,10 @@
 - elsif @tournament.type == "RoundRobinTournament"
   #round-robin-modal.modal.hide.fade{ :tabindex => -1, :role => 'dialog', "aria-labelledby" => "round-robin-modal-label", "aria-hidden" => true }
     .modal-body
+      = render "points_form", :tournament => @tournament
     .modal-footer
+      = link_to "#round-robin-points-form", :class => "btn btn-success save" do
+        = I18n.t("custom_translation.save", :default => 'save').capitalize 
       %button.btn{ 'data-dismiss' => 'modal', 'aria-hidden' => true }
         = I18n.t("custom_translations.close", :default => "close").capitalize
 

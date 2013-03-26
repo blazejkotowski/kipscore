@@ -12,17 +12,7 @@ jQuery ->
       $(".tournament-form").show(100)
     else
       $(".tournament-form").hide(100)
-  
-  $("body").on "click", ".popover-btn", ->
-    event.preventDefault()
-    if $(event.target).data("shown") == false
-      $(event.target).popover("show")
-      $(event.target).data("shown", true)
-    else
-      $(event.target).popover("hide")
-      $(event.target).data("shown", false)
       
-    
   changeTournament= ->
     hashParams = jQuery.deparam.fragment()
     tid = hashParams["tid"]
@@ -128,6 +118,13 @@ jQuery ->
     e.preventDefault()
     disableModalForm()
     $("#join-modal form").submit()
+    
+  $("body").on "ajax:complete", "#round-robin-points-form", (e) -> 
+    alert "Saved!"
+  
+  $("body").on "click", "#round-robin-modal .save", (e) ->
+    e.preventDefault()
+    $("#round-robin-points-form").submit()
 
       
   

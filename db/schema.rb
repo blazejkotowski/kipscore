@@ -90,10 +90,10 @@ ActiveRecord::Schema.define(:version => 20130326141040) do
     t.string   "state"
     t.integer  "sport_id"
     t.string   "type"
-    t.integer  "win_points"
-    t.integer  "loss_points"
-    t.integer  "draw_points"
-    t.integer  "base_points"
+    t.integer  "win_points",   :default => 0
+    t.integer  "loss_points",  :default => 0
+    t.integer  "draw_points",  :default => 0
+    t.integer  "base_points",  :default => 0
   end
 
   add_index "tournaments", ["slug"], :name => "index_tournaments_on_slug"
