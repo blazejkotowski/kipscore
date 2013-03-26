@@ -15,7 +15,7 @@
     = @tournament.name
   %br
     - unless @tournament.created?
-      = link_to I18n.t("custom_translations.go to bracket", :default => "go to bracket").capitalize, tournament_bracket_path(@tournament), :class => 'btn btn-primary btn-large'
+      = link_to I18n.t("custom_translations.tournament progress", :default => "tournament progress").capitalize, tournament_progress_path(@tournament), :class => 'btn btn-primary btn-large'
     - if @tournament.joinable?
       = link_to I18n.t("custom_translations.join", :default => "join").capitalize, "#join-modal", :role => :button, :class => 'btn btn-warning btn-large', :data => { :toggle => 'modal' }
 

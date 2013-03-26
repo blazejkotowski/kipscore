@@ -150,7 +150,7 @@ class TournamentsController < ApplicationController
   def rounds
     @tournament = Tournament.find(params[:tournament_id])
     respond_to do |format|
-      format.html
+      format.html { redirect_to @tournament, :notice => I18n.t("custom_translations.Tournament is not started yet") unless @tournament.started? || @tournament.finished?  }
       format.json { render :json => @tournament.rounds }
     end
   end

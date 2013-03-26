@@ -21,6 +21,8 @@ en:
     "profile_not_public": "Currently your profile is not public"
     "last tournaments": "last tournaments"    
     "joining": "joining"
+    "progress": "progress"
+    "tournament progress": "tournament progress"
     
   navigation:
     tournaments:

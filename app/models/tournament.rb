@@ -19,7 +19,8 @@ class Tournament < ActiveRecord::Base
   friendly_id :name, :use => :slugged
   
   attr_accessible :state, :name, :sport_id, :start_date,
-                  :description, :open, :json_results, :type
+                  :description, :open, :json_results, :type,
+                  :json_bracket
   
   belongs_to :user
   belongs_to :sport

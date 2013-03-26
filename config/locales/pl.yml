@@ -1,5 +1,7 @@
 pl:
   custom_translations:
+    "progress": "przebieg"
+    "tournament progress": "przebieg turnieju"
     "set points": "ustal punktacje"
     "competition system": "system rozgrywek"
     account: "konto"

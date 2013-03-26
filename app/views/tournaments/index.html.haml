@@ -44,7 +44,7 @@
             - if tournament.joinable?
               = link_to t("custom_translations.join", :default => "join").capitalize, tournament_join_path(tournament), :class => 'btn btn-mini btn-warning'
             - unless tournament.created?
-              = link_to I18n.t("custom_translations.bracket", :default => "bracket").capitalize, tournament_bracket_path(tournament), :class => 'btn btn-mini btn-success'
+              = link_to I18n.t("custom_translations.progress", :default => "progress").capitalize, tournament_progress_path(tournament), :class => 'btn btn-mini btn-success'
   .pagination= paginate @tournaments
 - else
   %h2= I18n.t("custom_translations.no tournaments")
