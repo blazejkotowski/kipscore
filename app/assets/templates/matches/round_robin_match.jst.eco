@@ -1,0 +1,15 @@
+<td>
+  <%- @p1v.render().$el.html() %>
+</td>
+<td class="scores">
+  <% if @admin == true: %>
+    <input type="text" class="player_score">
+  <% end %>
+    - 
+  <% if @admin: %>
+    <input type="text" class="player_score">
+  <% end %>
+</td>
+<td>
+  <%- @p2v.render().$el.html() %>
+</td>

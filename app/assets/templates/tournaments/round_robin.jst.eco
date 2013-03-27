@@ -9,9 +9,9 @@
     <tbody>
     <% for match in round.models: %>
       <% mv = new Kipscore.Views.RoundRobinMatch({ model: match }) %>
-      <tr class="round-robin-match">
-        <%- mv.render().$el.html() %>
-      </tr>
+      <!--<tr class="round-robin-match">
+      </tr>-->
+      <% $("tbody").last().append(mv.render().$el) %>
     <% end %>
     </tbody>
   </table>

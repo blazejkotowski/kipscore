@@ -12,7 +12,7 @@ class Kipscore.Models.BracketTournament extends Kipscore.Models.Tournament
     {
       key: 'bracket'
       type: Backbone.HasMany
-      relatedModel: 'Kipscore.Models.Match'
+      relatedModel: 'Kipscore.Models.BracketMatch'
       reverseRelation:
         key: 'tournament'
         type: Backbone.HasOne
@@ -48,10 +48,10 @@ class Kipscore.Models.BracketTournament extends Kipscore.Models.Tournament
     
     # Create empty bracket if not provided
     if bracket is undefined
-      matches = new Kipscore.Collections.Matches()
+      matches = new Kipscore.Collections.BracketMatches()
       iter = @get 'bracket_size'
       while iter > 0
-        new_match = new Kipscore.Models.Match()
+        new_match = new Kipscore.Models.BracketMatch()
         matches.add new_match
         iter--
       bracket = matches
@@ -59,7 +59,7 @@ class Kipscore.Models.BracketTournament extends Kipscore.Models.Tournament
       
     # Add next (blank) matches
     while bracket.length < bracket_size
-      match = new Kipscore.Models.Match()
+      match = new Kipscore.Models.BracketMatch()
       bracket.add match, { at: 0 }
       
     # Perform empty tournaments for next tours  

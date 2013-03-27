@@ -149,9 +149,12 @@ class TournamentsController < ApplicationController
   
   def rounds
     @tournament = Tournament.find(params[:tournament_id])
+    
+    @manage = true if @tournament.user == current_user && @tournament.started?
+    
     respond_to do |format|
       format.html { redirect_to @tournament, :notice => I18n.t("custom_translations.Tournament is not started yet") unless @tournament.started? || @tournament.finished?  }
-      format.json { render :json => @tournament.rounds }
+      format.json { render :json => @tournament.rounds(@manage || false) }
     end
   end
   

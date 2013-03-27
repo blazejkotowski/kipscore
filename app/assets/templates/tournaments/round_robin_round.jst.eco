@@ -1,0 +1,9 @@
+<table class="round table table-striped">
+  <thead>
+    <tr>
+      <td>Round <%= @number %></td>
+    </tr>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
