@@ -2,10 +2,17 @@
   <%- @p1v.render().$el.html() %>
 </td>
 <td class="scores">
-  <% if @admin == true: %>
+  <% if @admin: %>
     <input type="text" class="player_score">
   <% end %>
-    - 
+    <div class="versus">
+      <div class="connector">
+        -
+      </div>
+      <% if @admin: %>
+        <a href="#" class="add_scores">+</a>
+      <% end %>
+    </div>
   <% if @admin: %>
     <input type="text" class="player_score">
   <% end %>

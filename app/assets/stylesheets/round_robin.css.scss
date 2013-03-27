@@ -5,15 +5,40 @@
     float: left;
   }
   .versus {
-    font-weight: bold;
+    font-size: 20px;
+    display: inline-block;
+    a {
+      padding: 0 5px;
+      margin-top: 10px;
+      margin-bottom: -5px;
+      text-decoration: none !important;
+    }
   }
   thead {
     font-weight: bold;
     font-size: 15px;
   }
+  .scores-table {
+    display: inline-block;
+    div {
+      display: inline-block;
+      padding: 10px 4px;
+      margin-top: -9px;
+      margin-bottom: -9px;
+    }
+  }
+  .scores-table:first-child {
+    margin-right: 15px;
+    div { border-left: 1px solid #ccc; }
+  }
+  .scores-table:last-child {
+    margin-left: 15px;
+    div { border-right: 1px solid #ccc; }
+  }
   .scores {
     width: 200px;
     text-align: center;
+    white-space: nowrap;
     input {
       width: 15px;
       padding: 0px;
@@ -22,6 +47,9 @@
       margin: -5px inherit;
       display: none;
     }
+  }
+  .add_scores {
+    display: none;
   }
   .round-robin-match:hover, .round-robin-match.active {
     .scores {
