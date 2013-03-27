@@ -12,7 +12,6 @@ class Kipscore.Views.RoundRobinMatch extends Backbone.View
   events:
     'focus input': -> @$el.addClass "active"
     'blur input': -> @$el.removeClass "active"
-    'click': -> alert('testy')
     
   render: ->
     p1 = new Kipscore.Views.Player({ model: @model.get('player1') })
