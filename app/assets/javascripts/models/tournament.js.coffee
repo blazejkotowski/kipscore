@@ -58,7 +58,7 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
   
   mainTournament: ->
     main_tournament = this
-    while main_tournament.get('parent_tournament') isnt null
+    while main_tournament.get('parent_tournament') isnt null && main_tournament.get('parent_tournament') isnt undefined
       main_tournament = main_tournament.get('parent_tournament')
     main_tournament
     
