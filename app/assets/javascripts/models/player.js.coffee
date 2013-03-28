@@ -7,6 +7,7 @@ class Kipscore.Models.Player extends Backbone.RelationalModel
     'bye': false
     'winner': false
     'end_position': null
+    'points': 0
     
   initialize: ->
     if @get('name') is undefined
@@ -17,6 +18,9 @@ class Kipscore.Models.Player extends Backbone.RelationalModel
     
   bye: ->
     return @get('bye')
+    
+  human: ->
+    return !@get('bye') && !@get('empty')
     
   clone: ->
     new Kipscore.Models.Player
