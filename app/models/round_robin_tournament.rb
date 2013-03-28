@@ -19,7 +19,13 @@ class RoundRobinTournament < Tournament
         end
       end
     end
-    { :admin => admin, :rounds => rounds_hash, :new => true }
+    { :admin => admin, 
+      :rounds => rounds_hash, 
+      :new => true,
+      :win_points => win_points,
+      :loss_points => loss_points,
+      :draw_points => draw_points,
+      :base_points => base_points }
   end
   
   private

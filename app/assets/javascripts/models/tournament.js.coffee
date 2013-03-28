@@ -9,21 +9,11 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
     'new': false
   
   relations: [
-    { 
-      key: 'results'
-      type: Backbone.HasOne
-      includeInJSON: false
-      relatedModel: 'Kipscore.Models.Results'
-      reverseRelation:
-        key: 'tournament'
-        includeInJSON: false
-        type: Backbone.HasOne
-    },
     {
       key: 'players'
       type: Backbone.HasMany
       relatedModel: 'Kipscore.Models.Player'
-    },
+    }
   ]
   
   initialize: ->
@@ -98,6 +88,6 @@ class Kipscore.Models.Tournament extends Backbone.RelationalModel
   
   resultsUrl: ->
     parts = window.location.pathname.split('/')
-    parts.slice(0,parts.length-1).join('/')+'/results'
+    parts.slice(0,parts.length-1).join('/')+'/results.json'
       
 Kipscore.Models.Tournament.setup()

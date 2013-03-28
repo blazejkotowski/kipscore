@@ -23,8 +23,9 @@ class Kipscore.Views.RoundRobinMatch extends Backbone.View
       @$el.find('.connector').show()
   
   addButton: ->
-    @$el.find('.connector').hide()
-    @$el.find('.add_scores').show()
+    if @model.get('tournament').get('admin')
+      @$el.find('.connector').hide()
+      @$el.find('.add_scores').show()
   
   addScores: (e) ->
     e.preventDefault()

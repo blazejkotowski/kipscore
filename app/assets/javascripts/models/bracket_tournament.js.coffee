@@ -9,6 +9,16 @@ class Kipscore.Models.BracketTournament extends Kipscore.Models.Tournament
   })
   
   relations: Kipscore.Models.Tournament.prototype.relations.concat([
+    { 
+      key: 'results'
+      type: Backbone.HasOne
+      includeInJSON: false
+      relatedModel: 'Kipscore.Models.BracketResults'
+      reverseRelation:
+        key: 'tournament'
+        includeInJSON: false
+        type: Backbone.HasOne
+    },
     {
       key: 'bracket'
       type: Backbone.HasMany
