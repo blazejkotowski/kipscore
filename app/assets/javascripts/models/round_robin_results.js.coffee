@@ -14,7 +14,16 @@ class Kipscore.Models.RoundRobinResults extends Kipscore.Models.Results
     
     sorted_list = _.sortBy unsorted_list, (tab) -> 
       -tab[1]
-  
+    sorted_list
+    
+    new_list = []
+    i = 0
+    for place in sorted_list
+      new_list[i++] = list.models[place[0]]
+    
+    @get('players').models = new_list
+      
+      
   fillResults: ->
     @set 'players', @get('tournament').get('players')    
     @trigger "to_save"
