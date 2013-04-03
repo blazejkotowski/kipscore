@@ -117,6 +117,9 @@ class Kipscore.Models.Match extends Backbone.RelationalModel
     player1 = @get('player1')
     player2 = @get('player2')
     not(player1.empty() or player2.empty())
+  
+  human: ->
+    @get('player1').human() && @get('player2').human()
     
   empty: ->
     return ((@get('player1').empty() && @get('player2').empty()) ||

@@ -1,5 +1,9 @@
 class Kipscore.Models.RoundRobinResults extends Kipscore.Models.Results
   
+  defaults: _.extend(Kipscore.Models.Results.prototype.defaults, {
+    ready: false,
+  })
+  
   add: (player, points) ->
     list = @get('players')
     for p in list.models

@@ -1,22 +1,22 @@
 <td>
   <%- @p1v.render().$el.html() %>
 </td>
-<td class="scores">
-  <% if @admin: %>
-    <input type="text" class="player_score">
-  <% end %>
-    <div class="versus">
-      <div class="connector">
-        -
-      </div>
-      <% if @admin: %>
-        <a href="#" class="add_scores">+</a>
-      <% end %>
+<td>
+  <div class="versus">
+    <div class="connector">
+      -
     </div>
-  <% if @admin: %>
-    <input type="text" class="player_score">
-  <% end %>
+  </div>
 </td>
 <td>
   <%- @p2v.render().$el.html() %>
+</td>
+<td class="inputs">
+ <% if @admin: %>
+    <input type="text" class="player_score">
+    <input type="text" class="player_score">
+    <a href="#" class="add_scores">+</a>
+  <% end %>
+</td>
+<td class="scores">
 </td>

@@ -19,26 +19,33 @@
     font-size: 15px;
   }
   .scores-table {
+    position: relative;
+    height: 100%;
     display: inline-block;
     div {
+      position: relative;
+      height: 100%;
+      text-align: center;
+      width: 30px;
       display: inline-block;
       padding: 9px 4px;
       margin-top: -9px;
       margin-bottom: -9px;
+      border-left: 1px solid #ccc;
+      &:last-child {
+        border-right: 1px solid #ccc;
+      }
     }
   }
-  .scores-table:first-child {
-    margin-right: 15px;
-    div { border-left: 1px solid #ccc; }
-  }
-  .scores-table:last-child {
-    margin-left: 15px;
-    div { border-right: 1px solid #ccc; }
-  }
   .scores {
-    width: 200px;
-    text-align: center;
+    width: 110px;
+    padding-right: 0;
     white-space: nowrap;
+    text-align: right;
+  }
+  .inputs {
+    width: 60px;
+    text-align: right;
     input {
       width: 15px;
       padding: 0px;
@@ -52,8 +59,11 @@
     display: none;
   }
   .round-robin-match:hover, .round-robin-match.active {
-    .scores {
+    .inputs {
       input { display: inline-block; }
+    }
+    .add_scores {
+      display: inline-block;
     }
   }
 }
