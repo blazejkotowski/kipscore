@@ -38,7 +38,7 @@ class Kipscore.Views.RoundRobinMatch extends Backbone.View
   render: ->
     p1 = new Kipscore.Views.Player({ model: @model.get('player1') })
     p2 = new Kipscore.Views.Player({ model: @model.get('player2') })
-    data = _.extend(@model.toJSON(), { p1v: p1, p2v: p2, admin: @model.get('tournament').get('admin') })
+    data = _.extend(@model.toJSON(), { p1v: p1, p2v: p2, admin: @model.get('tournament').get('admin') && @model.human() })
     @$el.html(@template(data))
     if @model.human()
       console.log "Rendering scores"

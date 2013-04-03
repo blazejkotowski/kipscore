@@ -16,7 +16,7 @@
     <input type="text" class="player_score">
     <input type="text" class="player_score">
     <a href="#" class="add_scores">+</a>
-  <% end %>
+<% end %>
 </td>
 <td class="scores">
 </td>

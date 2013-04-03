@@ -1,7 +1,11 @@
 <table class="round table table-striped">
   <thead>
     <tr>
-      <td>Round <%= @number %></td>
+      <th>Round <%= @number %></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th>Scores</th>
     </tr>
   </thead>
   <tbody>
