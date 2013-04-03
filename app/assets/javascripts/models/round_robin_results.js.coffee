@@ -26,7 +26,12 @@ class Kipscore.Models.RoundRobinResults extends Kipscore.Models.Results
       new_list[i++] = list.models[place[0]]
     
     @get('players').models = new_list
-      
+    
+  
+  setResults: ->
+    @pickPlaces()
+    @set 'ready', true
+    @trigger 'change:ready'
       
   fillResults: ->
     @set 'players', @get('tournament').get('players')    

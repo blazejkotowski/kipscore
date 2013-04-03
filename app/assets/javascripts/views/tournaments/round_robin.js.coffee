@@ -13,6 +13,6 @@ class Kipscore.Views.RoundRobinTournament extends Backbone.View
         mv = new Kipscore.Views.RoundRobinMatch({model: match})
         $round.append(mv.render().$el)
       @$el.append($round)
-    #@$el.html(@template(@model.toJSON()))
+      
     this
   

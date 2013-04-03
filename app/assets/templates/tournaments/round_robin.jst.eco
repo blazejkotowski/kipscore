@@ -16,3 +16,6 @@
     </tbody>
   </table>
 <% end %>
+<div class="row align-center">
+  <button class="btn btn-large btn-primary results-button">
+</div>

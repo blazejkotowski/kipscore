@@ -1,7 +1,7 @@
 class Kipscore.Views.RoundRobinResults extends Backbone.View
 
-  tagName: 'table'
-  className: 'table results table-striped'
+  tagName: 'div'
+  className: ''
   template: JST['results/round_robin_results']
   
   initialize: ->
@@ -9,29 +9,26 @@ class Kipscore.Views.RoundRobinResults extends Backbone.View
     @model.bind "change:ready", @render
     @render()
     
+  events: 
+    'click .results-button': 'getResults'
+    
+  getResults: (e) ->  
+    e.preventDefault()
+    @model.setResults()
+    
   render: ->
     @$el.html('')
+    
+    # Results button
+    $container = $("<div/>").addClass("row align-center")
+    $button = $("<button/>").addClass("btn btn-large btn-primary results-button")
+              .text("Results").appendTo($container)
+    
+    @$el.append($container)
+    
+    # Results table
     if @model.get('ready')
       players = @model.get('players')
       @$el.append(@template(@model.toJSON()))
-#      if players.length > 0
-#        $thead = $('<thead/>')
-#        $thead.append('<tr><th>Place</th><th>Name</th><th>Points</th><th>Rank</th></tr>')
-#        @$el.append($thead)
-#        $tbody = $('<tbody/>')
-#        
-#        index=0
-#        while index < players.length
-#          result = players.at(index)
-#          $result = $('<tr/>')
-#          $result.append($('<td/>').text(index+1))
-#          $result.append($('<td/>').text(result.get('name')))
-#          rank = result.get('rank')
-#          rank = '' if rank < 1
-#          $result.append($('<td/>').text(rank))
-#          $tbody.append($result)
-#          index++
-#    
-#        @$el.append($tbody)
-    
+
     this
