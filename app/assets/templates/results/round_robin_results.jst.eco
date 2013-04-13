@@ -1,0 +1,22 @@
+<table class="table results table-striped">
+  <thead>
+    <tr>
+      <th>Place</th>
+      <th>Name</th>
+      <th>Points</th>
+      <th>Rank</th>
+    </tr>
+  </thead>  
+  <tbody>
+    <% console.log @players %>
+    <% i = 1 %>
+    <% for player in @players: %>
+      <tr>
+        <td><%- i++ %></td>
+        <td><%- player.name %></td>
+        <td><%- player.points %></td>
+        <td><%- player.rank %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
