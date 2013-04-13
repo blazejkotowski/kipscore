@@ -27,6 +27,7 @@ class Kipscore.Models.RoundRobinTournament extends Kipscore.Models.Tournament
     i = 0
     for round_array in rounds_array
       round = new Kipscore.Collections.RoundRobinMatches()
+      round.tournament = @
       for match in round_array
         p1 = new Kipscore.Models.Player(match[0])
         p2 = new Kipscore.Models.Player(match[1])

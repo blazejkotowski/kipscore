@@ -5,12 +5,26 @@ class Kipscore.Models.RoundRobinResults extends Kipscore.Models.Results
   })
   
   add: (player, points) ->
+    if player is null || player.bye()
+      return false
     list = @get('players')
     for p in list.models
       if player.get('name') == p.get('name')
         p.set 'points', p.get('points') + points
         console.log p.get('points')
         
+  sumResults: ->
+    tournament = @get('tournament')
+    rounds = tournament.get('rounds')
+    Window.rounds = rounds
+    context = this
+    _.each rounds, (round, index) ->
+      _.each round.models, (match, index) ->
+        match.pickWinner()
+        if match.human()
+          context.add match.get('winner'), tournament.get('win_points') + tournament.get('base_points')
+          context.add match.get('loser'), tournament.get('loss_points') + tournament.get('base_points')
+      
   pickPlaces: ->  
     list = @get('players')
     unsorted_list = _.map list.models, (player, iter)->
@@ -29,6 +43,7 @@ class Kipscore.Models.RoundRobinResults extends Kipscore.Models.Results
     
   
   setResults: ->
+    @sumResults()
     @pickPlaces()
     @set 'ready', true
     @trigger 'change:ready'
