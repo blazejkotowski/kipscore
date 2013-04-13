@@ -7,7 +7,7 @@ class StaticPagesController < ApplicationController
   
   def home
     if user_signed_in?
-      redirect_to edit_user_registration_path
+      redirect_to tournaments_user_path
     end
     @user = User.new
   end
