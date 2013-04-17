@@ -31,6 +31,7 @@
                 %li= link_to I18n.t("custom_translations.contact", :default => "contact"), contact_path
             - if user_signed_in?
               %ul.nav.pull-right
+                %li.negative-right= link_to "#{current_user.kipcoins} KC", '#'
                 %li.dropdown
                   %a{ :href => '#', :class => 'dropdown-toggle', 'data-toggle' => 'dropdown'}
                     = current_user.name

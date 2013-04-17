@@ -26,7 +26,7 @@ class TournamentsController < ApplicationController
   # GET /tournaments/1
   # GET /tournaments/1.json
   def show
-    @tournament = Tournament.find(params[:id])
+    @tournament = Tournament.published.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -62,7 +62,6 @@ class TournamentsController < ApplicationController
 
   # PUT /tournaments/1
   def update
-    logger.debug @tournament
     unless @tournament.created?
       return redirect_to(tournaments_user_path(:anchor => "tid=#{@tournament.id}"), :notice => I18n.t("custom_translations.you are unable to edit active tournament", :default => "you are unable to edit active tournament.").capitalize)
     end
@@ -111,6 +110,18 @@ class TournamentsController < ApplicationController
       notice = I18n.t("custom_translations.This tournament is not even started")
     end
     redirect_to tournaments_user_url(:anchor => "tid=#{@tournament.id}"), :notice => notice
+  end
+  
+  def publish
+    @tournament = Tournament.find(params[:id])
+    @tournament.publish
+    redirect_to tournaments_user_url(:anchor => "tid=#{@tournament.id}")
+  end
+  
+  def unpublish
+    @tournament = Tournament.find(params[:id])
+    @tournament.unpublish
+    redirect_to tournaments_user_url(:anchor => "tid=#{@tournament.id}")
   end
   
   def bracket
@@ -204,11 +215,11 @@ class TournamentsController < ApplicationController
       
       case params.try('[]', :state)
       when 'started'
-        @search = Tournament.started.page(params[:page]).with_user.search(params[:q])
+        @search = Tournament.published.started.page(params[:page]).with_user.search(params[:q])
       when 'finished'
-        @search = Tournament.finished.page(params[:page]).with_user.search(params[:q])
+        @search = Tournament.published.finished.page(params[:page]).with_user.search(params[:q])
       else
-        @search = Tournament.created.page(params[:page]).with_user.search(params[:q])
+        @search = Tournament.published.created.page(params[:page]).with_user.search(params[:q])
       end
           
       @tournaments = @search.result

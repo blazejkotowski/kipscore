@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130326141040) do
+ActiveRecord::Schema.define(:version => 20130417233248) do
 
   create_table "player_associations", :force => true do |t|
     t.integer  "tournament_id"
@@ -80,8 +80,8 @@ ActiveRecord::Schema.define(:version => 20130326141040) do
     t.integer  "user_id"
     t.string   "name"
     t.datetime "start_date"
-    t.datetime "created_at",                     :null => false
-    t.datetime "updated_at",                     :null => false
+    t.datetime "created_at",                      :null => false
+    t.datetime "updated_at",                      :null => false
     t.text     "description"
     t.text     "json_bracket"
     t.string   "slug"
@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(:version => 20130326141040) do
     t.integer  "loss_points",  :default => 0
     t.integer  "draw_points",  :default => 0
     t.integer  "base_points",  :default => 0
+    t.boolean  "published",    :default => false
   end
 
   add_index "tournaments", ["slug"], :name => "index_tournaments_on_slug"
@@ -128,6 +129,7 @@ ActiveRecord::Schema.define(:version => 20130326141040) do
     t.string   "provider"
     t.string   "uid"
     t.boolean  "admin",                  :default => false
+    t.integer  "kipcoins",               :default => 32
   end
 
   add_index "users", ["confirmation_token"], :name => "index_users_on_confirmation_token", :unique => true

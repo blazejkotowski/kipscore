@@ -40,6 +40,8 @@ Kipscore::Application.routes.draw do
   resources :tournaments do
     post 'search', :on => :collection
     put 'start', :on => :member
+    put 'publish', :on => :member
+    put 'unpublish', :on => :member
     put 'finish', :on => :member
     match 'bracket' => 'tournaments#bracket', :via => :get
     match 'bracket' => 'tournaments#bracket_update', :via => :put

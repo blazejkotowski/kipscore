@@ -20,7 +20,7 @@ class Tournament < ActiveRecord::Base
   
   attr_accessible :state, :name, :sport_id, :start_date,
                   :description, :open, :json_results, :type,
-                  :json_bracket
+                  :json_bracket, :published
   
   belongs_to :user
   belongs_to :sport
@@ -59,6 +59,9 @@ class Tournament < ActiveRecord::Base
   scope :with_form, includes(:tournament_form)
   scope :with_user, includes(:user => [:profile])
   
+  scope :published, where('published = ?', true)
+  scope :unpublished, where('published = ?', false)
+  
   scope :finished, -> {with_state(:finished)}
   scope :started, -> {with_state(:started)}
   scope :created, -> {with_state(:created)}
@@ -85,6 +88,14 @@ class Tournament < ActiveRecord::Base
     state :started
     state :finished
   end  
+  
+  def publish
+    update_attribute :published, true  
+  end
+  
+  def unpublish
+    update_attribute :published, false
+  end
   
   def joinable?
     !self.started? && !self.finished? && self.open
