@@ -1,6 +1,6 @@
 require "bundler/capistrano"
 
-server "198.211.121.192", :web, :app, :db, primary: true
+server "178.216.201.35", :web, :app, :db, primary: true
 
 task :staging do
   set :stage, "staging"
